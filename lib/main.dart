@@ -1,8 +1,10 @@
+import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
+import 'package:Crime_Reporting_AIO_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Crime_Reporting_AIO_app/screens/splashscreen.dart';
 import 'homeScreen.dart';
 import 'intro_slider.dart';
-import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
+import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,11 +18,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFF2F2F2),
         fontFamily: 'Manrope',
       ),
-      initialRoute: '/',
+      initialRoute: '/welcome',
       routes: {
-        '/': (context) => SplashScreen(),
-        '/intro': (context) => IntroScreen(),
+        '/welcome': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/intro': (context) => IntroScreen(),
         '/home': (context) => HomeScreen(),
       },
     );

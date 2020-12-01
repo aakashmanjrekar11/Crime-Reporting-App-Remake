@@ -1,3 +1,4 @@
+import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterScreen(),
         '/intro': (context) => IntroScreen(),
         '/home': (context) => HomeScreen(),
+        '/complaint': (context) => ComplaintApp(),
       },
     );
   }

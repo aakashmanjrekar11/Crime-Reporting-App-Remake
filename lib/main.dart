@@ -1,7 +1,6 @@
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Crime_Reporting_AIO_app/screens/splashscreen.dart';
 import 'homeScreen.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';

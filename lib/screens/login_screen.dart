@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'register_screen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: <String>[
+   'email',
+  ]
+);
+
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, this.title}) : super(key: key);
@@ -13,9 +21,21 @@ class LoginScreen extends StatefulWidget {
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  GoogleSignInAccount _currentUser;
+
+  Future<void> _handleSignin() async{
+    try{
+      await _googleSignIn.signIn();
+    }catch(error){
+      print(error);
+    }
+  }
+  
+ 
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -165,7 +185,19 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             flex: 5,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                await _handleSignin();
+                Navigator.pushNamed(context, '/home');
+                Fluttertoast.showToast(
+                  msg: "Login Successful!",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.grey,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -242,6 +274,20 @@ class _LoginScreenState extends State<LoginScreen> {
         _entryField("Password", isPassword: true),
       ],
     );
+  }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if(_currentUser != null){
+          Navigator.pushNamed(context, '/home');
+      }     
+      });
   }
 
   @override

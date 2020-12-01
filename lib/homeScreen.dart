@@ -1,5 +1,7 @@
+import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:flutter/material.dart';
 import 'package:Crime_Reporting_AIO_app/utils/focusList.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'drawer_custom.dart';
 import 'bottomNavBar_custom.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +22,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String userName;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _handleInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -58,15 +69,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           backgroundColor: Colors.white70,
-          title: Text(
-            'Hi, Samir!',
-            style: TextStyle(
-              fontSize: 23.0,
-              fontWeight: FontWeight.bold,
-              //fontStyle: FontStyle.italic,
-              color: Colors.grey[800],
-            ),
-          ),
+          title: (userName != null)
+              ? Text(
+                  userName,
+                  style: TextStyle(
+                    fontSize: 23.0,
+                    fontWeight: FontWeight.bold,
+                    //fontStyle: FontStyle.italic,
+                    color: Colors.grey[800],
+                  ),
+                )
+              : Text("Looking for username"),
         ),
         body: _buildBody(),
 
@@ -75,6 +88,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _handleInfo() async {
+    try {
+      GoogleSignInAccount data = await googleSignIn.signIn() ?? null;
+      print(data.toString());
+      if (data != null) {
+        userName = data.displayName;
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+   
   _buildBody() {
     return CustomScrollView(
       shrinkWrap: true,

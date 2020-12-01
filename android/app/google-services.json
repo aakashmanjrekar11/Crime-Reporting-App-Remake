@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "293777107666",
+    "firebase_url": "https://crm-app-e8f52.firebaseio.com",
+    "project_id": "crm-app-e8f52",
+    "storage_bucket": "crm-app-e8f52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293777107666:android:8e1154d7c75b1f5f411b0b",
+        "android_client_info": {
+          "package_name": "com.example.crm_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293777107666-7h4kd813tkt0g9g1n9ltnm63elcqmnhs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crm_flutter",
+            "certificate_hash": "a0e8a849b17223337d8deb9127b36d4d69ef5452"
+          }
+        },
+        {
+          "client_id": "293777107666-qi1no87a05eqhcohpei06hjrrff9c1r9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQHil2AGyEIO9L4lxEra38n5vr5y3GH4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293777107666-qi1no87a05eqhcohpei06hjrrff9c1r9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-   'email',
-  ]
-);
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes:['email',]);
 
 
 class LoginScreen extends StatefulWidget {
@@ -33,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
  
   Future<void> _handleSignin() async{
     try{
+      signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       String name = data.displayName.toString();
       Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name)));
@@ -41,6 +39,10 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Future<void> _handleFSignin(String email, String pwd) async{
+    await Firebase.initializeApp();
+    _auth.signInWithEmailAndPassword(email: email, password: pwd);
+  }
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -127,8 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () {
-        _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
+      onTap: () async{
+        await _handleFSignin(_emailId, _pwd);
         Fluttertoast.showToast(
           msg: "Login Successful!",
           toastLength: Toast.LENGTH_SHORT,

@@ -33,7 +33,7 @@ dependencies:
   intro_slider: ^2.3.3
   avatar_glow: ^1.2.0
   circular_profile_avatar: ^1.0.8
-  google_sign_in: ^4.5.4
+  google_sign_in: ^4.5.6
   firebase_auth: ^0.18.3+1
   firebase_core: ^0.5.1
 

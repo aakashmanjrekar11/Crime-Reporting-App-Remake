@@ -21,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   // @override
   // void initState() {
   //   // TODO: implement initState
@@ -69,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white70,
           title: (widget.username != null)
               ? Text(
-                  "Hi, "+widget.username,
+                  "Hi, " + widget.username,
                   style: TextStyle(
                     fontSize: 23.0,
                     fontWeight: FontWeight.bold,
@@ -80,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : Text("Looking for username"),
         ),
         body: _buildBody(),
-        bottomNavigationBar: BottomNavBar(),
+        //bottomNavigationBar: BottomNavBar(),
       ),
     );
   }

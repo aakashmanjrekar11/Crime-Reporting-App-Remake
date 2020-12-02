@@ -5,8 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
+import 'screens/myProfile_screen.dart';
 
-void main() async { 
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/intro': (context) => IntroScreen(),
         // '/home': (context) => HomeScreen(),
         '/complaint': (context) => ComplaintApp(),
+        '/profile': (context) => ProfilePage(),
       },
     );
   }

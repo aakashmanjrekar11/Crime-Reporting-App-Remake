@@ -10,12 +10,9 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-   'email',
-  ]
-);
-
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
+  'email',
+]);
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, this.title}) : super(key: key);
@@ -24,19 +21,19 @@ class LoginScreen extends StatefulWidget {
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
-  String _emailId,_pwd;
- 
-  Future<void> _handleSignin() async{
-    try{
+  String _emailId, _pwd;
+
+  Future<void> _handleSignin() async {
+    try {
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       String name = data.displayName.toString();
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name)));
-    }catch(error){
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen(name)));
+    } catch (error) {
       print(error);
     }
   }
@@ -82,9 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fillColor: Colors.white,
               filled: true,
             ),
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
-                _emailId=value.trim();
+                _emailId = value.trim();
               });
             },
           )
@@ -92,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
   Widget _password() {
     return Container(
@@ -114,9 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fillColor: Colors.white,
               filled: true,
             ),
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
-                _pwd=value.trim();
+                _pwd = value.trim();
               });
             },
           )
@@ -138,7 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username")));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomeScreen('username')));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -308,7 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  
+
   // @override
   // void initState() {
   //   // TODO: implement initState

@@ -17,7 +17,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
         centerTitle: true,
         title: Text('Complaint  Registration'),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           new ListTile(
             leading: const Icon(Icons.person),

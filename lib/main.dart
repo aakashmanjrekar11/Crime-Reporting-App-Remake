@@ -1,11 +1,16 @@
+import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/register_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'homeScreen.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
 
-void main() => runApp(MyApp());
+void main() async { 
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,7 +28,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
         '/intro': (context) => IntroScreen(),
-        '/home': (context) => HomeScreen(),
+        // '/home': (context) => HomeScreen(),
+        '/complaint': (context) => ComplaintApp(),
       },
     );
   }

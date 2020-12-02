@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'register_screen.dart';
+import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -25,17 +28,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  GoogleSignInAccount _currentUser;
-
+  final _auth = FirebaseAuth.instance;
+  String _emailId,_pwd;
+ 
   Future<void> _handleSignin() async{
     try{
-      await _googleSignIn.signIn();
+      GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
+      String name = data.displayName.toString();
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name)));
     }catch(error){
       print(error);
     }
   }
-  
- 
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -57,26 +62,63 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _email() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            title,
+            "Email",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
             height: 10,
           ),
           TextField(
-            obscureText: isPassword,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
               filled: true,
             ),
+            onChanged: (value){
+              setState(() {
+                _emailId=value.trim();
+              });
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+
+  Widget _password() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Password",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true,
+            ),
+            onChanged: (value){
+              setState(() {
+                _pwd=value.trim();
+              });
+            },
           )
         ],
       ),
@@ -86,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () {
+        _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
         Fluttertoast.showToast(
           msg: "Login Successful!",
           toastLength: Toast.LENGTH_SHORT,
@@ -95,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Navigator.pushNamed(context, '/intro');
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username")));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -187,7 +230,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: GestureDetector(
               onTap: () async {
                 await _handleSignin();
-                Navigator.pushNamed(context, '/home');
                 Fluttertoast.showToast(
                   msg: "Login Successful!",
                   toastLength: Toast.LENGTH_SHORT,
@@ -266,29 +308,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Email ID"),
-        _entryField("Password", isPassword: true),
-      ],
-    );
-  }
   
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        _currentUser = account;
-      });
-      if(_currentUser != null){
-          Navigator.pushNamed(context, '/home');
-      }     
-      });
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -313,7 +338,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: height * .2),
                     _title(),
                     SizedBox(height: 100),
-                    _emailPasswordWidget(),
+                    _email(),
+                    SizedBox(height: 20),
+                    _password(),
                     SizedBox(height: 20),
                     _submitButton(),
                     Container(

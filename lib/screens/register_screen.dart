@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'login_screen.dart';
@@ -13,6 +14,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _auth = FirebaseAuth.instance;
+  String _emailId,_pwd;
+ 
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -34,27 +38,64 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _email() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            title,
+            "Email",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
             height: 10,
           ),
           TextField(
-            obscureText: isPassword,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
               filled: true,
             ),
+            onChanged: (value){
+              setState(() {
+                _emailId=value.trim();
+              });
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+
+  Widget _password() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Password",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true,
+            ),
+            onChanged: (value){
+              setState(() {
+                _pwd=value.trim();
+              });
+            },
+          )
         ],
       ),
     );
@@ -63,6 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () {
+        _auth.createUserWithEmailAndPassword(email: _emailId, password: _pwd);
         Fluttertoast.showToast(
           msg: "Registration Successful!",
           toastLength: Toast.LENGTH_SHORT,
@@ -147,16 +189,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Username"),
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -183,7 +215,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    _emailPasswordWidget(),
+                    _email(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _password(),
                     SizedBox(
                       height: 20,
                     ),

@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ReusableCard(
                   onPress: () {
                     setState(() {
-                      Navigator.pushNamed(context, '/complaint');
+                      Navigator.pushNamed(context, '/lostfound');
                     });
                   },
                   colour: Colors.white,
@@ -185,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ReusableCard(
                   onPress: () {
                     setState(() {
-                      Navigator.pushNamed(context, '/complaint');
+                      Navigator.pushNamed(context, '/list');
                     });
                   },
                   colour: Colors.white,

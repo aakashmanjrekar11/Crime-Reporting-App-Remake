@@ -31,17 +31,28 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
+  GoogleSignInAccount _currentUser;
   Position _position;
   StreamSubscription<Position> _subscription;
   Address _address;
-
   String _emailId,_pwd,lat,long,address;
  
   Future<void> _handleGSignin() async{
+    String name=".";
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) { 
+      setState(() {
+        _currentUser = account;
+      });
+      if(_currentUser != null){
+        Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(name,lat,long,address)));
+      }else{
+        
+      }
+    });
     try{
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
-      String name = data.displayName.toString();
+      name = data.displayName.toString();
       Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name,lat,long,address)));
     }catch(error){
       print(error);
@@ -163,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username","-","-","-")));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username",lat,long,address)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -341,16 +352,15 @@ class _LoginScreenState extends State<LoginScreen> {
     _checkPermission();
     var loc = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter:10);
     _subscription = Geolocator().getPositionStream(loc).listen((Position position)async {
-      print(position);
-      _position = position;
+        print(position);
+        _position = position;
 
-      final co_ords = new Coordinates(position.latitude, position.longitude);
-      await convertCoords(co_ords).then((value)=> _address=value);
-      lat = _position.latitude.toString();
-      long = _position.longitude.toString();
-      address = _address.locality; 
-      });
-       
+        final co_ords = new Coordinates(position.latitude, position.longitude);
+        await convertCoords(co_ords).then((value)=> _address=value);
+        lat = _position.latitude.toString();
+        long = _position.longitude.toString();
+        address = _address.locality; 
+    });   
   }
   
   @override

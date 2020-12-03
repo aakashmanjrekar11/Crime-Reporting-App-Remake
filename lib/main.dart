@@ -7,10 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
+import 'screens/myProfile_screen.dart';
 
 import 'screens/lost_and_found.dart';
 
-void main() async { 
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());

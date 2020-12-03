@@ -56,8 +56,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   child: CircularProfileAvatar(
                     null,
                     child: Image(
-                        image: AssetImage(
-                            'images/IndianPoliceOfficer_whiteBG.png')),
+                      image: AssetImage(
+                        'images/IndianPoliceOfficer_whiteBG.png',
+                      ),
+                    ),
                     borderColor: Colors.grey,
                     borderWidth: 2,
                     elevation: 10,

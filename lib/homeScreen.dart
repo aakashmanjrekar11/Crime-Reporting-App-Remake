@@ -48,33 +48,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
                       },
-                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                    );
-                  },
-                ),
-                actions: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Fluttertoast.showToast(
-                          msg: "⚠️Under Construction!⚠️",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.solidPaperPlane,
+                        iconColor: Colors.blue[300],
+                        fieldName: 'Complaint\nRegistration',
+                      ),
+                    ),
+                  ),
+
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
                       },
-                      child: GestureDetector(
-                        child: FaIcon(FontAwesomeIcons.signOutAlt),
-                        onTap: () async{
-                          await signOutGoogle();
-                          _auth.signOut();
-                          Navigator.pop(context);
-                          }
-                        ),
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.exclamationTriangle,
+                        iconColor: Colors.yellow[700],
+                        fieldName: 'Emergency\n Contacts',
+                      ),
                     ),
                   ),
                 ],
@@ -179,8 +175,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Expanded(
                 child: Row(
@@ -217,50 +213,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             fieldName: 'extra'),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    //! MALE
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/complaint');
-                          });
-                        },
-                        colour: Colors.white,
-                        cardChild: IconContent(
+                  ),
+
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
                           iconName: FontAwesomeIcons.question,
                           iconColor: Colors.grey,
-                          fieldName: 'extra',
-                        ),
-                      ),
+                          fieldName: 'extra'),
                     ),
-      
-                    //! FEMALE
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/complaint');
-                          });
-                        },
-                        colour: Colors.white,
-                        cardChild: IconContent(
-                            iconName: FontAwesomeIcons.question,
-                            iconColor: Colors.grey,
-                            fieldName: 'extra'),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
             ),
-          );
-        }
+          ],
+        ),
+        //bottomNavigationBar: BottomNavBar(),
+      ),
+    );
+  }
 }

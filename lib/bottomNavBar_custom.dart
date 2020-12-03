@@ -1,6 +1,8 @@
+import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'screens/myProfile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -8,14 +10,6 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,10 +17,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         height: 80.0,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
+          //currentIndex: _pageIndex,
           selectedItemColor: Colors.amber[800],
           unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
+          //onTap: _onItemTapped,
           items: [
             BottomNavigationBarItem(
               icon: Icon(LineAwesomeIcons.home, size: 35),

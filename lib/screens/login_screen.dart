@@ -13,8 +13,9 @@ import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(scopes:['email',]);
-
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
+  'email',
+]);
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, this.title}) : super(key: key);
@@ -23,7 +24,6 @@ class LoginScreen extends StatefulWidget {
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(name,photoURL,lat,long,address)));
       }
     });
-    try{
+    try {
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       name = data.displayName.toString();
@@ -55,20 +55,22 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future convertCoords(Coordinates co_ords) async{
-          var addresses = await Geocoder.local.findAddressesFromCoordinates(co_ords);
-          return addresses.first;
+  Future convertCoords(Coordinates co_ords) async {
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(co_ords);
+    return addresses.first;
   }
 
-  Future<void> _checkPermission() async{
+  Future<void> _checkPermission() async {
     final PermissionHandler _permissionHandler = PermissionHandler();
-    var permission = await _permissionHandler.checkPermissionStatus(PermissionGroup.location);
-    if (permission == PermissionStatus.denied){
-      await _permissionHandler.requestPermissions([PermissionGroup.location,PermissionGroup.locationWhenInUse]);
+    var permission = await _permissionHandler
+        .checkPermissionStatus(PermissionGroup.location);
+    if (permission == PermissionStatus.denied) {
+      await _permissionHandler.requestPermissions(
+          [PermissionGroup.location, PermissionGroup.locationWhenInUse]);
     }
   }
 
-  Future<void> _handleFSignin(String email, String pwd) async{
+  Future<void> _handleFSignin(String email, String pwd) async {
     await Firebase.initializeApp();
     _auth.signInWithEmailAndPassword(email: email, password: pwd);
   }
@@ -114,9 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fillColor: Colors.white,
               filled: true,
             ),
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
-                _emailId=value.trim();
+                _emailId = value.trim();
               });
             },
           )
@@ -124,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
   Widget _password() {
     return Container(
@@ -146,9 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fillColor: Colors.white,
               filled: true,
             ),
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
-                _pwd=value.trim();
+                _pwd = value.trim();
               });
             },
           )
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () async{
+      onTap: () async {
         await _handleFSignin(_emailId, _pwd);
         Fluttertoast.showToast(
           msg: "Login Successful!",
@@ -340,25 +341,27 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _checkPermission();
-    var loc = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter:10);
-    _subscription = Geolocator().getPositionStream(loc).listen((Position position)async {
-        print(position);
-        _position = position;
+    var loc =
+        LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+    _subscription =
+        Geolocator().getPositionStream(loc).listen((Position position) async {
+      print(position);
+      _position = position;
 
-        final co_ords = new Coordinates(position.latitude, position.longitude);
-        await convertCoords(co_ords).then((value)=> _address=value);
-        lat = _position.latitude.toString();
-        long = _position.longitude.toString();
-        address = _address.locality; 
-    });   
+      final co_ords = new Coordinates(position.latitude, position.longitude);
+      await convertCoords(co_ords).then((value) => _address = value);
+      lat = _position.latitude.toString();
+      long = _position.longitude.toString();
+      address = _address.locality;
+    });
   }
-  
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -368,7 +371,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height; 
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFFECECEC),
       body: Container(

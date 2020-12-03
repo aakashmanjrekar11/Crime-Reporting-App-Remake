@@ -31,65 +31,54 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
-<<<<<<< HEAD
-  String _emailId, _pwd;
-
-  Future<void> _handleSignin() async {
-    try {
-      signInWithGoogle();
-      GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
-      String name = data.displayName.toString();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen(name)));
-    } catch (error) {
-=======
   GoogleSignInAccount _currentUser;
   Position _position;
   StreamSubscription<Position> _subscription;
   Address _address;
-  String _emailId,_pwd,lat,long,address;
- 
-  Future<void> _handleGSignin() async{
-    String name=".";
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) { 
+  String _emailId, _pwd, lat, long, address;
+
+  Future<void> _handleGSignin() async {
+    String name = ".";
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
       });
-      if(_currentUser != null){
-        Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(name,lat,long,address)));
-      }else{
-        
-      }
+      if (_currentUser != null) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomeScreen(name, lat, long, address)));
+      } else {}
     });
-    try{
+    try {
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       name = data.displayName.toString();
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name,lat,long,address)));
-    }catch(error){
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeScreen(name, lat, long, address)));
+    } catch (error) {
       print(error);
     }
   }
 
-<<<<<<< HEAD
-  Future<void> _handleFSignin(String email, String pwd) async {
-=======
-  Future convertCoords(Coordinates co_ords) async{
-          var addresses = await Geocoder.local.findAddressesFromCoordinates(co_ords);
-          return addresses.first;
+  Future convertCoords(Coordinates co_ords) async {
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(co_ords);
+    return addresses.first;
   }
 
-  Future<void> _checkPermission() async{
+  Future<void> _checkPermission() async {
     final PermissionHandler _permissionHandler = PermissionHandler();
-    var permission = await _permissionHandler.checkPermissionStatus(PermissionGroup.location);
-    if (permission == PermissionStatus.denied){
-      await _permissionHandler.requestPermissions([PermissionGroup.location,PermissionGroup.locationWhenInUse]);
+    var permission = await _permissionHandler
+        .checkPermissionStatus(PermissionGroup.location);
+    if (permission == PermissionStatus.denied) {
+      await _permissionHandler.requestPermissions(
+          [PermissionGroup.location, PermissionGroup.locationWhenInUse]);
     }
   }
 
-  Future<void> _handleFSignin(String email, String pwd) async{
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
+  Future<void> _handleFSignin(String email, String pwd) async {
     await Firebase.initializeApp();
     _auth.signInWithEmailAndPassword(email: email, password: pwd);
   }
@@ -190,12 +179,11 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-<<<<<<< HEAD
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomeScreen('username')));
-=======
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username",lat,long,address)));
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomeScreen("Username", lat, long, address)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -365,44 +353,37 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-<<<<<<< HEAD
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
-=======
-  
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _checkPermission();
-    var loc = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter:10);
-    _subscription = Geolocator().getPositionStream(loc).listen((Position position)async {
-        print(position);
-        _position = position;
+    var loc =
+        LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+    _subscription =
+        Geolocator().getPositionStream(loc).listen((Position position) async {
+      print(position);
+      _position = position;
 
-        final co_ords = new Coordinates(position.latitude, position.longitude);
-        await convertCoords(co_ords).then((value)=> _address=value);
-        lat = _position.latitude.toString();
-        long = _position.longitude.toString();
-        address = _address.locality; 
-    });   
+      final co_ords = new Coordinates(position.latitude, position.longitude);
+      await convertCoords(co_ords).then((value) => _address = value);
+      lat = _position.latitude.toString();
+      long = _position.longitude.toString();
+      address = _address.locality;
+    });
   }
-  
+
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _subscription.cancel();
   }
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height; 
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFFECECEC),
       body: Container(

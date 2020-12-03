@@ -1,17 +1,10 @@
 {
     "logs": [
         {
-<<<<<<< HEAD
             "outputFile": "D:\\Flutter Projects\\crm_new_remake\\build\\url_launcher\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es\\values-es.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Aakash\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-es\\values-es.xml",
-=======
-            "outputFile": "C:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\url_launcher\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es\\values-es.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-es\\values-es.xml",
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,17 +16,10 @@
             ]
         },
         {
-<<<<<<< HEAD
             "outputFile": "D:\\Flutter Projects\\crm_new_remake\\build\\url_launcher\\intermediates\\res\\merged\\debug\\values-es\\values-es.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Aakash\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-es\\values-es.xml",
-=======
-            "outputFile": "C:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\url_launcher\\intermediates\\res\\merged\\debug\\values-es\\values-es.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-es\\values-es.xml",
->>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

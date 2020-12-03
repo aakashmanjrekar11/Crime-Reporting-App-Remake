@@ -5,12 +5,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 final List<String> imgList = [
-  'images/cropped-1920-1080-927384.jpg',
-  'images/cropped-1920-1080-1038473.png',
-  'images/jason-blackeye-209586.jpg',
-  'images/kristopher-roller-188180.jpg',
-  'images/thomas-griesbeck-149034.jpg',
-  'images/bryan-minear-317365.jpg',
+  'images/covid-prevent-spread.bmp',
+  'images/corona-helpline.bmp',
+  'images/emergency-response-police.bmp',
+  'images/emergency-response-women.bmp',
+  'images/emergency-108-helpline.bmp',
+  'images/medical-104-helpline.bmp',
 ];
 
 final List<Widget> imageSliders = imgList
@@ -34,7 +34,8 @@ final List<Widget> imageSliders = imgList
                         fontSize: 16.0,
                       );
                     },
-                    child: Image.asset(item, fit: BoxFit.cover, width: 1000.0)),
+                    child:
+                        Image.asset(item, fit: BoxFit.contain, width: 1000.0)),
                 Positioned(
                   bottom: 0.0,
                   left: 0.0,
@@ -51,15 +52,15 @@ final List<Widget> imageSliders = imgList
                       ),
                     ),
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    child: Text(
-                      'No. ${imgList.indexOf(item)} image',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                    // child: Text(
+                    //   'No. ${imgList.indexOf(item)} image',
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+                    //     fontSize: 20.0,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                   ),
                 ),
               ],

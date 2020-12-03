@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'drawer_custom.dart';
@@ -16,8 +20,8 @@ import 'utils/icon_content.dart';
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String username;
-  HomeScreen(this.username);
+  final String username, lat, long, address;
+  HomeScreen(this.username, this.lat, this.long, this.address);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -28,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // void initState() {
   //   // TODO: implement initState
   //   super.initState();
-  //   _handleInfo();
   // }
 
   @override
@@ -87,156 +90,142 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               : Text("Looking for username"),
         ),
-        body: _buildBody(),
-        //bottomNavigationBar: BottomNavBar(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            CarouselWithIndicatorDemo(),
+            SizedBox(
+              height: 5.0,
+              child: Divider(
+                indent: 180,
+                endIndent: 180,
+                color: Colors.grey[400],
+                thickness: 1.2,
+              ),
+            ),
+            Text("Location lat:${widget.lat}, lon:${widget.long}"),
+            Text("Address: ${widget.address}"),
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  //! Complaint Registration
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.solidPaperPlane,
+                        iconColor: Colors.blue[300],
+                        fieldName: 'Complaint\nRegistration',
+                      ),
+                    ),
+                  ),
+
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.exclamationTriangle,
+                        iconColor: Colors.yellow[700],
+                        fieldName: 'Emergency\n Contacts',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  //! MALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/lostfound');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.wallet,
+                        iconColor: Colors.brown,
+                        fieldName: 'Lost & Found',
+                      ),
+                    ),
+                  ),
+
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/list');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.phoneAlt,
+                        iconColor: Colors.green[400],
+                        fieldName: 'Mumbai Police \nStations',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  //! MALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.question,
+                        iconColor: Colors.grey,
+                        fieldName: 'extra',
+                      ),
+                    ),
+                  ),
+
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                          iconName: FontAwesomeIcons.question,
+                          iconColor: Colors.grey,
+                          fieldName: 'extra'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavBar(),
       ),
-    );
-  }
-
-  // Future<void> _handleInfo() async {
-  //   try {
-  //     GoogleSignInAccount data = await googleSignIn.signIn() ?? null;
-  //     print(data.toString());
-  //     if (data != null) {
-  //       userName = data.displayName;
-  //     }
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
-
-  _buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        SizedBox(height: 20.0),
-        CarouselWithIndicatorDemo(),
-        SizedBox(
-          height: 5.0,
-          child: Divider(
-            indent: 180,
-            endIndent: 180,
-            color: Colors.grey[400],
-            thickness: 1.2,
-          ),
-        ),
-        Expanded(
-          child: Row(
-            children: <Widget>[
-              //! Complaint Registration
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/complaint');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                    iconName: FontAwesomeIcons.solidPaperPlane,
-                    iconColor: Colors.blue[300],
-                    fieldName: 'Complaint\nRegistration',
-                  ),
-                ),
-              ),
-
-              //! FEMALE
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/complaint');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                    iconName: FontAwesomeIcons.exclamationTriangle,
-                    iconColor: Colors.yellow[700],
-                    fieldName: 'Emergency\n Contacts',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Row(
-            children: <Widget>[
-              //! MALE
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/lostfound');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                    iconName: FontAwesomeIcons.wallet,
-                    iconColor: Colors.brown,
-                    fieldName: 'Lost & Found',
-                  ),
-                ),
-              ),
-
-              //! FEMALE
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/list');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                    iconName: FontAwesomeIcons.phoneAlt,
-                    iconColor: Colors.green[400],
-                    fieldName: 'Mumbai Police \nStations',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Row(
-            children: <Widget>[
-              //! MALE
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/complaint');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                    iconName: FontAwesomeIcons.question,
-                    iconColor: Colors.grey,
-                    fieldName: 'extra',
-                  ),
-                ),
-              ),
-
-              //! FEMALE
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/complaint');
-                    });
-                  },
-                  colour: Colors.white,
-                  cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.grey,
-                      fieldName: 'extra'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

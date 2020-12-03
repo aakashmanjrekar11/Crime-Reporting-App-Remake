@@ -4,7 +4,11 @@
             "outputFile": "D:\\Flutter Projects\\crm_new_remake\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Aakash\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-en-rAU\\values-en-rAU.xml",
+=======
+                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-2\\files-2.1\\a9bb833f638dbc7f5cd8bc7f2b260f34\\core-1.2.0\\res\\values-en-rAU\\values-en-rAU.xml",
+>>>>>>> a78194b90e63234e62e837f757a1465408f7bc5a
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,7 +11,16 @@ class ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
-
+  final name=TextEditingController();
+  final phone=TextEditingController();
+  final email=TextEditingController();
+  
+  submit(){
+    Map<String,dynamic> data = {"Name":name.text,"Phone":phone.text,"Email":email.text};
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('profile');
+    collectionReference.add(data);
+  }
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -173,6 +183,7 @@ class ProfilePageState extends State<ProfilePage>
                           children: <Widget>[
                             new Flexible(
                               child: new TextField(
+                                controller: name,
                                 decoration: const InputDecoration(
                                   hintText: "Enter Your Name",
                                 ),
@@ -212,6 +223,8 @@ class ProfilePageState extends State<ProfilePage>
                           children: <Widget>[
                             new Flexible(
                               child: new TextField(
+                                controller: email,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
                                     hintText: "Enter Email ID"),
                                 enabled: !_status,
@@ -249,71 +262,13 @@ class ProfilePageState extends State<ProfilePage>
                           children: <Widget>[
                             new Flexible(
                               child: new TextField(
+                                controller: phone,
+                                keyboardType: TextInputType.phone,
+                                maxLength: 10,
                                 decoration: const InputDecoration(
                                     hintText: "Enter Mobile Number"),
                                 enabled: !_status,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
-                        child: new Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                child: new Text(
-                                  'Pin Code',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              flex: 2,
-                            ),
-                            Expanded(
-                              child: Container(
-                                child: new Text(
-                                  'State',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              flex: 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
-                        child: new Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Flexible(
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 10.0),
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Enter Pin Code"),
-                                  enabled: !_status,
-                                ),
-                              ),
-                              flex: 2,
-                            ),
-                            Flexible(
-                              child: new TextField(
-                                decoration: const InputDecoration(
-                                    hintText: "Enter State"),
-                                enabled: !_status,
-                              ),
-                              flex: 2,
                             ),
                           ],
                         ),
@@ -357,6 +312,7 @@ class ProfilePageState extends State<ProfilePage>
                       _status = true;
                       FocusScope.of(context).requestFocus(new FocusNode());
                     });
+                    submit();
                   },
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0)),

@@ -13,24 +13,27 @@ class IconContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          iconName,
-          size: 70.0,
-          color: iconColor,
-        ),
-        SizedBox(height: 15.0),
-        Text(
-          fieldName,
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w600,
-            color: Colors.grey[600],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,5,0,5),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            iconName,
+            size: 50.0,
+            color: iconColor,
           ),
-        ),
-      ],
+          SizedBox(height: 10.0),
+          Text(
+            fieldName,
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[600],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

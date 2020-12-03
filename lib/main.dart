@@ -1,6 +1,7 @@
 import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
 import 'package:Crime_Reporting_AIO_app/screens/list.dart';
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
+import 'package:Crime_Reporting_AIO_app/screens/myProfile_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

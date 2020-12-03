@@ -12,9 +12,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
   'email',
@@ -48,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context,
             MaterialPageRoute(
                 builder: (context) => HomeScreen(name, lat, long, address)));
-      } else {}
+      }
     });
     try {
       signInWithGoogle();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DrawerCustom extends StatelessWidget {
+  String photo;
+  DrawerCustom(this.photo);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,12 +17,12 @@ class DrawerCustom extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Item 1'),
+            title: Text('My Profile'),
             onTap: () {
               // Update the state of the app
               // ...
               // Then close the drawer
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/profile');
             },
           ),
           ListTile(

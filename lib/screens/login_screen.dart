@@ -12,9 +12,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes:['email',]);
 
@@ -38,22 +35,21 @@ class _LoginScreenState extends State<LoginScreen> {
   String _emailId,_pwd,lat,long,address;
  
   Future<void> _handleGSignin() async{
-    String name=".";
+    String photoURL,name=".";
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) { 
       setState(() {
         _currentUser = account;
       });
       if(_currentUser != null){
-        Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(name,lat,long,address)));
-      }else{
-        
+        Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(name,photoURL,lat,long,address)));
       }
     });
     try{
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       name = data.displayName.toString();
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name,lat,long,address)));
+      photoURL=data.photoUrl;
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(name,photoURL,lat,long,address)));
     }catch(error){
       print(error);
     }
@@ -174,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username",lat,long,address)));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen("Username",null,lat,long,address)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +16,19 @@ class _LostFoundState extends State<LostFound> {
   String dropdownValue1 = 'Lost Item Report';
   String dropdownValue2 = 'Driving License';
   final format = DateFormat("yyyy-MM-dd HH:mm");
+  final name=TextEditingController();
+  final phone=TextEditingController();
+  final email=TextEditingController();
+  final address=TextEditingController();
+  final dateTime=TextEditingController();
+  final addressLost=TextEditingController();
+  final desc=TextEditingController();
+
+  submit(){
+    Map<String,dynamic> data = {"Name":name.text,"Phone":phone.text,"Email":email.text,"Address":address.text,"Complaint Type":dropdownValue1,"Article Type":dropdownValue2,"Date & Time":dateTime.text,"Address of Lost/Found item":addressLost.text,"Description":desc.text};
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('lost_and_found');
+    collectionReference.add(data);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,46 +38,50 @@ class _LostFoundState extends State<LostFound> {
       ),
       body: ListView(
           children: <Widget>[
-            new ListTile(
+            ListTile(
               title: Text("Applicant Details"),
             ),
             const Divider(
               height: 1.0,
             ),
-            new ListTile(
+            ListTile(
               leading: const Icon(Icons.person),
-              title: new TextField(
-                decoration: new InputDecoration(
+              title: TextField(
+                controller: name,
+                decoration: InputDecoration(
                   hintText: "Name",
                 ),
               ),
             ),
-            new ListTile(
+            ListTile(
               leading: const Icon(Icons.phone),
-              title: new TextField(
+              title: TextField(
+                controller: phone,
                 keyboardType: TextInputType.phone,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Phone",
                 ),
               ),
             ),
-            new ListTile(
+            ListTile(
               leading: const Icon(Icons.email),
-              title: new TextField(
+              title: TextField(
+                controller: email,
                 keyboardType: TextInputType.emailAddress,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Email",
                 ),
               ),
             ),
-            new ListTile(
+            ListTile(
               leading: const Icon(
                 Icons.home,
               ),
-              title: new TextField(
+              title: TextField(
+                controller: address,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Address",
                 ),
               ),
@@ -71,16 +89,16 @@ class _LostFoundState extends State<LostFound> {
             const Divider(
               height: 1.0,
             ),
-            new ListTile(
+            ListTile(
               title: Text("Article Details"),
             ),
             const Divider(
               height: 1.0,
             ),
-            new ListTile(
+            ListTile(
               title: Text("Complaint Type"),
             ),
-            new ListTile(
+            ListTile(
               title: DropdownButton<String>(   
                       value: dropdownValue1, 
                       icon: Icon(Icons.arrow_downward,color: Colors.white,),
@@ -105,10 +123,10 @@ class _LostFoundState extends State<LostFound> {
                       }).toList(),
                     ),
             ),
-            new ListTile(
+            ListTile(
               title: Text("Article Type"),
             ),
-            new ListTile(
+            ListTile(
               title: DropdownButton<String>(    
                       value: dropdownValue2,
                       icon: Icon(Icons.arrow_downward,color: Colors.white,),
@@ -133,11 +151,12 @@ class _LostFoundState extends State<LostFound> {
                       }).toList(),
                     ),
             ),
-            new ListTile(
+            ListTile(
               title: Text("Date & Time"),
             ),
-            new ListTile(
+            ListTile(
               title: DateTimeField(
+                      controller: dateTime,
                       format: format,
                       onShowPicker: (context, currentValue) async {
                         final date = await showDatePicker(
@@ -158,23 +177,25 @@ class _LostFoundState extends State<LostFound> {
                       },
                     ),
             ),
-            new ListTile(
+            ListTile(
               leading: const Icon(
                 Icons.home,
               ),
-              title: new TextField(
+              title: TextField(
+                controller: addressLost,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Address of Lost Item",
                 ),
               ),
             ),
-            new ListTile(
-              title: new TextField(
+            ListTile(
+              title: TextField(
+                controller: desc,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Article Description",
                 ),
               ),
@@ -182,7 +203,7 @@ class _LostFoundState extends State<LostFound> {
             SizedBox(
               height:20
             ),
-            RaisedButton(onPressed: null, child: Text("Submit"),color: Colors.blueAccent,)        ],
+            RaisedButton(onPressed: submit(), child: Text("Submit"),color: Colors.blueAccent,)        ],
         ),
     );
   }

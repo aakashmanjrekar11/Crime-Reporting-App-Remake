@@ -162,7 +162,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   Widget get _animatedButtonUI => GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/login');
+          Navigator.pushNamed(context, '/intro');
         },
         child: Container(
           height: 60,

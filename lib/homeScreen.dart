@@ -20,8 +20,8 @@ import 'utils/icon_content.dart';
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String username,lat,long,address;
-  HomeScreen(this.username,this.lat,this.long,this.address);
+  final String username,photo,lat,long,address;
+  HomeScreen(this.username,this.photo,this.lat,this.long,this.address);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Widget build(BuildContext context) {
           return SafeArea(
             child: Scaffold(
-              drawer: DrawerCustom(),
+              drawer: DrawerCustom(widget.photo),
               appBar: AppBar(
                 leading: Builder(
                   builder: (BuildContext context) {
@@ -91,8 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     : Text("Looking for username"),
               ),
-              body: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+              body: ListView(
             children: <Widget>[
               SizedBox(height: 20.0),
               CarouselWithIndicatorDemo(),
@@ -107,44 +106,42 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Text("Location lat:${widget.lat}, lon:${widget.long}"),
               Text("Address: ${widget.address}"),
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    //! Complaint Registration
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/complaint');
-                          });
-                        },
-                        colour: Colors.white,
-                        cardChild: IconContent(
-                          iconName: FontAwesomeIcons.solidPaperPlane,
-                          iconColor: Colors.blue[300],
-                          fieldName: 'Complaint\nRegistration',
-                        ),
+              Row(
+                children: <Widget>[
+                  //! Complaint Registration
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.solidPaperPlane,
+                        iconColor: Colors.blue[300],
+                        fieldName: 'Complaint\nRegistration',
                       ),
                     ),
+                  ),
       
-                    //! FEMALE
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/complaint');
-                          });
-                        },
-                        colour: Colors.white,
-                        cardChild: IconContent(
-                          iconName: FontAwesomeIcons.exclamationTriangle,
-                          iconColor: Colors.yellow[700],
-                          fieldName: 'Emergency\n Contacts',
-                        ),
+                  //! FEMALE
+                  Expanded(
+                    child: ReusableCard(
+                      onPress: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/complaint');
+                        });
+                      },
+                      colour: Colors.white,
+                      cardChild: IconContent(
+                        iconName: FontAwesomeIcons.exclamationTriangle,
+                        iconColor: Colors.yellow[700],
+                        fieldName: 'Emergency\n Contacts',
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Expanded(
                 child: Row(
@@ -161,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         cardChild: IconContent(
                           iconName: FontAwesomeIcons.wallet,
                           iconColor: Colors.brown,
-                          fieldName: 'Lost & Found',
+                          fieldName: 'Lost &\n Found',
                         ),
                       ),
                     ),
@@ -178,8 +175,46 @@ class _HomeScreenState extends State<HomeScreen> {
                         cardChild: IconContent(
                           iconName: FontAwesomeIcons.phoneAlt,
                           iconColor: Colors.green[400],
-                          fieldName: 'Mumbai Police \nStations',
+                          fieldName: 'Police \nStations',
                         ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    //! MALE
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/complaint');
+                          });
+                        },
+                        colour: Colors.white,
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.question,
+                          iconColor: Colors.grey,
+                          fieldName: 'extra',
+                        ),
+                      ),
+                    ),
+      
+                    //! FEMALE
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/complaint');
+                          });
+                        },
+                        colour: Colors.white,
+                        cardChild: IconContent(
+                            iconName: FontAwesomeIcons.question,
+                            iconColor: Colors.grey,
+                            fieldName: 'extra'),
                       ),
                     ),
                   ],
@@ -225,7 +260,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-              bottomNavigationBar: BottomNavBar(),
             ),
           );
         }

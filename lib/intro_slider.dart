@@ -80,7 +80,7 @@ class IntroScreenState extends State<IntroScreen> {
 
   void onDonePress() {
     // Back to the first tab
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushNamed(context, '/login');
   }
 
   void onTabChangeCompleted(index) {

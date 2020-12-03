@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerCustom extends StatelessWidget {
   @override
@@ -15,6 +16,7 @@ class DrawerCustom extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: Icon(FontAwesomeIcons.user),
             title: Text('My Profile'),
             onTap: () {
               // Update the state of the app
@@ -24,12 +26,12 @@ class DrawerCustom extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Item 2'),
+            title: Text('Mumbai Police Site'),
             onTap: () {
               // Update the state of the app
               // ...
               // Then close the drawer
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/mumbaiPoliceSite');
             },
           ),
         ],

@@ -12,6 +12,7 @@ MERGED from [:geolocator] D:\Flutter Projects\crm_new_remake\build\geolocator\in
 MERGED from [:google_api_availability] D:\Flutter Projects\crm_new_remake\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geocoder] D:\Flutter Projects\crm_new_remake\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] D:\Flutter Projects\crm_new_remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [:webview_flutter] D:\Flutter Projects\crm_new_remake\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] D:\Flutter Projects\crm_new_remake\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:location_permissions] D:\Flutter Projects\crm_new_remake\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:permission_handler] D:\Flutter Projects\crm_new_remake\build\permission_handler\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -43,6 +44,7 @@ MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\26b28489f9144e5628c94d184f10d435\jetified-play-services-basement-17.2.1\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\2a043d3f5fd22167e021cf30806b5be9\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\77b21b9d8f1dd2618c7e8ee5d418ed1b\activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\30309c994948ab6305b0816b13332401\webkit-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\f333fff089a65883db4369ab04866b77\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\be0a3d96e69806a17dd3ec618a610bb9\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\f4b054b692c01d60cfa1b25a7210754e\loader-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -229,6 +231,8 @@ MERGED from [:geocoder] D:\Flutter Projects\crm_new_remake\build\geocoder\interm
 MERGED from [:geocoder] D:\Flutter Projects\crm_new_remake\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\Flutter Projects\crm_new_remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\Flutter Projects\crm_new_remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] D:\Flutter Projects\crm_new_remake\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] D:\Flutter Projects\crm_new_remake\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\Flutter Projects\crm_new_remake\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\Flutter Projects\crm_new_remake\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:location_permissions] D:\Flutter Projects\crm_new_remake\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -291,6 +295,8 @@ MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Aakash\.gradle\caches\tr
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\2a043d3f5fd22167e021cf30806b5be9\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\77b21b9d8f1dd2618c7e8ee5d418ed1b\activity-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\77b21b9d8f1dd2618c7e8ee5d418ed1b\activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\30309c994948ab6305b0816b13332401\webkit-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\30309c994948ab6305b0816b13332401\webkit-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\f333fff089a65883db4369ab04866b77\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\f333fff089a65883db4369ab04866b77\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Aakash\.gradle\caches\transforms-2\files-2.1\be0a3d96e69806a17dd3ec618a610bb9\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44

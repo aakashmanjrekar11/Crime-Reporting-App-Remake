@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
 import 'screens/myProfile_screen.dart';
-
+import 'screens/mumbai_police_website.dart';
 import 'screens/lost_and_found.dart';
 
 void main() async {
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/lostfound': (context) => LostFound(),
         '/list': (context) => List(),
         '/profile': (context) => ProfilePage(),
+        '/mumbaiPoliceSite': (context) => MumbaiPoliceWebsite(),
       },
     );
   }

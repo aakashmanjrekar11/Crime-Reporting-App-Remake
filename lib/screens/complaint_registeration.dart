@@ -30,6 +30,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
           new ListTile(
             leading: const Icon(Icons.phone),
             title: new TextField(
+              keyboardType: TextInputType.phone,
               decoration: new InputDecoration(
                 hintText: "Phone",
               ),
@@ -38,37 +39,40 @@ class _ComplaintAppState extends State<ComplaintApp> {
           new ListTile(
             leading: const Icon(Icons.email),
             title: new TextField(
+              keyboardType: TextInputType.emailAddress,
               decoration: new InputDecoration(
                 hintText: "Email",
               ),
             ),
           ),
-          const Divider(
-            height: 1.0,
+          new ListTile(
+            leading: const Icon(
+              Icons.home,
+            ),
+            title: new TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: new InputDecoration(
+                hintText: "Address",
+              ),
+            ),
           ),
           new ListTile(
             leading: const Icon(
-              Icons.label,
-              color: Colors.blue,
+              Icons.list_alt,
             ),
-            title: const Text('Nick'),
-            subtitle: const Text('None'),
-          ),
-          new ListTile(
-            leading: const Icon(Icons.today),
-            title: const Text('Birthday'),
-            subtitle: const Text('February 20, 1980'),
-            trailing: const Icon(
-              Icons.check_circle,
-              color: Colors.green,
+            title: new TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: new InputDecoration(
+                hintText: "Complaint",
+              ),
             ),
           ),
-          new ListTile(
-            leading: const Icon(Icons.group),
-            title: const Text('Contact group'),
-            subtitle: const Text('Not specified'),
-          )
-        ],
+          SizedBox(
+            height:20
+          ),
+          RaisedButton(onPressed: null, child: Text("Submit"),color: Colors.blueAccent,)        ],
       ),
     );
   }

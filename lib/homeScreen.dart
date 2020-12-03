@@ -1,4 +1,6 @@
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _auth = FirebaseAuth.instance;
   // @override
   // void initState() {
   //   // TODO: implement initState
@@ -61,7 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 16.0,
                   );
                 },
-                child: FaIcon(FontAwesomeIcons.bell),
+                child: GestureDetector(
+                    child: FaIcon(FontAwesomeIcons.signOutAlt),
+                    onTap: () async {
+                      await signOutGoogle();
+                      _auth.signOut();
+                      Navigator.pop(context);
+                    }),
               ),
             ),
           ],
@@ -158,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ReusableCard(
                   onPress: () {
                     setState(() {
-                      Navigator.pushNamed(context, '/complaint');
+                      Navigator.pushNamed(context, '/lostfound');
                     });
                   },
                   colour: Colors.white,
@@ -175,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ReusableCard(
                   onPress: () {
                     setState(() {
-                      Navigator.pushNamed(context, '/complaint');
+                      Navigator.pushNamed(context, '/list');
                     });
                   },
                   colour: Colors.white,

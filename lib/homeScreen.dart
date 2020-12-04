@@ -23,14 +23,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   Future<void> _textMe() async {
-    final String uri = 'sms:+91 9876543219?body=Please%20help%20me.%20I\'m%20in%20danger.%20My%20coordinates%20are%20${widget.lat}%20${widget.long}%20${widget.address}';
+    final String uri =
+        'sms:+91 9876543219?body=Please%20help%20me.%20I\'m%20in%20danger.%20My%20coordinates%20are%20${widget.lat}%20${widget.long}%20${widget.address}';
     if (await canLaunch(uri)) {
       await launch(uri);
-    } 
-    else{
+    } else {
       print("Cannot launch");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                //! FEMALE
+                //! Emergency Contacts
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
@@ -139,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               children: <Widget>[
-                //! MALE
+                //! Lost and Found
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
@@ -156,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                //! FEMALE
+                //! Mumbai Police Stations
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
@@ -168,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.phoneAlt,
                       iconColor: Colors.green[400],
-                      fieldName: 'Mumbai Police \nStations',
+                      fieldName: 'Mumbai Police \nStations Contacts',
                     ),
                   ),
                 ),
@@ -176,36 +177,37 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               children: <Widget>[
-                //! MALE
+                //! E-complaint Mumbai Police Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.pushNamed(context, '/eComplaint');
                       });
                     },
                     colour: Colors.white,
                     cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.grey,
-                      fieldName: 'extra',
+                      iconName: FontAwesomeIcons.solidIdCard,
+                      iconColor: Colors.indigo,
+                      fieldName: 'E-complaint Mumbai Police Website',
                     ),
                   ),
                 ),
 
-                //! FEMALE
+                //! Safety Tips Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.pushNamed(context, '/safetyTips');
                       });
                     },
                     colour: Colors.white,
                     cardChild: IconContent(
-                        iconName: FontAwesomeIcons.question,
-                        iconColor: Colors.grey,
-                        fieldName: 'extra'),
+                      iconName: FontAwesomeIcons.userShield,
+                      iconColor: Colors.red[400],
+                      fieldName: 'Safety\nTips',
+                    ),
                   ),
                 ),
               ],

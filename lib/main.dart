@@ -11,6 +11,8 @@ import 'screens/emergency_contacts.dart';
 import 'screens/myProfile_screen.dart';
 import 'screens/mumbai_police_website.dart';
 import 'screens/lost_and_found.dart';
+import 'screens/e-complaint_MumbaiPoliceSite.dart';
+import 'screens/safety_tips_website.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfilePage(),
         '/emergency': (context) => Emergency(),
         '/mumbaiPoliceSite': (context) => MumbaiPoliceWebsite(),
+        '/eComplaint': (context) => EComplaintWebsite(),
+        '/safetyTips': (context) => SafetyTipsWebsite(),
       },
     );
   }

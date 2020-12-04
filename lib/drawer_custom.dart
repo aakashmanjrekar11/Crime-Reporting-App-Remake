@@ -15,9 +15,16 @@ class DrawerCustom extends StatelessWidget {
               color: Colors.blue[300],
             ),
           ),
+          SizedBox(height: 20),
           ListTile(
-            leading: Icon(FontAwesomeIcons.user),
-            title: Text('My Profile'),
+            leading: Icon(FontAwesomeIcons.user, color: Colors.blue),
+            title: Text(
+              'My Profile',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             onTap: () {
               // Update the state of the app
               // ...
@@ -25,8 +32,16 @@ class DrawerCustom extends StatelessWidget {
               Navigator.pushNamed(context, '/profile');
             },
           ),
+          SizedBox(height: 10),
           ListTile(
-            title: Text('Mumbai Police Site'),
+            leading: Icon(FontAwesomeIcons.cloudUploadAlt, color: Colors.blue),
+            title: Text(
+              'Mumbai Police Website',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             onTap: () {
               // Update the state of the app
               // ...

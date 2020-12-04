@@ -11,16 +11,21 @@ class ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
-  final name=TextEditingController();
-  final phone=TextEditingController();
-  final email=TextEditingController();
-  
-  submit(){
-    Map<String,dynamic> data = {"Name":name.text,"Phone":phone.text,"Email":email.text};
-    CollectionReference collectionReference = FirebaseFirestore.instance.collection('profile');
+  final name = TextEditingController();
+  final phone = TextEditingController();
+  final email = TextEditingController();
+
+  submit() {
+    Map<String, dynamic> data = {
+      "Name": name.text,
+      "Phone": phone.text,
+      "Email": email.text
+    };
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('profile');
     collectionReference.add(data);
   }
-  
+
   @override
   void initState() {
     // TODO: implement initState
@@ -61,7 +66,7 @@ class ProfilePageState extends State<ProfilePage>
                           Padding(
                             padding: EdgeInsets.only(left: 25.0),
                             child: new Text(
-                              'PROFILE',
+                              'My Profile',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20.0,

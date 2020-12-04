@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'intro_slider.dart';
 import 'package:Crime_Reporting_AIO_app/screens/welcome_screen.dart';
+import 'screens/emergency_contacts.dart';
 import 'screens/myProfile_screen.dart';
 import 'screens/mumbai_police_website.dart';
 import 'screens/lost_and_found.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/lostfound': (context) => LostFound(),
         '/list': (context) => List(),
         '/profile': (context) => ProfilePage(),
+        '/emergency': (context) => Emergency(),
         '/mumbaiPoliceSite': (context) => MumbaiPoliceWebsite(),
       },
     );

@@ -7,7 +7,7 @@ class ComplaintApp extends StatefulWidget {
   final String title;
 
   @override
-  _ComplaintAppState createState() => new _ComplaintAppState();
+  _ComplaintAppState createState() => _ComplaintAppState();
 }
 
 class _ComplaintAppState extends State<ComplaintApp> {
@@ -32,58 +32,58 @@ class _ComplaintAppState extends State<ComplaintApp> {
       ),
       body: ListView(
         children: <Widget>[
-          new ListTile(
+          ListTile(
             leading: const Icon(Icons.person),
-            title: new TextField(
+            title: TextField(
               controller: name,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Name",
               ),
             ),
           ),
-          new ListTile(
+          ListTile(
             leading: const Icon(Icons.phone),
-            title: new TextField(
+            title: TextField(
               controller: phone,
               keyboardType: TextInputType.phone,
               maxLength: 10,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Phone",
               ),
             ),
           ),
-          new ListTile(
+          ListTile(
             leading: const Icon(Icons.email),
-            title: new TextField(
+            title: TextField(
               controller: email,
               keyboardType: TextInputType.emailAddress,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Email",
               ),
             ),
           ),
-          new ListTile(
+          ListTile(
             leading: const Icon(
               Icons.home,
             ),
-            title: new TextField(
+            title: TextField(
               controller: address,
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Address",
               ),
             ),
           ),
-          new ListTile(
+          ListTile(
             leading: const Icon(
               Icons.list_alt,
             ),
-            title: new TextField(
+            title: TextField(
               controller: complaint,
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Complaint",
               ),
             ),

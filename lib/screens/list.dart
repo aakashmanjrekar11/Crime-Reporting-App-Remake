@@ -7,13 +7,13 @@ class List extends StatefulWidget {
   final String title;
 
   @override
-  _ListState createState() => new _ListState();
+  _ListState createState() => _ListState();
 }
 
 class _ListState extends State<List> {
-  void call(String number)async {
-    if(await canLaunch("tel:$number")){
-      await launch("tel:$number");
+  Future<void> call(String number)async {
+    if(await canLaunch('tel:$number')){
+      await launch('tel:$number');
     }else{
       print("Cannot Launch");
     }
@@ -27,7 +27,7 @@ class _ListState extends State<List> {
       ),
       body: ListView(
         children: <Widget>[
-          new ListTile(
+          ListTile(
             leading: const Icon(Icons.phone),
             title: GestureDetector(
               child: Text(
@@ -38,16 +38,16 @@ class _ListState extends State<List> {
               },
             ),
           ),
-          new ListTile(
+          ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
                 child:
                     Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
                 onTap: () {
-                  call("2224013767");
+                   call("2224013767");
                 },
               )),
-            new ListTile(
+            ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Bandra - +91-22-26423122', textScaleFactor: 2.0),
@@ -55,7 +55,7 @@ class _ListState extends State<List> {
                 call("2226423122");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Borivali - +91-22-28930145', textScaleFactor: 2.0),
@@ -63,7 +63,7 @@ class _ListState extends State<List> {
                 call("2228930145");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Chembur - +91-22-25232044', textScaleFactor: 2.0),
@@ -71,7 +71,7 @@ class _ListState extends State<List> {
                 call("2225232044");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Colaba - +91-22-22856817', textScaleFactor: 2.0),
@@ -79,7 +79,7 @@ class _ListState extends State<List> {
                 call("2222856817");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Dadar - +91-22-24301403', textScaleFactor: 2.0),
@@ -87,7 +87,7 @@ class _ListState extends State<List> {
                 call("2224301403");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
               child: Text('Dadar - +91-22-24301403', textScaleFactor: 2.0),
@@ -95,7 +95,7 @@ class _ListState extends State<List> {
                 call("2224301403");
               },
             )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
                 child:
@@ -104,7 +104,7 @@ class _ListState extends State<List> {
                   call("2224013767");
                 },
               )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
                 child:
@@ -113,7 +113,7 @@ class _ListState extends State<List> {
                   call("2224013767");
                 },
               )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
                 child:
@@ -122,7 +122,7 @@ class _ListState extends State<List> {
                   call("2224013767");
                 },
               )),
-              new ListTile(
+              ListTile(
               leading: const Icon(Icons.phone),
               title: GestureDetector(
                 child:

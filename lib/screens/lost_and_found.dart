@@ -9,7 +9,7 @@ class LostFound extends StatefulWidget {
   final String title;
 
   @override
-  _LostFoundState createState() => new _LostFoundState();
+  _LostFoundState createState() => _LostFoundState();
 }
 
 class _LostFoundState extends State<LostFound> {

@@ -8,11 +8,11 @@ class IntroScreen extends StatefulWidget {
   IntroScreen({Key key}) : super(key: key);
 
   @override
-  IntroScreenState createState() => new IntroScreenState();
+  IntroScreenState createState() => IntroScreenState();
 }
 
 class IntroScreenState extends State<IntroScreen> {
-  List<Slide> slides = new List();
+  List<Slide> slides = List();
 
   Function goToTab;
 
@@ -21,7 +21,7 @@ class IntroScreenState extends State<IntroScreen> {
     super.initState();
 
     slides.add(
-      new Slide(
+      Slide(
         title: "Report Crime and Offense",
         styleTitle: TextStyle(
             color: Color(0xFF8c82f4),
@@ -41,7 +41,7 @@ class IntroScreenState extends State<IntroScreen> {
       ),
     );
     slides.add(
-      new Slide(
+      Slide(
         title: "Your Safety - Our Priority!\nTop Safety Features!",
         styleTitle: TextStyle(
             color: Color(0xFF8c82f4),
@@ -59,7 +59,7 @@ class IntroScreenState extends State<IntroScreen> {
       ),
     );
     slides.add(
-      new Slide(
+      Slide(
         title: "Secure Data Storage",
         styleTitle: TextStyle(
             color: Color(0xFF8c82f4),
@@ -110,7 +110,7 @@ class IntroScreenState extends State<IntroScreen> {
   }
 
   List<Widget> renderListCustomTabs() {
-    List<Widget> tabs = new List();
+    List<Widget> tabs = List();
     for (int i = 0; i < slides.length; i++) {
       Slide currentSlide = slides[i];
       tabs.add(Container(
@@ -156,7 +156,7 @@ class IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new IntroSlider(
+    return IntroSlider(
       // List slides
       slides: this.slides,
 

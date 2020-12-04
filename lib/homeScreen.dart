@@ -2,15 +2,9 @@ import 'dart:async';
 
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:geocoder/geocoder.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'drawer_custom.dart';
-import 'bottomNavBar_custom.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'utils/carouselWithIndicator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -28,12 +22,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
-
+  Future<void> _textMe() async {
+    final String uri = 'sms:+91 9876543219?body=Please%20help%20me.%20I\'m%20in%20danger.%20My%20coordinates%20are%20${widget.lat}%20${widget.long}%20${widget.address}';
+    if (await canLaunch(uri)) {
+      await launch(uri);
+    } 
+    else{
+      print("Cannot launch");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -103,8 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 thickness: 1.2,
               ),
             ),
-            Text("Location lat:${widget.lat}, lon:${widget.long}"),
-            Text("Address: ${widget.address}"),
             Row(
               children: <Widget>[
                 //! Complaint Registration
@@ -129,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.pushNamed(context, '/emergency');
                       });
                     },
                     colour: Colors.white,
@@ -324,6 +319,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            _textMe();
+          },
+          label: Text('SOS'),
+          icon: Icon(Icons.report),
+          backgroundColor: Colors.red,
         ),
         //bottomNavigationBar: BottomNavBar(),
       ),

@@ -367,7 +367,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await convertCoords(co_ords).then((value) => _address = value);
       lat = _position.latitude.toString();
       long = _position.longitude.toString();
-      address = _address.locality;
+      address = _address.addressLine;
     });
   }
 
@@ -406,13 +406,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     _password(),
                     SizedBox(height: 20),
                     _submitButton(),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      alignment: Alignment.centerRight,
-                      child: Text('Forgot Password ?',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500)),
-                    ),
                     _divider(),
                     _googleButton(),
                     SizedBox(height: height * .055),

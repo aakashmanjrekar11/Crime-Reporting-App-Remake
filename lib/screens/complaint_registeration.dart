@@ -69,7 +69,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
             title: TextField(
               controller: address,
               keyboardType: TextInputType.multiline,
-              maxLines: null,
+              maxLines: 4,
               decoration: InputDecoration(
                 hintText: "Address",
               ),
@@ -82,7 +82,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
             title: TextField(
               controller: complaint,
               keyboardType: TextInputType.multiline,
-              maxLines: null,
+              maxLines: 4,
               decoration: InputDecoration(
                 hintText: "Complaint",
               ),

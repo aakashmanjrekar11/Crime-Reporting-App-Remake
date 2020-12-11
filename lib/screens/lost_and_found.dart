@@ -29,6 +29,13 @@ class _LostFoundState extends State<LostFound> {
     CollectionReference collectionReference = FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
   }
+  _onPressed() {
+    FirebaseFirestore.instance.collection("lost_and_found").get().then((querySnapshot) {
+    querySnapshot.docs.forEach((result) {
+      print(result.data());
+    });
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,7 +210,13 @@ class _LostFoundState extends State<LostFound> {
             SizedBox(
               height:20
             ),
-            RaisedButton(onPressed: submit(), child: Text("Submit"),color: Colors.blueAccent,)        ],
+            RaisedButton(onPressed: submit()
+            ,child: Text("Submit"),color: Colors.blueAccent,),
+            RaisedButton(onPressed: ()async{
+                await _onPressed();
+            }, 
+            child: Text("View Complaints"),color: Colors.blueAccent,),   
+               ],
         ),
     );
   }

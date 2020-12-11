@@ -31,7 +31,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="Crime Reporting AIO Safety App" >
         <activity
             android:name="com.example.crm_flutter.MainActivity"

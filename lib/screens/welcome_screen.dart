@@ -90,7 +90,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 ),
                 DelayedAnimation(
                   child: Text(
-                    "Crime AIO App",
+                    "SecuroServe",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 35.0,

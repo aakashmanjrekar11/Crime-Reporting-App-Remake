@@ -11,128 +11,348 @@ class List extends StatefulWidget {
 }
 
 class _ListState extends State<List> {
-  Future<void> call(String number)async {
-    if(await canLaunch('tel:$number')){
+  Future<void> call(String number) async {
+    if (await canLaunch('tel:$number')) {
       await launch('tel:$number');
-    }else{
+    } else {
       print("Cannot Launch");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('List of Police Stations'),
+        title: Text(
+          'List of Mumbai Police Stations',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: ListView(
         children: <Widget>[
-          ListTile(
-            leading: const Icon(Icons.phone),
-            title: GestureDetector(
-              child: Text(
-                "Andheri - +91-22-26842677", textScaleFactor: 2.0,
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.arrow_circle_down,
+                size: 40,
+                color: Colors.green,
               ),
-              onTap: () {
-                call("2226842677");
-              },
+              title: Text(
+                "Tap on the below card to directly call the respective Police Station",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
             ),
           ),
-          ListTile(
-              leading: const Icon(Icons.phone),
+          SizedBox(
+            height: 30,
+            child: Divider(
+              indent: 100,
+              endIndent: 100,
+              thickness: 1.2,
+              color: Colors.grey,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-                child:
-                    Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
+                child: Text(
+                  "Aarey Police Station\n-022-29272485",
+                  textScaleFactor: 1.5,
+                ),
                 onTap: () {
-                   call("2224013767");
+                  call("02229272485");
                 },
-              )),
-            ListTile(
-              leading: const Icon(Icons.phone),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Bandra - +91-22-26423122', textScaleFactor: 2.0),
-              onTap: () {
-                call("2226423122");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Airport Police Station\n-022-26156309',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02226156309");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Borivali - +91-22-28930145', textScaleFactor: 2.0),
-              onTap: () {
-                call("2228930145");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Amboli Police Station\n-022-26762001',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02226762001");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Chembur - +91-22-25232044', textScaleFactor: 2.0),
-              onTap: () {
-                call("2225232044");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Andheri Police Station\n-022-26831365',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02226831365");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Colaba - +91-22-22856817', textScaleFactor: 2.0),
-              onTap: () {
-                call("2222856817");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Bandra Police Station\n-022-26423122',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02226423122");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Dadar - +91-22-24301403', textScaleFactor: 2.0),
-              onTap: () {
-                call("2224301403");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Borivali Police Station\n-022-28930145',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02228930145");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-              child: Text('Dadar - +91-22-24301403', textScaleFactor: 2.0),
-              onTap: () {
-                call("2224301403");
-              },
-            )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+                child: Text(
+                  'Kurla Police Station\n-022-26500478',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02226500478");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-                child:
-                    Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
+                child: Text(
+                  'Bhandup Police Station\n-022-25954467',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02225954467");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
+              title: GestureDetector(
+                child: Text(
+                  'Chembur Police Station\n-022-25232044',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02225232044");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
+              title: GestureDetector(
+                child: Text(
+                  'Dahisar Police Station\n-022-28284024',
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  call("02228284024");
+                },
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
+              title: GestureDetector(
+                child: Text(
+                  'Dindoshi Police Station\n-022-24691929',
+                  textScaleFactor: 1.5,
+                ),
                 onTap: () {
                   call("2224013767");
                 },
-              )),
-              ListTile(
-              leading: const Icon(Icons.phone),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.phone,
+                color: Colors.blue,
+                size: 30,
+              ),
               title: GestureDetector(
-                child:
-                    Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
+                child: Text(
+                  'Goregaon Police Station\n022-28721900',
+                  textScaleFactor: 1.5,
+                ),
                 onTap: () {
-                  call("2224013767");
+                  call("02228721900");
                 },
-              )),
-              ListTile(
-              leading: const Icon(Icons.phone),
-              title: GestureDetector(
-                child:
-                    Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
-                onTap: () {
-                  call("2224013767");
-                },
-              )),
-              ListTile(
-              leading: const Icon(Icons.phone),
-              title: GestureDetector(
-                child:
-                    Text('Antop Hill - +91-22-24013767', textScaleFactor: 2.0),
-                onTap: () {
-                  call("2224013767");
-                },
-              )),
-
-          
+              ),
+            ),
+          ),
+          SizedBox(height: 50),
         ],
       ),
     );

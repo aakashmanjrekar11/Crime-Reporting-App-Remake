@@ -77,7 +77,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _handleFSignin(String email, String pwd) async {
     await Firebase.initializeApp();
-    _auth.signInWithEmailAndPassword(email: email, password: pwd);
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: pwd);
+      Fluttertoast.showToast(
+          msg: "Login Successful!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomeScreen("Username", lat, long, address)));
+    }  catch (e) {
+      Fluttertoast.showToast(
+        msg: "Password Invalid! Please try again",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      throw FirebaseAuthException(message: e.message, code: e.code);
+       
+
+    }
   }
 
   Widget _backButton() {
@@ -167,20 +196,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return GestureDetector(
       onTap: () async {
         await _handleFSignin(_emailId, _pwd);
-        Fluttertoast.showToast(
-          msg: "Login Successful!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    HomeScreen("Username", lat, long, address)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

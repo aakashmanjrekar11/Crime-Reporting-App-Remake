@@ -29,12 +29,14 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-            "Submit crime reports to Police Officials at anytime, from anywhere!",
+            "Submit crime reports to Police Officials at anytime, from anywhere!\n\nUse our custom complaint registration feature\n\nOR\n\nInbuilt Mumbai Police E-complaint webpage to directly report complaints to the Police",
         styleDescription: TextStyle(
-            color: Color(0xfffe9c8f),
-            fontSize: 25.0,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'Raleway'),
+          color: Colors.yellow[900],
+          fontSize: 20.0,
+          fontStyle: FontStyle.italic,
+          fontFamily: 'Raleway',
+          fontWeight: FontWeight.w600,
+        ),
         pathImage: "images/IndianPoliceOfficer_whiteBG.png",
         widthImage: 200,
         heightImage: 200,
@@ -49,12 +51,14 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-            "SoS feature with instant access to Emergency Helpline numbers!\n\nSend your location to family or friends in case of emergency situations.\n\nGet the list of all the Police Stations in Mumbai with their contact information.\n\nAccess Mumbai Police website in our app itself.",
+            "SoS feature with instant ability to send your location to family or friends in case of emergency situations.\n\nGet the list of all the Police Stations in Mumbai with their contact information.\n\nAccess Mumbai Police website and Safety Tips in our app itself.",
         styleDescription: TextStyle(
-            color: Color(0xfffe9c8f),
-            fontSize: 25.0,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'Raleway'),
+          color: Colors.yellow[900],
+          fontSize: 20.0,
+          fontStyle: FontStyle.italic,
+          fontFamily: 'Raleway',
+          fontWeight: FontWeight.w600,
+        ),
         pathImage: "images/Safety_shakehand.png",
       ),
     );
@@ -67,12 +71,14 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-            "Your private data and crime reports are stored in our secure Google servers with utmost safety.",
+            "Your private data and crime reports are stored in our secure Google servers with utmost safety.\n\nSubmit complaints regarding Lost & Found objects.",
         styleDescription: TextStyle(
-            color: Color(0xfffe9c8f),
-            fontSize: 25.0,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'Raleway'),
+          color: Colors.yellow[900],
+          fontSize: 20.0,
+          fontStyle: FontStyle.italic,
+          fontFamily: 'Raleway',
+          fontWeight: FontWeight.w600,
+        ),
         pathImage: "images/Lock.png",
       ),
     );
@@ -116,7 +122,7 @@ class IntroScreenState extends State<IntroScreen> {
       tabs.add(Container(
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.only(top: 150),
+        padding: EdgeInsets.only(top: 100, right: 20, left: 20),
         child: Container(
           margin: EdgeInsets.only(bottom: 60.0, top: 60.0),
           child: ListView(

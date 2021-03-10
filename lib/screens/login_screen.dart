@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Crime_Reporting_AIO_app/screens/admin.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'register_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:Crime_Reporting_AIO_app/homeScreen.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    HomeScreen("Username", lat, long, address)));
+                    AdminScreen()));
     }  catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",

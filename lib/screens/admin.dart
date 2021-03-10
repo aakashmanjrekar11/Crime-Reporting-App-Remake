@@ -1,17 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AdminScreen extends StatefulWidget {
-  @override
-  _AdminScreenState createState() => _AdminScreenState();
-}
-
-class _AdminScreenState extends State<AdminScreen> {
-    @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+class AdminScreen extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('complaints');
@@ -19,11 +9,11 @@ class _AdminScreenState extends State<AdminScreen> {
         stream: users.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return Center(child: Text('Something went wrong'));
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Center(child: Text("Loading"));
         }
         if(!snapshot.hasData) {
             print(snapshot.hasData);
@@ -33,9 +23,19 @@ class _AdminScreenState extends State<AdminScreen> {
           child: ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
               return Card(
-															child: new ListTile(
-                    title: new Text(document.data()['Name'] ?? ''),
-                    subtitle: new Text(document.data()['Complaint'] ?? ''),
+															child: ListTile(
+                    title: Text(document.data()['Name'] ?? ''),
+                    subtitle: Column(
+											crossAxisAlignment: CrossAxisAlignment.start,
+                      children: 
+											[
+                        Text(document.data()['Complaint'] ?? ''),
+												Text(document.data()['Address'] ?? ''),
+												Text(document.data()['Email'] ?? ''),
+												Text(document.data()['Phone'] ?? ''),
+												Image.network(document.data()['ImageURL'] ?? '')
+                      ],
+                    ),
                 ),
               );
           }).toList(),

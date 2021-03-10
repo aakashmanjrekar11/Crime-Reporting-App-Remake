@@ -244,6 +244,10 @@
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-2\\files-2.1\\a9bb833f638dbc7f5cd8bc7f2b260f34\\core-1.2.0\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
+        "merged": "C:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\res\\merged\\debug\\xml_flutter_image_picker_file_paths.xml.flat",
+        "source": "C:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\image_picker\\intermediates\\packaged_res\\debug\\xml\\flutter_image_picker_file_paths.xml"
+    },
+    {
         "merged": "C:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-2\\files-2.1\\a9bb833f638dbc7f5cd8bc7f2b260f34\\core-1.2.0\\res\\drawable\\notification_icon_background.xml"
     },

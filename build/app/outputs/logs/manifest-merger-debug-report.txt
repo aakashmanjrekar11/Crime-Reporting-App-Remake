@@ -7,9 +7,12 @@ INJECTED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\
 MERGED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\main\AndroidManifest.xml:1:1-52:12
 MERGED from [:google_sign_in] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:fluttertoast] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:sqflite] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:google_api_availability] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-22:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geocoder] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
 MERGED from [:webview_flutter] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -24,6 +27,7 @@ MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\HP\.
 MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\765d7199a3485df52d5a8ecf8715a415\jetified-play-services-auth-api-phone-16.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\9e6426d155cd4d57131eb61f3d5e7158\jetified-play-services-auth-base-16.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\591867a4a47959b8fe6b53097d958759\firebase-database-collection-17.0.1\AndroidManifest.xml:2:1-9:12
@@ -57,6 +61,7 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\HP\.gradle\cac
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\1db922c1d196d14487179d2aa1e2900e\savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abee5b37dba13f092deef02b35959943\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\7ec00a50b8c8eec8bc982dc94cdd72df\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e02f6b726ff9abb106836a2f2244fcf8\exifinterface-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\15a45fc9279cd414e7bc73393fa60ccf\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8b41debddbd50aa307dba0f241fef08b\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\3c4344c97194b317881817238bfc5913\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
@@ -90,6 +95,8 @@ MERGED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\sr
 MERGED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\main\AndroidManifest.xml:4:5-66
 MERGED from [:google_sign_in] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
 MERGED from [:google_sign_in] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:27:5-67
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:27:5-67
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:14:5-67
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:14:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
@@ -120,6 +127,10 @@ ADDED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src
 		ADDED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\main\AndroidManifest.xml:7:22-78
 application
 ADDED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\main\AndroidManifest.xml:13:5-51:19
+MERGED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-20:19
+MERGED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-20:19
 MERGED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -134,6 +145,8 @@ MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\HP\.
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\729085bace6085db8c377e50303fc26e\jetified-play-services-location-16.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:23:5-40:19
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:29:5-37:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:29:5-37:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
@@ -232,12 +245,18 @@ MERGED from [:google_sign_in] C:\Users\HP\StudioProjects\Crime-Reporting-App-Rem
 MERGED from [:google_sign_in] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:fluttertoast] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:fluttertoast] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_api_availability] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_api_availability] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geocoder] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geocoder] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -266,6 +285,8 @@ MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\HP\
 MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\9e6426d155cd4d57131eb61f3d5e7158\jetified-play-services-auth-base-16.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:5:5-44
@@ -332,6 +353,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\HP\.gradle\ca
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abee5b37dba13f092deef02b35959943\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\7ec00a50b8c8eec8bc982dc94cdd72df\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\7ec00a50b8c8eec8bc982dc94cdd72df\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e02f6b726ff9abb106836a2f2244fcf8\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e02f6b726ff9abb106836a2f2244fcf8\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\15a45fc9279cd414e7bc73393fa60ccf\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\15a45fc9279cd414e7bc73393fa60ccf\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8b41debddbd50aa307dba0f241fef08b\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -360,22 +383,18 @@ INJECTED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\
 	android:minSdkVersion
 		INJECTED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\android\app\src\debug\AndroidManifest.xml
-activity#io.flutter.plugins.urllauncher.WebViewActivity
-ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
-	android:exported
-		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
-	android:theme
-		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
-	android:name
-		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+ADDED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_auth] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_auth] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:33:9-39:19
 MERGED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:30:9-36:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:27:9-33:19
@@ -391,7 +410,45 @@ MERGED from [com.google.firebase:firebase-common:19.3.1] C:\Users\HP\.gradle\cac
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:19.3.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\15a7b1f89fc0b843397c3d1a0351032a\jetified-firebase-common-19.3.1\AndroidManifest.xml:35:13-43
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+		ADDED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_storage] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-78
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
+	android:grantUriPermissions
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
+	android:authorities
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
+	android:exported
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+	android:name
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+	android:resource
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+	android:name
+		ADDED from [:image_picker] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
 ADDED from [:cloud_firestore] C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -451,7 +508,9 @@ ADDED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches
 	android:name
 		ADDED from [com.google.firebase:firebase-auth:19.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:37:17-109
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:5-79
+ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
@@ -465,7 +524,13 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:
 MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\4526a9c01fabd3735f7a21ffe9548f90\grpc-android-1.28.0\AndroidManifest.xml:11:5-79
 MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\4526a9c01fabd3735f7a21ffe9548f90\grpc-android-1.28.0\AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:22-76
+		ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:22-76
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:34:17-107
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
 ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8ee90666013f3d6f09fcbe90d7b95713\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:20:13-22:85
 	android:value

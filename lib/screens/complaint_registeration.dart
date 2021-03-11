@@ -25,7 +25,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
   File _image;
   PickedFile image;
   String imgUrl;
-  
+
   submitComplaint() {
     Map<String, dynamic> data = {
       "Name": name.text,
@@ -39,26 +39,30 @@ class _ComplaintAppState extends State<ComplaintApp> {
         FirebaseFirestore.instance.collection('complaints');
     collectionReference.add(data);
   }
-  Future chooseFile() async {    
-        image = await _picker.getImage(source: ImageSource.gallery,imageQuality: 50).then((image) 
-        {    
-         setState(() {    
-           _image = File(image.path);    
-         });    
-       });    
-     }
-  Future uploadFile() async {    
-          String fileName = basename(_image.path);         
-          StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child('uploads/$fileName');
-          StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
-          StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-          await taskSnapshot.ref.getDownloadURL().then(
-                (value){
-                  print("Done: $value");
-                  imgUrl = value;
-                } ,
-              );
-     }  
+
+  Future chooseFile() async {
+    image = await _picker
+        .getImage(source: ImageSource.gallery, imageQuality: 50)
+        .then((image) {
+      setState(() {
+        _image = File(image.path);
+      });
+    });
+  }
+
+  Future uploadFile() async {
+    String fileName = basename(_image.path);
+    StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    await taskSnapshot.ref.getDownloadURL().then(
+      (value) {
+        print("Done: $value");
+        imgUrl = value;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,27 +143,27 @@ class _ComplaintAppState extends State<ComplaintApp> {
           ),
           SizedBox(height: 20),
           ListTile(
-          leading: const Icon(
-            Icons.list_alt,
-            color: Colors.red,
-            size: 40,
-          ),
-          title: TextField(
-            controller: complaint,
-            keyboardType: TextInputType.multiline,
-            maxLines: 4,
-            decoration: InputDecoration(
-              hintText: "Complaint",
-              border: const OutlineInputBorder(),
+            leading: const Icon(
+              Icons.list_alt,
+              color: Colors.red,
+              size: 40,
+            ),
+            title: TextField(
+              controller: complaint,
+              keyboardType: TextInputType.multiline,
+              maxLines: 4,
+              decoration: InputDecoration(
+                hintText: "Complaint",
+                border: const OutlineInputBorder(),
+              ),
             ),
           ),
-            ),
           SizedBox(height: 20),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               chooseFile();
             },
-              child: ListTile(
+            child: ListTile(
               leading: const Icon(
                 Icons.image_search,
                 color: Colors.red,
@@ -173,7 +177,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
             width: 50,
             height: 70,
             child: RaisedButton(
-              onPressed: () async{
+              onPressed: () async {
                 await uploadFile();
                 submitComplaint();
                 showDialog(

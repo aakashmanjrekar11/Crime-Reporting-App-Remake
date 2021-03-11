@@ -80,20 +80,17 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: pwd);
       Fluttertoast.showToast(
-          msg: "Login Successful!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    AdminScreen()));
-    }  catch (e) {
+        msg: "Login Successful!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AdminScreen()));
+    } catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",
         toastLength: Toast.LENGTH_SHORT,
@@ -104,8 +101,6 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 16.0,
       );
       throw FirebaseAuthException(message: e.message, code: e.code);
-       
-
     }
   }
 
@@ -125,6 +120,20 @@ class _LoginScreenState extends State<LoginScreen> {
             Text('Back',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _title() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        text: 'Login Account',
+        style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFF8c82f4),
         ),
       ),
     );
@@ -192,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _submitButton() {
+  Widget _loginButton() {
     return GestureDetector(
       onTap: () async {
         await _handleFSignin(_emailId, _pwd);
@@ -223,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _divider() {
+  Widget _divider_or() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -259,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _googleButton() {
     return Container(
       height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
@@ -286,6 +295,11 @@ class _LoginScreenState extends State<LoginScreen> {
             flex: 5,
             child: GestureDetector(
               onTap: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            HomeScreen(name, lat, long, address)));
                 await _handleGSignin();
                 Fluttertoast.showToast(
                   msg: "Login Successful!",
@@ -320,14 +334,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _createAccountLabel() {
+  Widget _registerAccountLabel() {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/register');
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(5),
         alignment: Alignment.bottomCenter,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -352,15 +366,68 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        text: 'Login Account',
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.w700,
-          color: Color(0xFF8c82f4),
+  Widget _divider_adminLabel() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          Text('OR'),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _adminAccountLabel() {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, '/adminLogin');
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 30),
+        padding: EdgeInsets.all(5),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'For Admin Login Tap Here',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Admin',
+              style: TextStyle(
+                  color: Color(0xFF8c82f4),
+                  fontSize: 19,
+                  fontWeight: FontWeight.w700),
+            ),
+          ],
         ),
       ),
     );
@@ -420,11 +487,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 20),
                     _password(),
                     SizedBox(height: 20),
-                    _submitButton(),
-                    _divider(),
+                    _loginButton(),
+                    _divider_or(),
                     _googleButton(),
-                    SizedBox(height: height * .055),
-                    _createAccountLabel(),
+                    SizedBox(height: 5),
+                    _registerAccountLabel(),
+                    SizedBox(height: 20),
+                    _divider_adminLabel(),
+                    _adminAccountLabel(),
                   ],
                 ),
               ),

@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Position _position;
   StreamSubscription<Position> _subscription;
   Address _address;
-  String _emailId, _pwd, lat, long, address;
+  String _emailId, _pwd, lat, long, address,photoURL;
 
   Future<void> _handleGSignin() async {
     String name = ".";
@@ -44,17 +44,18 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => HomeScreen(name, lat, long, address)));
+                builder: (context) => HomeScreen(name, lat, long, address, photoURL)));
       }
     });
     try {
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       name = data.displayName.toString();
+      photoURL = data.photoUrl.toString();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => HomeScreen(name, lat, long, address)));
+              builder: (context) => HomeScreen(name, lat, long, address, photoURL)));
     } catch (error) {
       print(error);
     }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,6 +11,7 @@ class ProfilePage extends StatefulWidget {
 class ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   bool _status = true;
+  final instance = FirebaseFirestore.instance;
   final FocusNode myFocusNode = FocusNode();
   final name = TextEditingController();
   final phone = TextEditingController();
@@ -28,7 +30,6 @@ class ProfilePageState extends State<ProfilePage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class ProfilePageState extends State<ProfilePage>
           Column(
             children: <Widget>[
               new Container(
-                height: 250.0,
+                height: 50.0,
                 color: Colors.white,
                 child: new Column(
                   children: <Widget>[
@@ -77,48 +78,6 @@ class ProfilePageState extends State<ProfilePage>
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: new Stack(
-                        fit: StackFit.loose,
-                        children: <Widget>[
-                          new Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              new Container(
-                                width: 140.0,
-                                height: 140.0,
-                                decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: new DecorationImage(
-                                    image: new ExactAssetImage(
-                                        'images/IndianPoliceOfficer_whiteBG.png'),
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 90.0, right: 100.0),
-                            child: new Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                new CircleAvatar(
-                                  backgroundColor: Colors.red,
-                                  radius: 25.0,
-                                  child: new Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),

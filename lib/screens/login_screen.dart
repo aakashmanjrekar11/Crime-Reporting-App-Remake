@@ -40,12 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _currentUser = account;
       });
-      if (_currentUser != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => HomeScreen(name, lat, long, address, photoURL)));
-      }
     });
     try {
       signInWithGoogle();
@@ -300,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            HomeScreen(name, lat, long, address)));
+                            HomeScreen(name, lat, long, address, photoURL)));
                 await _handleGSignin();
                 Fluttertoast.showToast(
                   msg: "Login Successful!",

@@ -42,7 +42,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
 
   Future chooseFile() async {
     image = await _picker
-        .getImage(source: ImageSource.gallery, imageQuality: 50)
+        .getImage(source: ImageSource.gallery, imageQuality: 50, maxHeight: 480, maxWidth: 640)
         .then((image) {
       setState(() {
         _image = File(image.path);
@@ -176,31 +176,34 @@ class _ComplaintAppState extends State<ComplaintApp> {
           Container(
             width: 50,
             height: 70,
-            child: RaisedButton(
-              onPressed: () async {
-                await uploadFile();
-                submitComplaint();
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(content: Text("Submitted"));
-                  },
-                );
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.blue),
-              ),
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Submit",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(60, 0, 60, 10),
+              child: RaisedButton(
+                onPressed: () async {
+                  await uploadFile();
+                  submitComplaint();
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(content: Text("Submitted"));
+                    },
+                  );
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.blue),
                 ),
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  "Submit",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+                color: Colors.blueAccent,
               ),
-              color: Colors.blueAccent,
             ),
           )
         ],

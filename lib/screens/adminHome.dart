@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   @override
@@ -8,12 +10,24 @@ class AdminHomeScreen extends StatelessWidget {
         FirebaseFirestore.instance.collection('complaints');
     CollectionReference lf =
         FirebaseFirestore.instance.collection('lost_and_found');
-
+    final _auth =FirebaseAuth.instance;
     return Scaffold(
       body: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
+            actions: [
+              Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GestureDetector(
+                child: FaIcon(FontAwesomeIcons.signOutAlt),
+                onTap: () async {
+                  _auth.signOut();
+                  Navigator.pop(context);
+                }),
+            ),
+            ],
             bottom: TabBar(
               tabs: [
                 Tab(
@@ -24,7 +38,7 @@ class AdminHomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('Tabs Demo'),
+            title: Center(child: Text('Tabs Demo')),
           ),
           body: TabBarView(
             children: [
@@ -98,20 +112,20 @@ class AdminHomeScreen extends StatelessWidget {
                           snapshot.data.docs.map((DocumentSnapshot document) {
                         return Card(
                           child: ListTile(
-                            title: Text(document.data()['Name'] ?? ''),
+                            title: Text("Name: "+document.data()['Name'] ?? ''),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(document.data()['Phone'] ?? ''),
-                                Text(document.data()['Email'] ?? ''),
-                                Text(document.data()['Address'] ?? ''),
-                                Text(document.data()['Complaint Type'] ?? ''),
-                                Text(document.data()['Article Type'] ?? ''),
-                                Text(document.data()['Date & Time'] ?? ''),
-                                Text(document
+                                Text("Phone: "+document.data()['Phone'] ?? ''),
+                                Text("Email: "+document.data()['Email'] ?? ''),
+                                Text("Address: "+document.data()['Address'] ?? ''),
+                                Text("Complaint Type: "+document.data()['Complaint Type'] ?? ''),
+                                Text("Article Type: "+document.data()['Article Type'] ?? ''),
+                                Text("Date & Time: "+document.data()['Date & Time'] ?? ''),
+                                Text("Address of Lost/Found item : "+document
                                         .data()['Address of Lost/Found item'] ??
                                     ''),
-                                Text(document.data()['Description'] ?? ''),
+                                Text("Description: "+document.data()['Description'] ?? ''),
                               ],
                             ),
                           ),

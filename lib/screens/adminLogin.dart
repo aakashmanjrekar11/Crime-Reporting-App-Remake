@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
 import 'login_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key key, this.title}) : super(key: key);
+class AdminLoginScreen extends StatefulWidget {
+  AdminLoginScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _AdminLoginScreenState createState() => _AdminLoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _AdminLoginScreenState extends State<AdminLoginScreen> {
   final _auth = FirebaseAuth.instance;
   String _emailId, _pwd;
 
@@ -42,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: 'Register Account',
+        text: 'Admin Account',
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.w700,
@@ -127,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Navigator.pushNamed(context, '/login');
+        Navigator.pushNamed(context, '/adminHome');
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -147,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 end: Alignment.centerRight,
                 colors: [Color(0xFFe1deff), Color(0xFF8c82f4)])),
         child: Text(
-          'Register',
+          'Admin',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),

@@ -1,4 +1,6 @@
 import 'package:Crime_Reporting_AIO_app/screens/admin.dart';
+import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
+import 'package:Crime_Reporting_AIO_app/screens/adminLogin.dart';
 import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
 import 'package:Crime_Reporting_AIO_app/screens/list.dart';
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
@@ -37,8 +39,9 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
         '/intro': (context) => IntroScreen(),
-        // '/home': (context) => HomeScreen(),
         '/admin': (context) => AdminScreen(),
+        '/adminHome': (context) => AdminHomeScreen(),
+        '/adminLogin': (context) => AdminLoginScreen(),
         '/complaint': (context) => ComplaintApp(),
         '/lostfound': (context) => LostFound(),
         '/list': (context) => List(),

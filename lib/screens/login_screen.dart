@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:Crime_Reporting_AIO_app/screens/admin.dart';
+import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 16.0,
       );
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AdminScreen()));
+          context, MaterialPageRoute(builder: (context) => AdminHomeScreen()));
     } catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",

@@ -33,7 +33,8 @@ class _ComplaintAppState extends State<ComplaintApp> {
       "Email": email.text,
       "Address": address.text,
       "ImageURL": imgUrl,
-      "Complaint": complaint.text
+      "Complaint": complaint.text,
+      "Status": "-"
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('complaints');

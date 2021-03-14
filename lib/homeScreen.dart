@@ -14,8 +14,8 @@ import 'utils/icon_content.dart';
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String username, lat, long, address;
-  HomeScreen(this.username, this.lat, this.long, this.address);
+  final String username, lat, long, address, photoURL;
+  HomeScreen(this.username, this.lat, this.long, this.address, this.photoURL);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: DrawerCustom(),
+        drawer: DrawerCustom(widget.photoURL),
         appBar: AppBar(
           leading: Builder(
             builder: (BuildContext context) {
@@ -70,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () async {
                       await signOutGoogle();
                       _auth.signOut();
+                      Navigator.pop(context);
                       Navigator.pop(context);
                     }),
               ),

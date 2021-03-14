@@ -40,13 +40,13 @@ class _LostFoundState extends State<LostFound> {
         FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
   }
-  _onPressed() {
-    FirebaseFirestore.instance.collection("lost_and_found").get().then((querySnapshot) {
-    querySnapshot.docs.forEach((result) {
-      print(result.data());
-    });
-  });
-}
+//   _onPressed() {
+//     FirebaseFirestore.instance.collection("lost_and_found").get().then((querySnapshot) {
+//     querySnapshot.docs.forEach((result) {
+//       print(result.data());
+//     });
+//   });
+// }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -307,55 +307,34 @@ class _LostFoundState extends State<LostFound> {
           Container(
             width: 50,
             height: 70,
-            child: RaisedButton(
-              color: Colors.blueAccent,
-              onPressed: () {
-                submit();
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(content: Text("Submitted"));
-                    });
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.blue),
-              ),
-              child: Text(
-                "Submit",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
+              child: RaisedButton(
+                color: Colors.blueAccent,
+                onPressed: () {
+                  submit();
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(content: Text("Submitted"));
+                      });
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.blue),
+                ),
+                child: Text(
+                  "Submit",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
           SizedBox(height: 10),
-          Container(
-            width: 50,
-            height: 70,
-            child: RaisedButton(
-              color: Colors.blueAccent,
-              onPressed: () {
-                _onPressed();
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.blue),
-              ),
-              child: Text(
-                "View Complaints",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-
-          SizedBox(height: 100),
         ],
       ),
     );

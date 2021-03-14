@@ -18,6 +18,13 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   final _auth = FirebaseAuth.instance;
   String _emailId, _pwd;
 
+  checkTextFieldEmptyOrNot(){
+    if(_emailId == '' || _pwd == '')
+      return true;
+    else
+      return false;
+  }
+  
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -148,7 +155,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 end: Alignment.centerRight,
                 colors: [Color(0xFFe1deff), Color(0xFF8c82f4)])),
         child: Text(
-          'Admin',
+          'Login',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -156,39 +163,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
     );
   }
 
-  Widget _loginAccountLabel() {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Already have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Login',
-              style: TextStyle(
-                  color: Color(0xFF8c82f4),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -224,8 +199,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                       height: 20,
                     ),
                     _submitButton(),
-                    SizedBox(height: height * .14),
-                    _loginAccountLabel(),
                   ],
                 ),
               ),

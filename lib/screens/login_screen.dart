@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:Crime_Reporting_AIO_app/screens/admin.dart';
+import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Position _position;
   StreamSubscription<Position> _subscription;
   Address _address;
-  String _emailId, _pwd, lat, long, address;
+  String _emailId, _pwd, lat, long, address,photoURL;
 
   Future<void> _handleGSignin() async {
     String name = ".";
@@ -40,21 +40,16 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _currentUser = account;
       });
-      if (_currentUser != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => HomeScreen(name, lat, long, address)));
-      }
     });
     try {
       signInWithGoogle();
       GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
       name = data.displayName.toString();
+      photoURL = data.photoUrl.toString();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => HomeScreen(name, lat, long, address)));
+              builder: (context) => HomeScreen(name, lat, long, address, photoURL)));
     } catch (error) {
       print(error);
     }
@@ -89,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 16.0,
       );
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AdminScreen()));
+          context, MaterialPageRoute(builder: (context) => AdminHomeScreen()));
     } catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",
@@ -299,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            HomeScreen(name, lat, long, address)));
+                            HomeScreen(name, lat, long, address, photoURL)));
                 await _handleGSignin();
                 Fluttertoast.showToast(
                   msg: "Login Successful!",

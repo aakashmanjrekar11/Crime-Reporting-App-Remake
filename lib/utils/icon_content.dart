@@ -14,7 +14,7 @@ class IconContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0,5,0,5),
+      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -29,7 +29,7 @@ class IconContent extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[600],
+              color: Colors.white,
             ),
           ),
         ],

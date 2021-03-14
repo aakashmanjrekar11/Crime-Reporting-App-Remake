@@ -43,7 +43,11 @@ class _ComplaintAppState extends State<ComplaintApp> {
 
   Future chooseFile() async {
     image = await _picker
-        .getImage(source: ImageSource.gallery, imageQuality: 50, maxHeight: 300, maxWidth: 300)
+        .getImage(
+            source: ImageSource.gallery,
+            imageQuality: 50,
+            maxHeight: 300,
+            maxWidth: 300)
         .then((image) {
       setState(() {
         _image = File(image.path);
@@ -69,10 +73,11 @@ class _ComplaintAppState extends State<ComplaintApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF8185E2),
         centerTitle: true,
         title: Text(
           'Complaint  Registration',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -186,11 +191,16 @@ class _ComplaintAppState extends State<ComplaintApp> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialog(content: Text("Submitted"),actions: [
-                          FlatButton(onPressed:(){ 
-                            Navigator.pop(context);
-                            }, child: Text("OK"))
-                        ],);
+                      return AlertDialog(
+                        content: Text("Submitted"),
+                        actions: [
+                          FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("OK"))
+                        ],
+                      );
                     },
                   );
                 },

@@ -29,13 +29,24 @@ class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   Future<void> _textMe() async {
     var docRef = FirebaseFirestore.instance.collection('emergency_contacts');
-    Telephony telephony = Telephony.instance; 
-    docRef.where("UserName",isEqualTo:widget.username).limit(1).get().then((value) { value.docs.forEach((doc) {
-        telephony.sendSms(to: doc["Contact1 Phone"], message: "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
-        telephony.sendSms(to: doc["Contact2 Phone"], message: "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
-    });});
-    
-      }
+    Telephony telephony = Telephony.instance;
+    docRef
+        .where("UserName", isEqualTo: widget.username)
+        .limit(1)
+        .get()
+        .then((value) {
+      value.docs.forEach((doc) {
+        telephony.sendSms(
+            to: doc["Contact1 Phone"],
+            message:
+                "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
+        telephony.sendSms(
+            to: doc["Contact2 Phone"],
+            message:
+                "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 23.0,
                     fontWeight: FontWeight.bold,
                     //fontStyle: FontStyle.italic,
-                    color: Colors.grey[800],
+                    color: Colors.white,
                   ),
                 )
               : Text(
@@ -138,7 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Emergency(username: widget.username,)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Emergency(
+                                      username: widget.username,
+                                    )));
                       });
                     },
                     gradient1: Color(0xFFFFDD00),
@@ -233,12 +249,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               children: <Widget>[
-                //! MALE
+                //! National Commisiion Women Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/emergency');
+                        Navigator.pushNamed(context, '/ncwSite');
                       });
                     },
                     gradient1: Color(0xFFbc4e9c),
@@ -251,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                //! FEMALE
+                //! Child Line India Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {

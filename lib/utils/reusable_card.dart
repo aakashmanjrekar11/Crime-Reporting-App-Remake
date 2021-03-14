@@ -36,10 +36,10 @@ class ReusableCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(11.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Color(0xFF7090B0), //Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
-              blurRadius: 3,
-              offset: Offset(5, 7), // changes position of shadow
+              blurRadius: 8,
+              offset: Offset(0, 8), // changes position of shadow
             ),
           ],
         ),

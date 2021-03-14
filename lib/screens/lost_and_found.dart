@@ -40,6 +40,7 @@ class _LostFoundState extends State<LostFound> {
         FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
   }
+
 //   _onPressed() {
 //     FirebaseFirestore.instance.collection("lost_and_found").get().then((querySnapshot) {
 //     querySnapshot.docs.forEach((result) {
@@ -51,10 +52,11 @@ class _LostFoundState extends State<LostFound> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF8185E2),
         centerTitle: true,
         title: Text(
           'Lost & Found',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -316,11 +318,16 @@ class _LostFoundState extends State<LostFound> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(content: Text("Submitted"),actions: [
-                          FlatButton(onPressed:(){ 
-                            Navigator.pop(context);
-                            }, child: Text("OK"))
-                        ],);
+                        return AlertDialog(
+                          content: Text("Submitted"),
+                          actions: [
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("OK"))
+                          ],
+                        );
                       });
                 },
                 shape: RoundedRectangleBorder(

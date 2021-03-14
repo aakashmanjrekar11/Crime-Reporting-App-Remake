@@ -22,7 +22,7 @@ class NCWsiteState extends State<NCWsite> {
         title: Text('NCWsite Website'),
       ),
       body: const WebView(
-        initialUrl: 'http://ncw.nic.in/',
+        initialUrl: 'http://www.ncw.nic.in/',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );

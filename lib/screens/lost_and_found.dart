@@ -316,7 +316,11 @@ class _LostFoundState extends State<LostFound> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(content: Text("Submitted"));
+                        return AlertDialog(content: Text("Submitted"),actions: [
+                          FlatButton(onPressed:(){ 
+                            Navigator.pop(context);
+                            }, child: Text("OK"))
+                        ],);
                       });
                 },
                 shape: RoundedRectangleBorder(

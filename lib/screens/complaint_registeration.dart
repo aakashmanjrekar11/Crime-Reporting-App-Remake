@@ -43,7 +43,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
 
   Future chooseFile() async {
     image = await _picker
-        .getImage(source: ImageSource.gallery, imageQuality: 50, maxHeight: 480, maxWidth: 640)
+        .getImage(source: ImageSource.gallery, imageQuality: 50, maxHeight: 300, maxWidth: 300)
         .then((image) {
       setState(() {
         _image = File(image.path);
@@ -186,7 +186,11 @@ class _ComplaintAppState extends State<ComplaintApp> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialog(content: Text("Submitted"));
+                      return AlertDialog(content: Text("Submitted"),actions: [
+                          FlatButton(onPressed:(){ 
+                            Navigator.pop(context);
+                            }, child: Text("OK"))
+                        ],);
                     },
                   );
                 },

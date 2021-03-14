@@ -17,13 +17,6 @@ class AdminLoginScreen extends StatefulWidget {
 class _AdminLoginScreenState extends State<AdminLoginScreen> {
   final _auth = FirebaseAuth.instance;
   String _emailId, _pwd;
-
-  checkTextFieldEmptyOrNot(){
-    if(_emailId == '' || _pwd == '')
-      return true;
-    else
-      return false;
-  }
   
   Widget _backButton() {
     return InkWell(
@@ -125,9 +118,9 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () {
-        _auth.createUserWithEmailAndPassword(email: _emailId, password: _pwd);
+        _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
         Fluttertoast.showToast(
-          msg: "Registration Successful!",
+          msg: "Login Successful!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,

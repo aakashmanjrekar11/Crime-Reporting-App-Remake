@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
 import 'package:Crime_Reporting_AIO_app/screens/emergency_contacts.dart';
+import 'package:Crime_Reporting_AIO_app/screens/view_complaint.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'drawer_custom.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'utils/carouselWithIndicator.dart';
@@ -13,7 +14,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/reusable_card.dart';
 import 'utils/icon_content.dart';
 import 'package:telephony/telephony.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
@@ -39,11 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
         telephony.sendSms(
             to: doc["Contact1 Phone"],
             message:
-                "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
-        telephony.sendSms(
+                "I\'m in danger. My coordinates are ${widget.address} ${widget.lat},${widget.long}",
+            isMultipart: true
+            );
+        if(doc["Contact2 Phone"]!=""){
+          telephony.sendSms(
             to: doc["Contact2 Phone"],
             message:
-                "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
+                "I\'m in danger. My coordinates are ${widget.address} ${widget.lat},${widget.long}",
+                isMultipart: true
+                );
+        }
       });
     });
   }
@@ -131,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ComplaintApp(username: widget.username)));
                       });
                     },
                     gradient1: Color(0xFF045DE9),
@@ -293,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/emergency');
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewComplaint(username:widget.username)));
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
@@ -301,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.question,
                       iconColor: Colors.white,
-                      fieldName: '   Test\n Demo',
+                      fieldName: ' View Complaints',
                     ),
                   ),
                 ),
@@ -311,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/emergency');
+                        Navigator.pushNamed(context, '/childlineindia');
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
@@ -332,7 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.pushNamed(context, '/childlineindia');
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
@@ -350,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/complaint');
+                        Navigator.pushNamed(context, '/childlineindia');
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
@@ -368,6 +374,7 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             _textMe();
+            Fluttertoast.showToast(msg: "SoS message sent succesfully",toastLength:Toast.LENGTH_SHORT);
           },
           label: Text('SOS'),
           icon: Icon(Icons.report),

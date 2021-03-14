@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         '/admin': (context) => AdminHomeScreen(),
         '/adminHome': (context) => AdminHomeScreen(),
         '/adminLogin': (context) => AdminLoginScreen(),
-        '/complaint': (context) => ComplaintApp(),
+        // '/complaint': (context) => ComplaintApp(),
         '/lostfound': (context) => LostFound(),
         '/list': (context) => List(),
         '/profile': (context) => ProfilePage(),

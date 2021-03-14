@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:telephony/telephony.dart';
 
 class List extends StatefulWidget {
   List({Key key, this.title}) : super(key: key);
@@ -11,14 +11,7 @@ class List extends StatefulWidget {
 }
 
 class _ListState extends State<List> {
-  Future<void> call(String number) async {
-    if (await canLaunch('tel:$number')) {
-      await launch('tel:$number');
-    } else {
-      print("Cannot Launch");
-    }
-  }
-
+  Telephony telephony = Telephony.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,11 +72,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  "Aarey Police Station\n-022-29272485",
+                  "Aarey Police Station-\n022-29272485",
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02229272485");
+                  telephony.openDialer("02229272485");
                 },
               ),
             ),
@@ -103,11 +96,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Airport Police Station\n-022-26156309',
+                  'Airport Police Station-\n022-26156309',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02226156309");
+                   telephony.openDialer("02226156309");
                 },
               ),
             ),
@@ -127,11 +120,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Amboli Police Station\n-022-26762001',
+                  'Amboli Police Station-\n022-26762001',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02226762001");
+                   telephony.openDialer("02226762001");
                 },
               ),
             ),
@@ -151,11 +144,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Andheri Police Station\n-022-26831365',
+                  'Andheri Police Station-\n022-26831365',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02226831365");
+                   telephony.openDialer("02226831365");
                 },
               ),
             ),
@@ -175,11 +168,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Bandra Police Station\n-022-26423122',
+                  'Bandra Police Station-\n022-26423122',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02226423122");
+                   telephony.openDialer("02226423122");
                 },
               ),
             ),
@@ -199,11 +192,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Borivali Police Station\n-022-28930145',
+                  'Borivali Police Station-\n022-28930145',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02228930145");
+                   telephony.openDialer("02228930145");
                 },
               ),
             ),
@@ -223,11 +216,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Kurla Police Station\n-022-26500478',
+                  'Kurla Police Station-\n022-26500478',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02226500478");
+                   telephony.openDialer("02226500478");
                 },
               ),
             ),
@@ -247,11 +240,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Bhandup Police Station\n-022-25954467',
+                  'Bhandup Police Station-\n022-25954467',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02225954467");
+                   telephony.openDialer("02225954467");
                 },
               ),
             ),
@@ -271,11 +264,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Chembur Police Station\n-022-25232044',
+                  'Chembur Police Station-\n022-25232044',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02225232044");
+                   telephony.openDialer("02225232044");
                 },
               ),
             ),
@@ -295,11 +288,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Dahisar Police Station\n-022-28284024',
+                  'Dahisar Police Station-\n022-28284024',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02228284024");
+                   telephony.openDialer("02228284024");
                 },
               ),
             ),
@@ -319,11 +312,11 @@ class _ListState extends State<List> {
               ),
               title: GestureDetector(
                 child: Text(
-                  'Dindoshi Police Station\n-022-24691929',
+                  'Dindoshi Police Station-\n022-24691929',
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("2224013767");
+                   telephony.openDialer("2224013767");
                 },
               ),
             ),
@@ -347,7 +340,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                  call("02228721900");
+                   telephony.openDialer("02228721900");
                 },
               ),
             ),

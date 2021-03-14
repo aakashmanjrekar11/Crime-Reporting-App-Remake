@@ -7,9 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
 class ComplaintApp extends StatefulWidget {
-  ComplaintApp({Key key, this.title}) : super(key: key);
-
-  final String title;
+  final String title,username;
+  ComplaintApp({Key key, this.title, this.username}) : super(key: key);
 
   @override
   _ComplaintAppState createState() => _ComplaintAppState();
@@ -34,7 +33,8 @@ class _ComplaintAppState extends State<ComplaintApp> {
       "Address": address.text,
       "ImageURL": imgUrl,
       "Complaint": complaint.text,
-      "Status": "-"
+      "Status": "-",
+      "UserName": widget.username
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('complaints');

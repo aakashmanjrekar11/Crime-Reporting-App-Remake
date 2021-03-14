@@ -48,11 +48,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               children: <Widget>[
                 AvatarGlow(
                   endRadius: 170,
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 900),
                   glowColor: Colors.white24,
                   repeat: true,
-                  repeatPauseDuration: Duration(seconds: 1),
-                  startDelay: Duration(seconds: 1),
+                  repeatPauseDuration: Duration(milliseconds: 100),
+                  startDelay: Duration(milliseconds: 100),
                   child: CircularProfileAvatar(
                     null,
                     child: Image(

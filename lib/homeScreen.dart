@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,8 @@ import 'utils/carouselWithIndicator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/reusable_card.dart';
 import 'utils/icon_content.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
@@ -38,11 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         drawer: DrawerCustom(widget.photoURL),
         appBar: AppBar(
+          backgroundColor: Color(0xFF8185E2),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
                 icon: FaIcon(FontAwesomeIcons.bars),
-                color: Colors.grey[600],
+                color: Colors.white,
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -66,7 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 child: GestureDetector(
-                    child: FaIcon(FontAwesomeIcons.signOutAlt),
+                    child: FaIcon(
+                      FontAwesomeIcons.signOutAlt,
+                      color: Colors.white,
+                    ),
                     onTap: () async {
                       await signOutGoogle();
                       _auth.signOut();
@@ -76,7 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ],
-          backgroundColor: Colors.white70,
           title: (widget.username != null)
               ? Text(
                   "Hi, " + widget.username,
@@ -87,7 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.grey[800],
                   ),
                 )
-              : Text("Looking for username"),
+              : Text(
+                  "Welcome to SecuroServe!",
+                  style: TextStyle(color: Colors.white),
+                ),
         ),
         body: ListView(
           children: <Widget>[
@@ -112,11 +119,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/complaint');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFF045DE9),
+                    gradient2: Color(0xFF0CBABA),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.solidPaperPlane,
-                      iconColor: Colors.blue[300],
-                      fieldName: 'Complaint\nRegistration',
+                      iconColor: Colors.white,
+                      fieldName: '   Complaint\n Registration',
                     ),
                   ),
                 ),
@@ -129,11 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/emergency');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFFFDD00),
+                    gradient2: Color(0xFFFBB034),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.exclamationTriangle,
-                      iconColor: Colors.yellow[700],
-                      fieldName: 'Emergency\n Contacts',
+                      iconColor: Colors.white,
+                      fieldName: 'Emergency\n  Contacts',
                     ),
                   ),
                 ),
@@ -149,11 +158,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/lostfound');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFFF0000), //890000
+                    gradient2: Color(0xFFFF7878), //DF0020
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.wallet,
-                      iconColor: Colors.brown,
-                      fieldName: 'Lost & \nFound',
+                      iconColor: Colors.white,
+                      fieldName: ' Lost & \n Found',
                     ),
                   ),
                 ),
@@ -166,11 +176,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/list');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFF11998e), //380036
+                    gradient2: Color(0xFF38de7d), //0CBABA
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.phoneAlt,
-                      iconColor: Colors.green[400],
-                      fieldName: 'Mumbai Police \nStations Contacts',
+                      iconColor: Colors.white,
+                      fieldName: '     Mumbai Police\nStations Contacts',
                     ),
                   ),
                 ),
@@ -186,11 +197,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/eComplaint');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFAD1DEB),
+                    gradient2: Color(0xFF6E72FC),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.solidIdCard,
-                      iconColor: Colors.indigo,
-                      fieldName: 'E-complaint Mumbai Police Website',
+                      iconColor: Colors.white,
+                      fieldName: 'E-complaint Mumbai\n       Police Website',
                     ),
                   ),
                 ),
@@ -203,11 +215,91 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/safetyTips');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFFFBE0B),
+                    gradient2: Color(0xFFF42B03),
+                    cardColour: Colors.white,
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.userShield,
-                      iconColor: Colors.red[400],
-                      fieldName: 'Safety\nTips',
+                      iconColor: Colors.white,
+                      fieldName: 'Safety\n  Tips',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                //! MALE
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/emergency');
+                      });
+                    },
+                    gradient1: Color(0xFFbc4e9c),
+                    gradient2: Color(0xFFf80759),
+                    cardChild: IconContent(
+                      iconName: FlutterIcons.female_faw,
+                      iconColor: Colors.white,
+                      fieldName: 'National Commission\n  for Women website',
+                    ),
+                  ),
+                ),
+
+                //! FEMALE
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/childlineindia');
+                      });
+                    },
+                    gradient1: Color(0xFF20A4F3),
+                    gradient2: Color(0xFF182B3A),
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.baby,
+                      iconColor: Colors.white,
+                      fieldName: 'Child Line India\n        Website',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                //! MALE
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/emergency');
+                      });
+                    },
+                    gradient1: Color(0xFFF5F7FA),
+                    gradient2: Color(0xFFB8C6DB),
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.question,
+                      iconColor: Colors.white,
+                      fieldName: '   Test\n Demo',
+                    ),
+                  ),
+                ),
+
+                //! FEMALE
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/emergency');
+                      });
+                    },
+                    gradient1: Color(0xFFF5F7FA),
+                    gradient2: Color(0xFFB8C6DB),
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.question,
+                      iconColor: Colors.white,
+                      fieldName: '   Test\n Demo',
                     ),
                   ),
                 ),
@@ -223,11 +315,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/complaint');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFF5F7FA),
+                    gradient2: Color(0xFFB8C6DB),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.grey,
-                      fieldName: 'extra',
+                      iconColor: Colors.white,
+                      fieldName: '   Test\n Demo',
                     ),
                   ),
                 ),
@@ -240,83 +333,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/complaint');
                       });
                     },
-                    colour: Colors.white,
+                    gradient1: Color(0xFFF5F7FA),
+                    gradient2: Color(0xFFB8C6DB),
                     cardChild: IconContent(
                         iconName: FontAwesomeIcons.question,
-                        iconColor: Colors.grey,
-                        fieldName: 'extra'),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                //! MALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/complaint');
-                      });
-                    },
-                    colour: Colors.white,
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.grey,
-                      fieldName: 'extra',
-                    ),
-                  ),
-                ),
-
-                //! FEMALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/complaint');
-                      });
-                    },
-                    colour: Colors.white,
-                    cardChild: IconContent(
-                        iconName: FontAwesomeIcons.question,
-                        iconColor: Colors.grey,
-                        fieldName: 'extra'),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                //! MALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/complaint');
-                      });
-                    },
-                    colour: Colors.white,
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.grey,
-                      fieldName: 'extra',
-                    ),
-                  ),
-                ),
-
-                //! FEMALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/complaint');
-                      });
-                    },
-                    colour: Colors.white,
-                    cardChild: IconContent(
-                        iconName: FontAwesomeIcons.question,
-                        iconColor: Colors.grey,
-                        fieldName: 'extra'),
+                        iconColor: Colors.white,
+                        fieldName: '   Test\n Demo'),
                   ),
                 ),
               ],

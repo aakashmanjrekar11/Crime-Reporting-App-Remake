@@ -1,7 +1,10 @@
-#Sun Mar 14 00:14:28 IST 2021
+#Sun Mar 14 15:25:47 IST 2021
 base.2=C\:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes2.dex
 base.1=C\:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
 base.0=C\:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
+renamed.20=classes21.dex
+path.20=classes_17.dex
+base.20=C\:\\Users\\HP\\StudioProjects\\Crime-Reporting-App-Remake\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_17.dex
 path.9=classes_14.dex
 path.8=classes_13.dex
 path.7=classes_12.dex

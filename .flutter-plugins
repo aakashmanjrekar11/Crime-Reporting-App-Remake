@@ -21,6 +21,7 @@ path_provider_macos=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.o
 path_provider_windows=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+3\\
 permission_handler=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler-4.4.0+hotfix.4\\
 sqflite=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sqflite-1.3.2+4\\
+telephony=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\telephony-0.0.9\\
 url_launcher=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
 url_launcher_linux=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
 url_launcher_macos=C:\\flutter sdk\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+9\\

@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         '/lostfound': (context) => LostFound(),
         '/list': (context) => List(),
         '/profile': (context) => ProfilePage(),
-        '/emergency': (context) => Emergency(),
+        // '/emergency': (context) => Emergency(),
         '/mumbaiPoliceSite': (context) => MumbaiPoliceWebsite(),
         '/eComplaint': (context) => EComplaintWebsite(),
         '/safetyTips': (context) => SafetyTipsWebsite(),

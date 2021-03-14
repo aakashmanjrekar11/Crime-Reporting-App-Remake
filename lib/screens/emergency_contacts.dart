@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Emergency extends StatefulWidget {
-  Emergency({Key key, this.title}) : super(key: key);
+  final String username;
+  Emergency({Key key, this.username}) : super(key: key);
 
-  final String title;
-
+  
   @override
   _EmergencyState createState() => _EmergencyState();
 }
@@ -13,19 +13,16 @@ class Emergency extends StatefulWidget {
 class _EmergencyState extends State<Emergency> {
   final name1 = TextEditingController();
   final phone1 = TextEditingController();
-  final email1 = TextEditingController();
   final name2 = TextEditingController();
   final phone2 = TextEditingController();
-  final email2 = TextEditingController();
-
+  
   submitComplaint() {
     Map<String, dynamic> data = {
       "Contact1 Name": name1.text,
       "Contact1 Phone": phone1.text,
-      "Contact1 Email": email1.text,
       "Contact2 Name": name2.text,
       "Contact2 Phone": phone2.text,
-      "Contact2 Email": email2.text
+      "UserName": widget.username
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('emergency_contacts');
@@ -85,21 +82,6 @@ class _EmergencyState extends State<Emergency> {
               ),
             ),
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.email,
-              color: Colors.amber,
-              size: 40,
-            ),
-            title: TextField(
-              controller: email1,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: "Email",
-                border: const OutlineInputBorder(),
-              ),
-            ),
-          ),
           SizedBox(height: 40),
           Container(
             color: Colors.grey[300],
@@ -141,45 +123,37 @@ class _EmergencyState extends State<Emergency> {
               ),
             ),
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.email,
-              color: Colors.amber,
-              size: 40,
-            ),
-            title: TextField(
-              controller: email2,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: "Email",
-                border: const OutlineInputBorder(),
-              ),
-            ),
-          ),
           SizedBox(height: 40),
           Container(
             width: 50,
             height: 70,
-            child: RaisedButton(
-              color: Colors.blueAccent,
-              onPressed: () {
-                submitComplaint();
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(content: Text("Submitted"));
-                    });
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.blue),
-              ),
-              child: Text(
-                "Submit",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(60, 0, 60, 10),
+              child: RaisedButton(
+                color: Colors.blueAccent,
+                onPressed: () {
+                  submitComplaint();
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(content: Text("Submitted"),actions: [
+                          FlatButton(onPressed:(){ 
+                            Navigator.pop(context);
+                            }, child: Text("OK"))
+                        ],);
+                      });
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.blue),
+                ),
+                child: Text(
+                  "Submit",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

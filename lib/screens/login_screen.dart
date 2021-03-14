@@ -62,11 +62,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _checkPermission() async {
     final PermissionHandler _permissionHandler = PermissionHandler();
-    var permission = await _permissionHandler
+    var locPermission = await _permissionHandler
         .checkPermissionStatus(PermissionGroup.location);
-    if (permission == PermissionStatus.denied) {
+    var smsPermission = await _permissionHandler
+        .checkPermissionStatus(PermissionGroup.sms);
+    if (locPermission == PermissionStatus.denied || smsPermission == PermissionStatus.denied) {
       await _permissionHandler.requestPermissions(
-          [PermissionGroup.location, PermissionGroup.locationWhenInUse]);
+          [PermissionGroup.location, PermissionGroup.locationWhenInUse, PermissionGroup.sms]);
     }
   }
 

@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:Crime_Reporting_AIO_app/screens/emergency_contacts.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,6 +12,7 @@ import 'utils/carouselWithIndicator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/reusable_card.dart';
 import 'utils/icon_content.dart';
+import 'package:telephony/telephony.dart';
 
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
@@ -23,14 +26,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   Future<void> _textMe() async {
-    final String uri =
-        'sms:+91 9876543219?body=Please%20help%20me.%20I\'m%20in%20danger.%20My%20coordinates%20are%20${widget.lat}%20${widget.long}%20${widget.address}';
-    if (await canLaunch(uri)) {
-      await launch(uri);
-    } else {
-      print("Cannot launch");
-    }
-  }
+    var docRef = FirebaseFirestore.instance.collection('emergency_contacts');
+    Telephony telephony = Telephony.instance; 
+    docRef.where("UserName",isEqualTo:widget.username).limit(1).get().then((value) { value.docs.forEach((doc) {
+        telephony.sendSms(to: doc["Contact1 Phone"], message: "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
+        telephony.sendSms(to: doc["Contact2 Phone"], message: "I\'m in danger. My coordinates are ${widget.lat} ${widget.long} ${widget.address}");
+    });});
+    
+      }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/emergency');
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Emergency(username: widget.username,)));
                       });
                     },
                     colour: Colors.white,

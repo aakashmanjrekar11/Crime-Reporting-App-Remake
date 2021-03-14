@@ -198,33 +198,33 @@ class AdminHomeScreen extends StatelessWidget {
     );
   }
 
-  showAlertDialog(BuildContext context,DocumentSnapshot doc) {
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert"),
-      content: Text("Do you want to accept/reject this complaint?"),
-      actions: [
-        FlatButton(
-            child: Text("Accept"),
-            onPressed: () async {
-              DocumentReference docref =
-                  FirebaseFirestore.instance.doc(doc.id);
-              await docref.update({"Status": "Accepted"});
-            }),
-        FlatButton(
-          child: Text("Reject"),
-          onPressed: () async {
-            DocumentReference docref =
-                FirebaseFirestore.instance.doc(doc.id);
-            await docref.update({"Status": "Rejected"});
-          },
-        )
-      ],
-    ); // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
+  // showAlertDialog(BuildContext context,DocumentSnapshot doc) {
+  //   AlertDialog alert = AlertDialog(
+  //     title: Text("Alert"),
+  //     content: Text("Do you want to accept/reject this complaint?"),
+  //     actions: [
+  //       FlatButton(
+  //           child: Text("Accept"),
+  //           onPressed: () async {
+  //             DocumentReference docref =
+  //                 FirebaseFirestore.instance.doc(doc.id);
+  //             await docref.update({"Status": "Accepted"});
+  //           }),
+  //       FlatButton(
+  //         child: Text("Reject"),
+  //         onPressed: () async {
+  //           DocumentReference docref =
+  //               FirebaseFirestore.instance.doc(doc.id);
+  //           await docref.update({"Status": "Rejected"});
+  //         },
+  //       )
+  //     ],
+  //   ); // show the dialog
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
+  // }
 }

@@ -494,6 +494,12 @@
       "languageVersion": "2.8"
     },
     {
+      "name": "telephony",
+      "rootUri": "file:///C:/flutter%20sdk/flutter/.pub-cache/hosted/pub.dartlang.org/telephony-0.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///C:/flutter%20sdk/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0-nullsafety.1",
       "packageUri": "lib/",
@@ -590,7 +596,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-03-13T18:37:14.640604Z",
+  "generated": "2021-03-14T09:37:56.008769Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

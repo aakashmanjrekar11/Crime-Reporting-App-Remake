@@ -19,7 +19,15 @@ class EComplaintWebsiteState extends State<EComplaintWebsite> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('E-Complaint Mumbai Police Website'),
+        backgroundColor: Color(0xFF8185E2),
+        centerTitle: true,
+        title: Text(
+          'E-Complaint Mumbai Police Website',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: const WebView(
         initialUrl: 'https://mumbaipolice.gov.in/OnlineComplaints?ps_id=0',

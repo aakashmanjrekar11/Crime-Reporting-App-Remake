@@ -15,16 +15,18 @@ class DrawerCustom extends StatefulWidget {
 }
 
 class _DrawerCustomState extends State<DrawerCustom> {
-  String img="";
-  
+  String img = "";
+
   @override
   void initState() {
     img = widget.photoURL;
-    if(img=="" || img==null){
-      img="https://firebasestorage.googleapis.com/v0/b/crm-app-e8f52.appspot.com/o/Indian%20Police%20Officer.jpg?alt=media&token=c58bd7b3-be2d-4a50-9fc9-20e73aeac428";
+    if (img == "" || img == null) {
+      img =
+          "https://firebasestorage.googleapis.com/v0/b/crm-app-e8f52.appspot.com/o/Indian%20Police%20Officer.jpg?alt=media&token=c58bd7b3-be2d-4a50-9fc9-20e73aeac428";
     }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -37,9 +39,14 @@ class _DrawerCustomState extends State<DrawerCustom> {
             width: 100,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 160, 10),
-              child: CircularProfileAvatar(img,radius:70,borderWidth: 3,borderColor: Colors.black,),
+              child: CircularProfileAvatar(
+                img,
+                radius: 70,
+                borderWidth: 3,
+                borderColor: Colors.black,
+              ),
             ),
-            color: Colors.blueAccent,
+            color: Color(0xFF8185E2),
           ),
           SizedBox(height: 20),
           ListTile(

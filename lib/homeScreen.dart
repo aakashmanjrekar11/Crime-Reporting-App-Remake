@@ -40,15 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
             to: doc["Contact1 Phone"],
             message:
                 "I\'m in danger. My coordinates are ${widget.address} ${widget.lat},${widget.long}",
-            isMultipart: true
-            );
-        if(doc["Contact2 Phone"]!=""){
+            isMultipart: true);
+        if (doc["Contact2 Phone"] != "") {
           telephony.sendSms(
-            to: doc["Contact2 Phone"],
-            message:
-                "I\'m in danger. My coordinates are ${widget.address} ${widget.lat},${widget.long}",
-                isMultipart: true
-                );
+              to: doc["Contact2 Phone"],
+              message:
+                  "I\'m in danger. My coordinates are ${widget.address} ${widget.lat},${widget.long}",
+              isMultipart: true);
         }
       });
     });
@@ -82,23 +80,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     msg: "⚠️Under Construction!⚠️",
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
+                    //timeInSecForIosWeb: 1,
                     backgroundColor: Colors.grey,
                     textColor: Colors.white,
                     fontSize: 16.0,
                   );
                 },
                 child: GestureDetector(
-                    child: FaIcon(
-                      FontAwesomeIcons.signOutAlt,
-                      color: Colors.white,
-                    ),
-                    onTap: () async {
-                      await signOutGoogle();
-                      _auth.signOut();
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    }),
+                  child: FaIcon(
+                    FontAwesomeIcons.signOutAlt,
+                    color: Colors.white,
+                  ),
+                  onTap: () async {
+                    await signOutGoogle();
+                    _auth.signOut();
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ),
           ],
@@ -117,6 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
         ),
+
+        //? BODY
         body: ListView(
           children: <Widget>[
             SizedBox(height: 20.0),
@@ -130,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 thickness: 1.2,
               ),
             ),
+            //?
             Row(
               children: <Widget>[
                 //! Complaint Registration
@@ -137,7 +139,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ComplaintApp(username: widget.username)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ComplaintApp(username: widget.username)));
                       });
                     },
                     gradient1: Color(0xFF045DE9),
@@ -174,26 +180,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+
+            //?
             Row(
               children: <Widget>[
-                //! Lost and Found
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/lostfound');
-                      });
-                    },
-                    gradient1: Color(0xFFFF0000), //890000
-                    gradient2: Color(0xFFFF7878), //DF0020
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.wallet,
-                      iconColor: Colors.white,
-                      fieldName: ' Lost & \n Found',
-                    ),
-                  ),
-                ),
-
                 //! Mumbai Police Stations
                 Expanded(
                   child: ReusableCard(
@@ -208,27 +198,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconName: FontAwesomeIcons.phoneAlt,
                       iconColor: Colors.white,
                       fieldName: '     Mumbai Police\nStations Contacts',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                //! E-complaint Mumbai Police Website
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/eComplaint');
-                      });
-                    },
-                    gradient1: Color(0xFFAD1DEB),
-                    gradient2: Color(0xFF6E72FC),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.solidIdCard,
-                      iconColor: Colors.white,
-                      fieldName: 'E-complaint Mumbai\n       Police Website',
                     ),
                   ),
                 ),
@@ -253,26 +222,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+
+            //?
             Row(
               children: <Widget>[
-                //! National Commisiion Women Website
+                //! E-complaint Mumbai Police Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/ncwSite');
+                        Navigator.pushNamed(context, '/eComplaint');
                       });
                     },
-                    gradient1: Color(0xFFbc4e9c),
-                    gradient2: Color(0xFFf80759),
+                    gradient1: Color(0xFFAD1DEB),
+                    gradient2: Color(0xFF6E72FC),
                     cardChild: IconContent(
-                      iconName: FlutterIcons.female_faw,
+                      iconName: FontAwesomeIcons.bullhorn,
                       iconColor: Colors.white,
-                      fieldName: 'National Commission\n  for Women website',
+                      fieldName: 'E-complaint Mumbai\n       Police Website',
                     ),
                   ),
                 ),
 
+                //! Lost and Found
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/lostfound');
+                      });
+                    },
+                    gradient1: Color(0xFFFF0000), //890000
+                    gradient2: Color(0xFFFF7878), //DF0020
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.wallet,
+                      iconColor: Colors.white,
+                      fieldName: ' Lost & \n Found',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            //?
+            Row(
+              children: <Widget>[
                 //! Child Line India Website
                 Expanded(
                   child: ReusableCard(
@@ -290,24 +284,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                //! MALE
+
+                //! National Commisiion Women Website
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewComplaint(username:widget.username)));
+                        Navigator.pushNamed(context, '/ncwSite');
+                      });
+                    },
+                    gradient1: Color(0xFFbc4e9c),
+                    gradient2: Color(0xFFf80759),
+                    cardChild: IconContent(
+                      iconName: FlutterIcons.female_faw,
+                      iconColor: Colors.white,
+                      fieldName: 'National Commission\n  for Women website',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            //?
+            Row(
+              children: <Widget>[
+                //! My Complaints
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ViewComplaint(username: widget.username)));
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
                     gradient2: Color(0xFFB8C6DB),
                     cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
+                      iconName: FontAwesomeIcons.solidAddressBook,
                       iconColor: Colors.white,
-                      fieldName: ' View Complaints',
+                      fieldName: '           My\nComplaints',
                     ),
                   ),
                 ),
@@ -371,10 +389,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+
+        //! SoS Button
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             _textMe();
-            Fluttertoast.showToast(msg: "SoS message sent succesfully",toastLength:Toast.LENGTH_SHORT);
+            Fluttertoast.showToast(
+                msg: "SoS message sent succesfully",
+                toastLength: Toast.LENGTH_LONG);
           },
           label: Text('SOS'),
           icon: Icon(Icons.report),

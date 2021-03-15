@@ -17,13 +17,16 @@ class AdminHomeScreen extends StatelessWidget {
       body: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.grey[400],
           appBar: AppBar(
+            backgroundColor: Color(0xFF8185E2),
             automaticallyImplyLeading: false,
             actions: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: GestureDetector(
-                    child: FaIcon(FontAwesomeIcons.signOutAlt),
+                    child: FaIcon(FontAwesomeIcons.signOutAlt,
+                        color: Colors.white),
                     onTap: () async {
                       _auth.signOut();
                       Navigator.pop(context);
@@ -31,16 +34,32 @@ class AdminHomeScreen extends StatelessWidget {
               ),
             ],
             bottom: TabBar(
+              labelColor: Colors.white,
+              indicatorColor: Colors.white,
+              unselectedLabelColor: Colors.grey[300],
               tabs: [
                 Tab(
-                  child: Text('Complaint Registration'),
+                  child: Text(
+                    'Complaint Registration',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Tab(
-                  child: Text('Lost & Found'),
+                  child: Text(
+                    'Lost & Found',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
-            title: Center(child: Text('Tabs Demo')),
+            title: Text(
+              'Admin Home',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            centerTitle: true,
           ),
           body: TabBarView(
             children: [
@@ -70,40 +89,51 @@ class AdminHomeScreen extends StatelessWidget {
                               context: context,
                               type: AlertType.warning,
                               title: "ALERT",
-                              desc: "Do you want to accept/reject this complaint?",
+                              desc:
+                                  "Do you want to accept/reject this complaint?",
                               buttons: [
                                 DialogButton(
                                   child: Text(
                                     "Accept",
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
                                   ),
                                   onPressed: () async {
-                                      DocumentReference docref =
-                                          FirebaseFirestore.instance.collection('complaints').doc(document.id);
-                                      await docref.update({"Status": "Accepted"});
-                                      Navigator.pop(context);
-                                    },
+                                    DocumentReference docref = FirebaseFirestore
+                                        .instance
+                                        .collection('complaints')
+                                        .doc(document.id);
+                                    await docref.update({"Status": "Accepted"});
+                                    Navigator.pop(context);
+                                  },
                                   color: Colors.blueAccent,
                                 ),
                                 DialogButton(
-                                  child: Text(
-                                    "Reject",
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
-                                  ),
-                                  onPressed: () async {
+                                    child: Text(
+                                      "Reject",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    onPressed: () async {
                                       DocumentReference docref =
-                                          FirebaseFirestore.instance.collection('complaints').doc(document.id);
-                                      await docref.update({"Status": "Rejected"});
+                                          FirebaseFirestore.instance
+                                              .collection('complaints')
+                                              .doc(document.id);
+                                      await docref
+                                          .update({"Status": "Rejected"});
                                       Navigator.pop(context);
                                     },
-                                  color: Colors.redAccent
-                                )
+                                    color: Colors.redAccent)
                               ],
                             ).show();
                           },
                           child: Card(
-                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.00)),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            elevation: 6,
                             child: ListTile(
+                              contentPadding: EdgeInsets.all(20),
                               title: Text(
                                   'Name: ' + document.data()['Name'] ?? ''),
                               subtitle: Column(
@@ -154,7 +184,12 @@ class AdminHomeScreen extends StatelessWidget {
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
                         return Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.00)),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          elevation: 6,
                           child: ListTile(
+                            contentPadding: EdgeInsets.all(20),
                             title:
                                 Text("Name: " + document.data()['Name'] ?? ''),
                             subtitle: Column(

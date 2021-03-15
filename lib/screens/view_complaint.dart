@@ -39,7 +39,6 @@ class _ViewComplaintState extends State<ViewComplaint> {
               return Center(child: Text('Something went wrong'));
             }
 
-<<<<<<< HEAD
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
                   }
@@ -69,37 +68,7 @@ class _ViewComplaintState extends State<ViewComplaint> {
                     ),
                   );}
               ) 
-=======
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: Text("Loading"));
-            }
-            if (!snapshot.hasData) {
-              print(snapshot.hasData);
-              return Center(child: CircularProgressIndicator());
-            }
-            return Container(
-              child: ListView(
-                children: snapshot.data.docs.map((DocumentSnapshot document) {
-                  return Card(
-                    elevation: 5,
-                    child: ListTile(
-                      title: Text(
-                          'Complaint: ' + document.data()['Complaint'] ?? ''),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Status: " + document.data()['Status'] ?? ''),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            );
-          },
-        ),
-      ),
->>>>>>> f20e52b6d81edf01d6d33112d115dadedcb61f29
+    )
     );
   }
 }

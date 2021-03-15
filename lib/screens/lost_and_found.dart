@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 
 class LostFound extends StatefulWidget {
   LostFound({Key key, this.title}) : super(key: key);
@@ -23,6 +28,10 @@ class _LostFoundState extends State<LostFound> {
   final dateTime = TextEditingController();
   final addressLost = TextEditingController();
   final desc = TextEditingController();
+  final _picker = ImagePicker();
+  File _image;
+  PickedFile image;
+  String imgUrl;
 
   submit() {
     Map<String, dynamic> data = {
@@ -34,11 +43,39 @@ class _LostFoundState extends State<LostFound> {
       "Article Type": dropdownValue2,
       "Date & Time": dateTime.text,
       "Address of Lost/Found item": addressLost.text,
-      "Description": desc.text
+      "Description": desc.text,
+      "ImageURL": imgUrl
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
+  }
+  Future chooseFile() async {
+    image = await _picker
+        .getImage(
+            source: ImageSource.gallery,
+            imageQuality: 50,
+            maxHeight: 300,
+            maxWidth: 300)
+        .then((image) {
+      setState(() {
+        _image = File(image.path);
+      });
+    });
+  }
+
+  Future uploadFile() async {
+    String fileName = basename(_image.path);
+    StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    await taskSnapshot.ref.getDownloadURL().then(
+      (value) {
+        print("Done: $value");
+        imgUrl = value;
+      },
+    );
   }
 
 //   _onPressed() {
@@ -306,6 +343,20 @@ class _LostFoundState extends State<LostFound> {
             ),
           ),
           SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              chooseFile();
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.image_search,
+                color: Colors.red,
+                size: 40,
+              ),
+              title: Text("Upload Image"),
+            ),
+          ),
+          SizedBox(height: 20),
           Container(
             width: 50,
             height: 70,
@@ -313,7 +364,8 @@ class _LostFoundState extends State<LostFound> {
               padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
               child: RaisedButton(
                 color: Colors.blueAccent,
-                onPressed: () {
+                onPressed: () async{
+                  await uploadFile();
                   submit();
                   showDialog(
                       context: context,

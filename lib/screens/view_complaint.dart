@@ -26,11 +26,11 @@ CollectionReference collectionReference = FirebaseFirestore.instance.collection(
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: Text("Loading"));
-                  }
-                  if (!snapshot.hasData) {
-                    print(snapshot.hasData);
                     return Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.data.docs.toString() == '[]') {
+                    Navigator.pushNamed(context, '/empty');
+                    print("no data");
                   }
                   return Container(
                     child: ListView(
@@ -52,8 +52,7 @@ CollectionReference collectionReference = FirebaseFirestore.instance.collection(
                         );
                       }).toList(),
                     ),
-                  );
-                },
+                  );}
               ) 
     );
   }

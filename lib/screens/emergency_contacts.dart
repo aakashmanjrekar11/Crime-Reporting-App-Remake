@@ -5,7 +5,6 @@ class Emergency extends StatefulWidget {
   final String username;
   Emergency({Key key, this.username}) : super(key: key);
 
-  
   @override
   _EmergencyState createState() => _EmergencyState();
 }
@@ -15,7 +14,7 @@ class _EmergencyState extends State<Emergency> {
   final phone1 = TextEditingController();
   final name2 = TextEditingController();
   final phone2 = TextEditingController();
-  
+
   submitComplaint() {
     Map<String, dynamic> data = {
       "Contact1 Name": name1.text,
@@ -33,10 +32,11 @@ class _EmergencyState extends State<Emergency> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF8185E2),
         centerTitle: true,
         title: Text(
           'Emergency Contacts',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -136,11 +136,16 @@ class _EmergencyState extends State<Emergency> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(content: Text("Submitted"),actions: [
-                          FlatButton(onPressed:(){ 
-                            Navigator.pop(context);
-                            }, child: Text("OK"))
-                        ],);
+                        return AlertDialog(
+                          content: Text("Submitted"),
+                          actions: [
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("OK"))
+                          ],
+                        );
                       });
                 },
                 shape: RoundedRectangleBorder(

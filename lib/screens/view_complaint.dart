@@ -11,20 +11,35 @@ class ViewComplaint extends StatefulWidget {
 }
 
 class _ViewComplaintState extends State<ViewComplaint> {
-CollectionReference collectionReference = FirebaseFirestore.instance.collection('complaints');
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('complaints');
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey,
-      child:
-      StreamBuilder<QuerySnapshot>(
-                stream: collectionReference.where("UserName",isEqualTo: widget.username).snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Something went wrong'));
-                  }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My Complaints',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF8185E2),
+      ),
+      body: Container(
+        color: Colors.grey,
+        child: StreamBuilder<QuerySnapshot>(
+          stream: collectionReference
+              .where("UserName", isEqualTo: widget.username)
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Something went wrong'));
+            }
 
+<<<<<<< HEAD
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
                   }
@@ -54,6 +69,37 @@ CollectionReference collectionReference = FirebaseFirestore.instance.collection(
                     ),
                   );}
               ) 
+=======
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: Text("Loading"));
+            }
+            if (!snapshot.hasData) {
+              print(snapshot.hasData);
+              return Center(child: CircularProgressIndicator());
+            }
+            return Container(
+              child: ListView(
+                children: snapshot.data.docs.map((DocumentSnapshot document) {
+                  return Card(
+                    elevation: 5,
+                    child: ListTile(
+                      title: Text(
+                          'Complaint: ' + document.data()['Complaint'] ?? ''),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Status: " + document.data()['Status'] ?? ''),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            );
+          },
+        ),
+      ),
+>>>>>>> f20e52b6d81edf01d6d33112d115dadedcb61f29
     );
   }
 }

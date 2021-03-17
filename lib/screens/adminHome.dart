@@ -149,8 +149,11 @@ class AdminHomeScreen extends StatelessWidget {
                                       ''),
                                   Text("Phone: " + document.data()['Phone'] ??
                                       ''),
+                                  Text("Status: " + document.data()['Status'] ??
+                                      ''),
                                   Image.network(
-                                      document.data()['ImageURL'] ?? '')
+                                    document.data()['ImageURL'] ?? '',
+                                  )
                                 ],
                               ),
                             ),
@@ -217,6 +220,7 @@ class AdminHomeScreen extends StatelessWidget {
                                 Text("Description: " +
                                         document.data()['Description'] ??
                                     ''),
+                                Image.network(document.data()['ImageURL'] ?? '')
                               ],
                             ),
                           ),

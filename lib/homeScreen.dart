@@ -7,6 +7,7 @@ import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'drawer_custom.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'utils/carouselWithIndicator.dart';
@@ -393,10 +394,38 @@ class _HomeScreenState extends State<HomeScreen> {
         //! SoS Button
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            _textMe();
-            Fluttertoast.showToast(
-                msg: "SoS message sent succesfully",
-                toastLength: Toast.LENGTH_LONG);
+            return Alert(
+              context: context,
+              type: AlertType.warning,
+              title: "ALERT",
+              desc: "SoS message will be sent to emergency contacts, Conitnue?",
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "Continue",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () async {
+                    _textMe();
+                    Fluttertoast.showToast(
+                        msg: "SoS message sent succesfully",
+                        toastLength: Toast.LENGTH_LONG);
+                    Navigator.pop(context);
+                  },
+                  color: Colors.blueAccent,
+                ),
+                DialogButton(
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
+                    color: Colors.redAccent)
+              ],
+            ).show();
+            
           },
           label: Text('SOS'),
           icon: Icon(Icons.report),

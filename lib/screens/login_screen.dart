@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Position _position;
   StreamSubscription<Position> _subscription;
   Address _address;
-  String _emailId, _pwd, lat, long, address,photoURL;
+  String _emailId, _pwd, lat, long, address, photoURL;
 
   Future<void> _handleGSignin() async {
     String name = ".";
@@ -49,7 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => HomeScreen(name, lat, long, address, photoURL)));
+              builder: (context) =>
+                  HomeScreen(name, lat, long, address, photoURL)));
     } catch (error) {
       print(error);
     }
@@ -64,11 +65,15 @@ class _LoginScreenState extends State<LoginScreen> {
     final PermissionHandler _permissionHandler = PermissionHandler();
     var locPermission = await _permissionHandler
         .checkPermissionStatus(PermissionGroup.location);
-    var smsPermission = await _permissionHandler
-        .checkPermissionStatus(PermissionGroup.sms);
-    if (locPermission == PermissionStatus.denied || smsPermission == PermissionStatus.denied) {
-      await _permissionHandler.requestPermissions(
-          [PermissionGroup.location, PermissionGroup.locationWhenInUse, PermissionGroup.sms]);
+    var smsPermission =
+        await _permissionHandler.checkPermissionStatus(PermissionGroup.sms);
+    if (locPermission == PermissionStatus.denied ||
+        smsPermission == PermissionStatus.denied) {
+      await _permissionHandler.requestPermissions([
+        PermissionGroup.location,
+        PermissionGroup.locationWhenInUse,
+        PermissionGroup.sms
+      ]);
     }
   }
 
@@ -435,10 +440,9 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: implement initState
     super.initState();
     _checkPermission();
-    var loc =
-        LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
-    _subscription =
-        Geolocator().getPositionStream(loc).listen((Position position) async {
+    _subscription = Geolocator.getPositionStream(
+            desiredAccuracy: LocationAccuracy.high, distanceFilter: 10)
+        .listen((Position position) async {
       print(position);
       _position = position;
 

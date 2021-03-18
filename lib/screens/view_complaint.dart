@@ -26,7 +26,7 @@ class _ViewComplaintState extends State<ViewComplaint> {
           backgroundColor: Color(0xFF8185E2),
         ),
         body: Container(
-            color: Colors.grey,
+            color: Colors.grey[300],
             child: StreamBuilder<QuerySnapshot>(
                 stream: collectionReference
                     .where("UserName", isEqualTo: widget.username)
@@ -41,31 +41,58 @@ class _ViewComplaintState extends State<ViewComplaint> {
                     return Center(child: CircularProgressIndicator());
                   }
                   if (snapshot.data.docs.toString() == '[]') {
-                    Navigator.pushNamed(context, '/empty');
-                    print("no data");
-                  }
-                  return Container(
-                    child: ListView(
-                      children:
-                          snapshot.data.docs.map((DocumentSnapshot document) {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            title: Text(
-                                'Complaint: ' + document.data()['Complaint'] ??
-                                    ''),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Status: " + document.data()['Status'] ??
-                                    ''),
-                              ],
+                    return Container(
+                        color: Colors.white,
+                        child: Center(
+                            child: Column(
+                          children: [
+                            Image(
+                              image: AssetImage('images/empty.png'),
                             ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  );
+                            Text('No Complaints found',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold))
+                          ],
+                        )));
+                  } else {
+                    return Container(
+                      child: ListView(
+                        children:
+                            snapshot.data.docs.map((DocumentSnapshot document) {
+                          return Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.00)),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            elevation: 6,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(20),
+                              title: Text(
+                                'Complaint: ' + document.data()['Complaint'] ??
+                                    '',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Status: " + document.data()['Status'] ??
+                                        '',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  }
                 })));
   }
 }

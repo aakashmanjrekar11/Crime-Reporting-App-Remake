@@ -33,6 +33,7 @@ class _LostFoundState extends State<LostFound> {
   File _image;
   PickedFile image;
   String imgUrl;
+  String file_name = "Upload Image";
 
   submit() {
     Map<String, dynamic> data = {
@@ -55,15 +56,18 @@ class _LostFoundState extends State<LostFound> {
   Future chooseFile() async {
     image = await _picker
         .getImage(
-            source: ImageSource.gallery,
-            imageQuality: 50,
-            maxHeight: 300,
-            maxWidth: 300)
-        .then((image) {
+      source: ImageSource.gallery,
+      maxHeight: 300,
+      maxWidth: 300
+    );
+    if(image == null){
+      return;
+    }else{
       setState(() {
         _image = File(image.path);
       });
-    });
+      file_name = "Image Uploaded Successfully";
+    }
   }
 
   Future uploadFile() async {
@@ -399,7 +403,7 @@ class _LostFoundState extends State<LostFound> {
                   size: 35,
                 ),
                 title: Text(
-                  "Upload photo proof or evidence",
+                  "Upload photo proof or evidence",   //file name add
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 subtitle: Text(

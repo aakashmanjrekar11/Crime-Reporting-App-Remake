@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 
 class DrawerCustom extends StatefulWidget {
-  final String photoURL;
-  DrawerCustom(this.photoURL);
+  final String photoURL, username;
+  DrawerCustom(this.photoURL, this.username);
   @override
   _DrawerCustomState createState() => _DrawerCustomState();
 }
@@ -35,15 +30,27 @@ class _DrawerCustomState extends State<DrawerCustom> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 150,
+            height: 190,
             width: 100,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 160, 10),
-              child: CircularProfileAvatar(
-                img,
-                radius: 70,
-                borderWidth: 3,
-                borderColor: Colors.black,
+              padding: const EdgeInsets.fromLTRB(10, 10, 150, 10),
+              child: Column(
+                children: [
+                  CircularProfileAvatar(
+                    img,
+                    radius: 70,
+                    borderWidth: 3,
+                    borderColor: Colors.black,
+                  ),
+                  SizedBox(height: 3),
+                  Text(
+                    widget.username,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
               ),
             ),
             color: Color(0xFF8185E2),

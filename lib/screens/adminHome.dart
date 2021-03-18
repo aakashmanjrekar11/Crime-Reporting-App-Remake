@@ -1,11 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_downloader/image_downloader.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AdminHomeScreen extends StatelessWidget {
+  Future<void> _checkPermission() async {
+    final PermissionHandler _permissionHandler = PermissionHandler();
+    var storagePermission =
+        await _permissionHandler.checkPermissionStatus(PermissionGroup.storage);
+    if (storagePermission == PermissionStatus.denied) {
+      await _permissionHandler.requestPermissions([
+        PermissionGroup.storage,
+      ]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference complaints =
@@ -83,6 +97,9 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
+                        DocumentReference docref = FirebaseFirestore.instance
+                            .collection('complaints')
+                            .doc(document.id);
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
@@ -136,11 +153,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Accepted"});
                                                 Navigator.pop(context);
@@ -157,11 +169,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Rejected"});
                                                 Navigator.pop(context);
@@ -206,13 +213,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Accepted"});
+                                                    {"Status": "Processing"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.orange,
@@ -227,13 +229,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Rejected"});
+                                                    {"Status": "Completed"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.green,
@@ -283,6 +280,9 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
+                        DocumentReference docref = FirebaseFirestore.instance
+                            .collection('lost_and_found')
+                            .doc(document.id);
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
@@ -317,6 +317,9 @@ class AdminHomeScreen extends StatelessWidget {
                                 Text("Description: " +
                                         document.data()['Description'] ??
                                     ''),
+                                Text("Status: " +
+                                        document.data()['Status'] ??
+                                    ''),    
                                 Image.network(
                                     document.data()['ImageURL'] ?? ''),
                                 Row(
@@ -341,11 +344,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Accepted"});
                                                 Navigator.pop(context);
@@ -362,11 +360,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Rejected"});
                                                 Navigator.pop(context);
@@ -411,13 +404,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Accepted"});
+                                                    {"Status": "Processing"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.orange,
@@ -432,13 +420,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Rejected"});
+                                                    {"Status": "Completed"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.green,

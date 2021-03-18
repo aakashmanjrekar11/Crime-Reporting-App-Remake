@@ -1,7 +1,5 @@
 import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 import 'package:Crime_Reporting_AIO_app/screens/adminLogin.dart';
-import 'package:Crime_Reporting_AIO_app/screens/complaint_registeration.dart';
-import 'package:Crime_Reporting_AIO_app/screens/empty_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/list.dart';
 import 'package:Crime_Reporting_AIO_app/screens/login_screen.dart';
 import 'package:Crime_Reporting_AIO_app/screens/myProfile_screen.dart';
@@ -54,7 +52,6 @@ class MyApp extends StatelessWidget {
         '/safetyTips': (context) => SafetyTipsWebsite(),
         '/ncwSite': (context) => NCWsite(),
         '/childlineindia': (context) => ChildLineIndia(),
-        '/empty': (context) => Empty()
       },
     );
   }

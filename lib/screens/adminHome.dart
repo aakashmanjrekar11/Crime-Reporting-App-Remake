@@ -97,6 +97,9 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
+                        DocumentReference docref = FirebaseFirestore.instance
+                            .collection('complaints')
+                            .doc(document.id);
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
@@ -150,11 +153,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Accepted"});
                                                 Navigator.pop(context);
@@ -171,11 +169,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Rejected"});
                                                 Navigator.pop(context);
@@ -220,13 +213,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Accepted"});
+                                                    {"Status": "Processing"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.orange,
@@ -241,13 +229,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Rejected"});
+                                                    {"Status": "Completed"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.green,
@@ -297,56 +280,9 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
-<<<<<<< HEAD
-                        return GestureDetector(
-                          onTap: () async {
-                            _checkPermission();
-                            await ImageDownloader.downloadImage(
-                              document.data()['ImageURL'],
-                              destination:
-                                  AndroidDestinationType.custom(inPublicDir: true, directory: 'Download', subDirectory: 'evidence.jpeg'),
-                            );
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.00)),
-                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            elevation: 6,
-                            child: ListTile(
-                              contentPadding: EdgeInsets.all(20),
-                              title: Text(
-                                  "Name: " + document.data()['Name'] ?? ''),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Phone: " + document.data()['Phone'] ??
-                                      ''),
-                                  Text("Email: " + document.data()['Email'] ??
-                                      ''),
-                                  Text("Address: " +
-                                          document.data()['Address'] ??
-                                      ''),
-                                  Text("Complaint Type: " +
-                                          document.data()['Complaint Type'] ??
-                                      ''),
-                                  Text("Article Type: " +
-                                          document.data()['Article Type'] ??
-                                      ''),
-                                  Text("Date & Time: " +
-                                          document.data()['Date & Time'] ??
-                                      ''),
-                                  Text("Address of Lost/Found item : " +
-                                          document.data()[
-                                              'Address of Lost/Found item'] ??
-                                      ''),
-                                  Text("Description: " +
-                                          document.data()['Description'] ??
-                                      ''),
-                                  Image.network(
-                                      document.data()['ImageURL'] ?? '')
-                                ],
-                              ),
-=======
+                        DocumentReference docref = FirebaseFirestore.instance
+                            .collection('lost_and_found')
+                            .doc(document.id);
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
@@ -381,6 +317,9 @@ class AdminHomeScreen extends StatelessWidget {
                                 Text("Description: " +
                                         document.data()['Description'] ??
                                     ''),
+                                Text("Status: " +
+                                        document.data()['Status'] ??
+                                    ''),    
                                 Image.network(
                                     document.data()['ImageURL'] ?? ''),
                                 Row(
@@ -405,11 +344,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Accepted"});
                                                 Navigator.pop(context);
@@ -426,11 +360,6 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
                                                     {"Status": "Rejected"});
                                                 Navigator.pop(context);
@@ -475,13 +404,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Accepted"});
+                                                    {"Status": "Processing"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.orange,
@@ -496,13 +420,8 @@ class AdminHomeScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () async {
-                                                DocumentReference docref =
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'complaints')
-                                                        .doc(document.id);
                                                 await docref.update(
-                                                    {"Status": "Rejected"});
+                                                    {"Status": "Completed"});
                                                 Navigator.pop(context);
                                               },
                                               color: Colors.green,
@@ -522,7 +441,6 @@ class AdminHomeScreen extends StatelessWidget {
                                   ],
                                 ), //row
                               ],
->>>>>>> 6799f34717eaf533ace3ba98b27d54227b2ea579
                             ),
                           ),
                         );

@@ -57,6 +57,8 @@ class _LostFoundState extends State<LostFound> {
     image = await _picker
         .getImage(
       source: ImageSource.gallery,
+      maxHeight: 300,
+      maxWidth: 300
     );
     if(image == null){
       return;
@@ -401,17 +403,13 @@ class _LostFoundState extends State<LostFound> {
                   size: 35,
                 ),
                 title: Text(
-                  "Upload photo proof or evidence",
+                  "Upload photo proof or evidence",   //file name add
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 subtitle: Text(
                   "Please provide high quality image of the lost/found item.",
                 ),
               ),
-<<<<<<< HEAD
-              title: Text(file_name),
-=======
->>>>>>> 6799f34717eaf533ace3ba98b27d54227b2ea579
             ),
           ),
           SizedBox(height: 20),

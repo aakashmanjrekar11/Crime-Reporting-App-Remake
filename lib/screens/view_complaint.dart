@@ -41,31 +41,41 @@ class _ViewComplaintState extends State<ViewComplaint> {
                     return Center(child: CircularProgressIndicator());
                   }
                   if (snapshot.data.docs.toString() == '[]') {
-                    Navigator.pushNamed(context, '/empty');
-                    print("no data");
-                  }
-                  return Container(
-                    child: ListView(
-                      children:
-                          snapshot.data.docs.map((DocumentSnapshot document) {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            title: Text(
-                                'Complaint: ' + document.data()['Complaint'] ??
-                                    ''),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Status: " + document.data()['Status'] ??
-                                    ''),
-                              ],
+                    return Container(
+                        color: Colors.white,
+                        child: Center(
+                            child: Column(
+                          children: [
+                            Image(
+                              image: AssetImage('images/empty.png'),
                             ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  );
+                            Text('No Complaints found', style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))
+                          ],
+                        )));
+                  } else {
+                    return Container(
+                      child: ListView(
+                        children:
+                            snapshot.data.docs.map((DocumentSnapshot document) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              title: Text('Complaint: ' +
+                                      document.data()['Complaint'] ??
+                                  ''),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Status: " + document.data()['Status'] ??
+                                      ''),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  }
                 })));
   }
 }

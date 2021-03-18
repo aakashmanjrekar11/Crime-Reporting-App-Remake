@@ -45,7 +45,6 @@ class _ComplaintAppState extends State<ComplaintApp> {
     image = await _picker
         .getImage(
             source: ImageSource.gallery,
-            imageQuality: 50,
             maxHeight: 300,
             maxWidth: 300)
         .then((image) {

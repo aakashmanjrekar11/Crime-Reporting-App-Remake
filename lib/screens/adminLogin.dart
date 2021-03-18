@@ -117,8 +117,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () {
-        _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
+      onTap: () async{
+        await _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
         Fluttertoast.showToast(
           msg: "Login Successful!",
           toastLength: Toast.LENGTH_SHORT,

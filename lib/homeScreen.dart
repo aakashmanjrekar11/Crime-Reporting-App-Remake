@@ -96,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     await signOutGoogle();
                     _auth.signOut();
                     Navigator.pop(context);
-                    Navigator.pop(context);
                   },
                 ),
               ),

@@ -33,19 +33,20 @@ class _LoginScreenState extends State<LoginScreen> {
   StreamSubscription<Position> _subscription;
   Address _address;
   String _emailId, _pwd, lat, long, address, photoURL;
+  String name = ".";
 
   Future<void> _handleGSignin() async {
-    String name = ".";
+    
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
       });
     });
-    try {
-      signInWithGoogle();
-      GoogleSignInAccount data = await _googleSignIn.signIn() ?? null;
-      name = data.displayName.toString();
-      photoURL = data.photoUrl.toString();
+    try{
+      await signInWithGoogle().then((data) {
+        name = data.displayName.toString();
+        photoURL = data.photoURL.toString();
+      });    
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -91,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 16.0,
       );
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AdminHomeScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen(null, lat, long, address, "")));
     } catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",
@@ -297,11 +298,6 @@ class _LoginScreenState extends State<LoginScreen> {
             flex: 5,
             child: GestureDetector(
               onTap: () async {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            HomeScreen(name, lat, long, address, photoURL)));
                 await _handleGSignin();
                 Fluttertoast.showToast(
                   msg: "Login Successful!",

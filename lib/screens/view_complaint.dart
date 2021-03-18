@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class ViewComplaint extends StatefulWidget {
@@ -16,58 +14,58 @@ class _ViewComplaintState extends State<ViewComplaint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'My Complaints',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        appBar: AppBar(
+          title: Text(
+            'My Complaints',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          centerTitle: true,
+          backgroundColor: Color(0xFF8185E2),
         ),
-        centerTitle: true,
-        backgroundColor: Color(0xFF8185E2),
-      ),
-      body: Container(
-        color: Colors.grey,
-        child: StreamBuilder<QuerySnapshot>(
-          stream: collectionReference
-              .where("UserName", isEqualTo: widget.username)
-              .snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return Center(child: Text('Something went wrong'));
-            }
+        body: Container(
+            color: Colors.grey,
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collectionReference
+                    .where("UserName", isEqualTo: widget.username)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Something went wrong'));
+                  }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: Text("Loading"));
-            }
-            if (!snapshot.hasData) {
-              print(snapshot.hasData);
-              return Center(child: CircularProgressIndicator());
-            }
-            return Container(
-              child: ListView(
-                children: snapshot.data.docs.map((DocumentSnapshot document) {
-                  return Card(
-                    elevation: 5,
-                    child: ListTile(
-                      title: Text(
-                          'Complaint: ' + document.data()['Complaint'] ?? ''),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Status: " + document.data()['Status'] ?? ''),
-                        ],
-                      ),
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.data.docs.toString() == '[]') {
+                    Navigator.pushNamed(context, '/empty');
+                    print("no data");
+                  }
+                  return Container(
+                    child: ListView(
+                      children:
+                          snapshot.data.docs.map((DocumentSnapshot document) {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            title: Text(
+                                'Complaint: ' + document.data()['Complaint'] ??
+                                    ''),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Status: " + document.data()['Status'] ??
+                                    ''),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   );
-                }).toList(),
-              ),
-            );
-          },
-        ),
-      ),
-    );
+                })));
   }
 }

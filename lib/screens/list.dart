@@ -16,10 +16,11 @@ class _ListState extends State<List> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF8185E2),
         centerTitle: true,
         title: Text(
           'List of Mumbai Police Stations',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -100,7 +101,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02226156309");
+                  telephony.openDialer("02226156309");
                 },
               ),
             ),
@@ -124,7 +125,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02226762001");
+                  telephony.openDialer("02226762001");
                 },
               ),
             ),
@@ -148,7 +149,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02226831365");
+                  telephony.openDialer("02226831365");
                 },
               ),
             ),
@@ -172,7 +173,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02226423122");
+                  telephony.openDialer("02226423122");
                 },
               ),
             ),
@@ -196,7 +197,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02228930145");
+                  telephony.openDialer("02228930145");
                 },
               ),
             ),
@@ -220,7 +221,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02226500478");
+                  telephony.openDialer("02226500478");
                 },
               ),
             ),
@@ -244,7 +245,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02225954467");
+                  telephony.openDialer("02225954467");
                 },
               ),
             ),
@@ -268,7 +269,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02225232044");
+                  telephony.openDialer("02225232044");
                 },
               ),
             ),
@@ -292,7 +293,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02228284024");
+                  telephony.openDialer("02228284024");
                 },
               ),
             ),
@@ -316,7 +317,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("2224013767");
+                  telephony.openDialer("2224013767");
                 },
               ),
             ),
@@ -340,7 +341,7 @@ class _ListState extends State<List> {
                   textScaleFactor: 1.5,
                 ),
                 onTap: () {
-                   telephony.openDialer("02228721900");
+                  telephony.openDialer("02228721900");
                 },
               ),
             ),

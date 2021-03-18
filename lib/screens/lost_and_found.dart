@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 
 class LostFound extends StatefulWidget {
   LostFound({Key key, this.title}) : super(key: key);
@@ -13,8 +19,8 @@ class LostFound extends StatefulWidget {
 }
 
 class _LostFoundState extends State<LostFound> {
-  String dropdownValue1 = 'Lost Item Report';
-  String dropdownValue2 = 'Driving License';
+  String dropdownValue1 = 'Lost Item Complaint';
+  String dropdownValue2 = 'Cash & other Money';
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final name = TextEditingController();
   final phone = TextEditingController();
@@ -23,6 +29,10 @@ class _LostFoundState extends State<LostFound> {
   final dateTime = TextEditingController();
   final addressLost = TextEditingController();
   final desc = TextEditingController();
+  final _picker = ImagePicker();
+  File _image;
+  PickedFile image;
+  String imgUrl;
 
   submit() {
     Map<String, dynamic> data = {
@@ -31,14 +41,43 @@ class _LostFoundState extends State<LostFound> {
       "Email": email.text,
       "Address": address.text,
       "Complaint Type": dropdownValue1,
-      "Article Type": dropdownValue2,
+      "Item Type": dropdownValue2,
       "Date & Time": dateTime.text,
       "Address of Lost/Found item": addressLost.text,
-      "Description": desc.text
+      "Description": desc.text,
+      "ImageURL": imgUrl
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
+  }
+
+  Future chooseFile() async {
+    image = await _picker
+        .getImage(
+            source: ImageSource.gallery,
+            imageQuality: 50,
+            maxHeight: 300,
+            maxWidth: 300)
+        .then((image) {
+      setState(() {
+        _image = File(image.path);
+      });
+    });
+  }
+
+  Future uploadFile() async {
+    String fileName = basename(_image.path);
+    StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    await taskSnapshot.ref.getDownloadURL().then(
+      (value) {
+        print("Done: $value");
+        imgUrl = value;
+      },
+    );
   }
 
 //   _onPressed() {
@@ -62,11 +101,13 @@ class _LostFoundState extends State<LostFound> {
       body: ListView(
         children: <Widget>[
           SizedBox(height: 20),
+
+          //! Applicant Details
           Container(
             color: Colors.grey[300],
             child: ListTile(
               title: Text(
-                "Applicant Details",
+                "Applicant Details (Your Info)",
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
               ),
             ),
@@ -133,19 +174,21 @@ class _LostFoundState extends State<LostFound> {
             ),
           ),
           SizedBox(height: 40),
+
+          //! Item Details
           Container(
             color: Colors.grey[300],
             child: ListTile(
               title: Text(
-                "Article Details",
+                "Item Details",
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
               ),
             ),
           ),
           SizedBox(height: 10),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 shape: BoxShape.rectangle,
@@ -169,51 +212,8 @@ class _LostFoundState extends State<LostFound> {
                   });
                 },
                 items: <String>[
-                  'Lost Item Report',
-                  'Found Item Report                                                           '
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              title: Text(
-                "Article Type",
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-              ),
-              subtitle: DropdownButton<String>(
-                value: dropdownValue2,
-                elevation: 16,
-                style: TextStyle(color: Colors.black),
-                underline: Container(
-                  height: 2,
-                  color: Colors.black38,
-                ),
-                onChanged: (String newValue) {
-                  setState(() {
-                    dropdownValue2 = newValue;
-                  });
-                },
-                items: <String>[
-                  'Driving License',
-                  'Aadhaar Card',
-                  'PAN Card',
-                  'Voting ID Card',
-                  'Ration Card',
-                  'Educational Document                                                    ',
-                  'Other Document'
+                  'Lost Item Complaint',
+                  'Found Item Complaint',
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -233,6 +233,53 @@ class _LostFoundState extends State<LostFound> {
                 borderRadius: BorderRadius.circular(15)),
             child: ListTile(
               title: Text(
+                "Item Type",
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+              ),
+              subtitle: DropdownButton<String>(
+                value: dropdownValue2,
+                elevation: 16,
+                style: TextStyle(color: Colors.black),
+                underline: Container(
+                  height: 2,
+                  color: Colors.black38,
+                ),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue2 = newValue;
+                  });
+                },
+                items: <String>[
+                  'Cash & other Money',
+                  'Credit/Debit Card',
+                  'Driver\'s License',
+                  'Aadhaar Card',
+                  'PAN Card',
+                  'Voter ID Card',
+                  'Ration Card',
+                  'Educational Document',
+                  'Other item',
+                ].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+
+          //! Date & Time
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              title: Text(
                 "Date & Time",
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
               ),
@@ -241,9 +288,11 @@ class _LostFoundState extends State<LostFound> {
                   prefixIcon: Icon(
                     Icons.calendar_today_rounded,
                     color: Colors.blue,
+                    size: 35,
                   ),
                   hintText: 'YYYY-MM-DD   Hour:Mins',
-                  helperText: 'Press above button to select Date & Time',
+                  helperText:
+                      'Press above button to select Date & Time when the item was lost or found.',
                 ),
                 initialValue: DateTime(2020, 12, 05, 17, 30),
                 controller: dateTime,
@@ -269,6 +318,8 @@ class _LostFoundState extends State<LostFound> {
             ),
           ),
           SizedBox(height: 20),
+
+          //!Address of lost or Found Item
           Container(
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.all(10),
@@ -278,30 +329,82 @@ class _LostFoundState extends State<LostFound> {
                 borderRadius: BorderRadius.circular(15)),
             child: ListTile(
               leading: const Icon(
-                Icons.home,
+                FontAwesomeIcons.mapMarkerAlt,
                 color: Colors.red,
-                size: 40,
+                size: 35,
               ),
-              title: TextField(
+              title: Text(
+                "Address of Item",
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+              ),
+              subtitle: TextField(
                 controller: addressLost,
                 keyboardType: TextInputType.multiline,
                 maxLines: 3,
                 decoration: InputDecoration(
-                  hintText: "Address of Lost Item",
+                  hintText:
+                      "Provide the exact address where you lost/found the item.",
                 ),
               ),
             ),
           ),
           SizedBox(height: 20),
-          ListTile(
-            title: TextField(
-              controller: desc,
-              keyboardType: TextInputType.multiline,
-              maxLines: 3,
-              decoration: InputDecoration(
-                hintText: "Article Description",
-                border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+
+          //! Item Description
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                FontAwesomeIcons.pencilAlt,
+                color: Colors.green,
+                size: 35,
+              ),
+              title: Text(
+                "Item Description",
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+              ),
+              subtitle: TextField(
+                controller: desc,
+                keyboardType: TextInputType.multiline,
+                maxLines: 4,
+                decoration: InputDecoration(
+                  hintText:
+                      "Please describe in detail about the lost/found item.",
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: GestureDetector(
+              onTap: () {
+                chooseFile();
+              },
+              child: ListTile(
+                leading: const Icon(
+                  Icons.image_search,
+                  color: Colors.orange,
+                  size: 35,
+                ),
+                title: Text(
+                  "Upload photo proof or evidence",
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+                ),
+                subtitle: Text(
+                  "Please provide high quality image of the lost/found item.",
+                ),
               ),
             ),
           ),
@@ -313,7 +416,8 @@ class _LostFoundState extends State<LostFound> {
               padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
               child: RaisedButton(
                 color: Colors.blueAccent,
-                onPressed: () {
+                onPressed: () async {
+                  await uploadFile();
                   submit();
                   showDialog(
                       context: context,

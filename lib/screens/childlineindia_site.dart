@@ -19,7 +19,12 @@ class ChildLineIndiaState extends State<ChildLineIndia> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChildLineIndia Website'),
+        backgroundColor: Color(0xFF8185E2),
+        centerTitle: true,
+        title: Text(
+          'ChildLineIndia Website',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: const WebView(
         initialUrl: 'https://www.childlineindia.org/',

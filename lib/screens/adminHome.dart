@@ -77,7 +77,7 @@ class AdminHomeScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              //!Lost&Found StreamBuilder
+              //! Complaint Registration StreamBuilder
               StreamBuilder<QuerySnapshot>(
                 stream: complaints.snapshots(),
                 builder: (BuildContext context,
@@ -97,79 +97,176 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
-                        return GestureDetector(
-                          onTap: () async {
-                            return Alert(
-                              context: context,
-                              type: AlertType.warning,
-                              title: "ALERT",
-                              desc:
-                                  "Do you want to accept/reject this complaint?",
-                              buttons: [
-                                DialogButton(
-                                  child: Text(
-                                    "Accept",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  ),
-                                  onPressed: () async {
-                                    DocumentReference docref = FirebaseFirestore
-                                        .instance
-                                        .collection('complaints')
-                                        .doc(document.id);
-                                    await docref.update({"Status": "Accepted"});
-                                    Navigator.pop(context);
-                                  },
-                                  color: Colors.blueAccent,
-                                ),
-                                DialogButton(
-                                    child: Text(
-                                      "Reject",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                    onPressed: () async {
-                                      DocumentReference docref =
-                                          FirebaseFirestore.instance
-                                              .collection('complaints')
-                                              .doc(document.id);
-                                      await docref
-                                          .update({"Status": "Rejected"});
-                                      Navigator.pop(context);
-                                    },
-                                    color: Colors.redAccent)
-                              ],
-                            ).show();
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.00)),
-                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            elevation: 6,
-                            child: ListTile(
-                              contentPadding: EdgeInsets.all(20),
-                              title: Text(
-                                  'Name: ' + document.data()['Name'] ?? ''),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Complaint: " +
-                                          document.data()['Complaint'] ??
-                                      ''),
-                                  Text("Address: " +
-                                          document.data()['Address'] ??
-                                      ''),
-                                  Text("Email: " + document.data()['Email'] ??
-                                      ''),
-                                  Text("Phone: " + document.data()['Phone'] ??
-                                      ''),
-                                  Text("Status: " + document.data()['Status'] ??
-                                      ''),
-                                  Image.network(
-                                    document.data()['ImageURL'] ?? '',
-                                  )
-                                ],
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.00)),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          elevation: 6,
+                          child: ListTile(
+                            contentPadding: EdgeInsets.all(20),
+                            title: Text(
+                              'Name: ' + document.data()['Name'] ?? '',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Complaint: " +
+                                        document.data()['Complaint'] ??
+                                    ''),
+                                Text("Address: " + document.data()['Address'] ??
+                                    ''),
+                                Text(
+                                    "Email: " + document.data()['Email'] ?? ''),
+                                Text(
+                                    "Phone: " + document.data()['Phone'] ?? ''),
+                                Text("Status: " + document.data()['Status'] ??
+                                    ''),
+                                Image.network(
+                                  document.data()['ImageURL'] ?? '',
+                                ),
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(),
+                                      onPressed: () {
+                                        Alert(
+                                          context: context,
+                                          type: AlertType.warning,
+                                          title: "Take Complaint?",
+                                          desc:
+                                              "Do you want to accept/reject this complaint?",
+                                          buttons: [
+                                            DialogButton(
+                                              child: Text(
+                                                "Accept",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Accepted"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.blueAccent,
+                                            ),
+                                            DialogButton(
+                                              child: Text(
+                                                "Reject",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Rejected"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.redAccent,
+                                            ),
+                                          ],
+                                        ).show();
+                                      },
+                                      child: Text(
+                                        'Take Complaint',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.green, // background
+                                        onPrimary: Colors.white, // foreground
+                                      ),
+                                      onPressed: () {
+                                        Alert(
+                                          context: context,
+                                          type: AlertType.info,
+                                          title: "Update Status?",
+                                          desc:
+                                              "Update the current Status of the complaint.",
+                                          buttons: [
+                                            DialogButton(
+                                              child: Text(
+                                                "Processing",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Accepted"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.orange,
+                                            ),
+                                            DialogButton(
+                                              child: Text(
+                                                "Completed",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Rejected"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.green,
+                                            ),
+                                          ],
+                                        ).show();
+                                      },
+                                      child: Text(
+                                        'Update Status',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ), //row
+                              ],
                             ),
                           ),
                         );
@@ -200,6 +297,7 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
+<<<<<<< HEAD
                         return GestureDetector(
                           onTap: () async {
                             _checkPermission();
@@ -248,6 +346,183 @@ class AdminHomeScreen extends StatelessWidget {
                                       document.data()['ImageURL'] ?? '')
                                 ],
                               ),
+=======
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.00)),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          elevation: 6,
+                          child: ListTile(
+                            contentPadding: EdgeInsets.all(20),
+                            title:
+                                Text("Name: " + document.data()['Name'] ?? ''),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "Phone: " + document.data()['Phone'] ?? ''),
+                                Text(
+                                    "Email: " + document.data()['Email'] ?? ''),
+                                Text("Address: " + document.data()['Address'] ??
+                                    ''),
+                                Text("Complaint Type: " +
+                                        document.data()['Complaint Type'] ??
+                                    ''),
+                                Text("Article Type: " +
+                                        document.data()['Article Type'] ??
+                                    ''),
+                                Text("Date & Time: " +
+                                        document.data()['Date & Time'] ??
+                                    ''),
+                                Text("Address of Lost/Found item : " +
+                                        document.data()[
+                                            'Address of Lost/Found item'] ??
+                                    ''),
+                                Text("Description: " +
+                                        document.data()['Description'] ??
+                                    ''),
+                                Image.network(
+                                    document.data()['ImageURL'] ?? ''),
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(),
+                                      onPressed: () {
+                                        Alert(
+                                          context: context,
+                                          type: AlertType.warning,
+                                          title: "Take Complaint?",
+                                          desc:
+                                              "Do you want to accept/reject this complaint?",
+                                          buttons: [
+                                            DialogButton(
+                                              child: Text(
+                                                "Accept",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Accepted"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.blueAccent,
+                                            ),
+                                            DialogButton(
+                                              child: Text(
+                                                "Reject",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Rejected"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.redAccent,
+                                            ),
+                                          ],
+                                        ).show();
+                                      },
+                                      child: Text(
+                                        'Take Complaint',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.green, // background
+                                        onPrimary: Colors.white, // foreground
+                                      ),
+                                      onPressed: () {
+                                        Alert(
+                                          context: context,
+                                          type: AlertType.info,
+                                          title: "Update Status?",
+                                          desc:
+                                              "Update the current Status of the complaint.",
+                                          buttons: [
+                                            DialogButton(
+                                              child: Text(
+                                                "Processing",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Accepted"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.orange,
+                                            ),
+                                            DialogButton(
+                                              child: Text(
+                                                "Completed",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                DocumentReference docref =
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            'complaints')
+                                                        .doc(document.id);
+                                                await docref.update(
+                                                    {"Status": "Rejected"});
+                                                Navigator.pop(context);
+                                              },
+                                              color: Colors.green,
+                                            ),
+                                          ],
+                                        ).show();
+                                      },
+                                      child: Text(
+                                        'Update Status',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ), //row
+                              ],
+>>>>>>> 6799f34717eaf533ace3ba98b27d54227b2ea579
                             ),
                           ),
                         );

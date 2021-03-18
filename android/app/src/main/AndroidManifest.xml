@@ -16,8 +16,12 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Crime Reporting AIO Safety App"
         android:icon="@mipmap/logo"
+<<<<<<< HEAD
         android:usesCleartextTraffic="true"
         >
+=======
+        android:usesCleartextTraffic="true">
+>>>>>>> 6799f34717eaf533ace3ba98b27d54227b2ea579
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

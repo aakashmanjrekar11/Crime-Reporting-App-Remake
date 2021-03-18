@@ -19,7 +19,12 @@ class SafetyTipsWebsiteState extends State<SafetyTipsWebsite> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safety Tips'),
+        backgroundColor: Color(0xFF8185E2),
+        centerTitle: true,
+        title: Text(
+          'Safety Tips',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: const WebView(
         initialUrl: 'https://mumbaipolice.gov.in/Safety_tips',

@@ -170,8 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     )));
                       });
                     },
-                    gradient1: Color(0xFFFFDD00),
-                    gradient2: Color(0xFFFBB034),
+                    gradient1: Color(0xFFFBB034),
+                    gradient2: Color(0xFFFFDD00),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.exclamationTriangle,
                       iconColor: Colors.white,
@@ -211,8 +211,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/safetyTips');
                       });
                     },
-                    gradient1: Color(0xFFFFBE0B),
-                    gradient2: Color(0xFFF42B03),
+                    gradient1: Color(0xFFF42B03),
+                    gradient2: Color(0xFFFFBE0B),
                     cardColour: Colors.white,
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.userShield,
@@ -276,8 +276,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/childlineindia');
                       });
                     },
-                    gradient1: Color(0xFF20A4F3),
-                    gradient2: Color(0xFF182B3A),
+                    gradient1: Color(0xFF182B3A),
+                    gradient2: Color(0xFF20A4F3),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.baby,
                       iconColor: Colors.white,
@@ -425,7 +425,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.redAccent)
               ],
             ).show();
-            
           },
           label: Text('SOS'),
           icon: Icon(Icons.report),

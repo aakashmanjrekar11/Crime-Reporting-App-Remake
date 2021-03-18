@@ -41,7 +41,39 @@ class _EmergencyState extends State<Emergency> {
       ),
       body: ListView(
         children: <Widget>[
-          SizedBox(height: 40),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: const Icon(
+                Icons.arrow_circle_down,
+                size: 40,
+                color: Colors.green,
+              ),
+              title: Text(
+                "Enter contact info of your family members or friends below.\nThese contacts will recieve your SoS message when you tap on SoS button in case of emergency.",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: Divider(
+              indent: 100,
+              endIndent: 100,
+              thickness: 1.2,
+              color: Colors.grey,
+            ),
+          ),
           Container(
             color: Colors.grey[300],
             child: ListTile(

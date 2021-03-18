@@ -1,11 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_downloader/image_downloader.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AdminHomeScreen extends StatelessWidget {
+  Future<void> _checkPermission() async {
+    final PermissionHandler _permissionHandler = PermissionHandler();
+    var storagePermission =
+        await _permissionHandler.checkPermissionStatus(PermissionGroup.storage);
+    if (storagePermission == PermissionStatus.denied) {
+      await _permissionHandler.requestPermissions([
+        PermissionGroup.storage,
+      ]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference complaints =
@@ -186,42 +200,54 @@ class AdminHomeScreen extends StatelessWidget {
                     child: ListView(
                       children:
                           snapshot.data.docs.map((DocumentSnapshot document) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.00)),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                          elevation: 6,
-                          child: ListTile(
-                            contentPadding: EdgeInsets.all(20),
-                            title:
-                                Text("Name: " + document.data()['Name'] ?? ''),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Phone: " + document.data()['Phone'] ?? ''),
-                                Text(
-                                    "Email: " + document.data()['Email'] ?? ''),
-                                Text("Address: " + document.data()['Address'] ??
-                                    ''),
-                                Text("Complaint Type: " +
-                                        document.data()['Complaint Type'] ??
-                                    ''),
-                                Text("Article Type: " +
-                                        document.data()['Article Type'] ??
-                                    ''),
-                                Text("Date & Time: " +
-                                        document.data()['Date & Time'] ??
-                                    ''),
-                                Text("Address of Lost/Found item : " +
-                                        document.data()[
-                                            'Address of Lost/Found item'] ??
-                                    ''),
-                                Text("Description: " +
-                                        document.data()['Description'] ??
-                                    ''),
-                                Image.network(document.data()['ImageURL'] ?? '')
-                              ],
+                        return GestureDetector(
+                          onTap: () async {
+                            _checkPermission();
+                            await ImageDownloader.downloadImage(
+                              document.data()['ImageURL'],
+                              destination:
+                                  AndroidDestinationType.custom(inPublicDir: true, directory: 'Download', subDirectory: 'evidence.jpeg'),
+                            );
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.00)),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            elevation: 6,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(20),
+                              title: Text(
+                                  "Name: " + document.data()['Name'] ?? ''),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Phone: " + document.data()['Phone'] ??
+                                      ''),
+                                  Text("Email: " + document.data()['Email'] ??
+                                      ''),
+                                  Text("Address: " +
+                                          document.data()['Address'] ??
+                                      ''),
+                                  Text("Complaint Type: " +
+                                          document.data()['Complaint Type'] ??
+                                      ''),
+                                  Text("Article Type: " +
+                                          document.data()['Article Type'] ??
+                                      ''),
+                                  Text("Date & Time: " +
+                                          document.data()['Date & Time'] ??
+                                      ''),
+                                  Text("Address of Lost/Found item : " +
+                                          document.data()[
+                                              'Address of Lost/Found item'] ??
+                                      ''),
+                                  Text("Description: " +
+                                          document.data()['Description'] ??
+                                      ''),
+                                  Image.network(
+                                      document.data()['ImageURL'] ?? '')
+                                ],
+                              ),
                             ),
                           ),
                         );

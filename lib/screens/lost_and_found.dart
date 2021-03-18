@@ -32,6 +32,7 @@ class _LostFoundState extends State<LostFound> {
   File _image;
   PickedFile image;
   String imgUrl;
+  String file_name = "Upload Image";
 
   submit() {
     Map<String, dynamic> data = {
@@ -50,18 +51,20 @@ class _LostFoundState extends State<LostFound> {
         FirebaseFirestore.instance.collection('lost_and_found');
     collectionReference.add(data);
   }
+
   Future chooseFile() async {
     image = await _picker
         .getImage(
-            source: ImageSource.gallery,
-            imageQuality: 50,
-            maxHeight: 300,
-            maxWidth: 300)
-        .then((image) {
+      source: ImageSource.gallery,
+    );
+    if(image == null){
+      return;
+    }else{
       setState(() {
         _image = File(image.path);
       });
-    });
+      file_name = "Image Uploaded Successfully";
+    }
   }
 
   Future uploadFile() async {
@@ -353,7 +356,7 @@ class _LostFoundState extends State<LostFound> {
                 color: Colors.red,
                 size: 40,
               ),
-              title: Text("Upload Image"),
+              title: Text(file_name),
             ),
           ),
           SizedBox(height: 20),
@@ -364,7 +367,7 @@ class _LostFoundState extends State<LostFound> {
               padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
               child: RaisedButton(
                 color: Colors.blueAccent,
-                onPressed: () async{
+                onPressed: () async {
                   await uploadFile();
                   submit();
                   showDialog(

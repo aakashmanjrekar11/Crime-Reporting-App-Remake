@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: DrawerCustom(widget.photoURL),
+        drawer: DrawerCustom(widget.photoURL, widget.username),
         appBar: AppBar(
           backgroundColor: Color(0xFF8185E2),
           leading: Builder(

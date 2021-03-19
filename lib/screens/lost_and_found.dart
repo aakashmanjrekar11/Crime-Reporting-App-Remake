@@ -43,11 +43,12 @@ class _LostFoundState extends State<LostFound> {
       "Email": email.text,
       "Address": address.text,
       "Complaint Type": dropdownValue1,
-      "Item Type": dropdownValue2,
+      "Article Type": dropdownValue2,
       "Date & Time": dateTime.text,
       "Address of Lost/Found item": addressLost.text,
       "Description": desc.text,
-      "ImageURL": imgUrl
+      "ImageURL": imgUrl,
+      "Status":"-"
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('lost_and_found');

@@ -304,7 +304,7 @@ class AdminHomeScreen extends StatelessWidget {
                                 Text("Complaint Type: " +
                                         document.data()['Complaint Type'] ??
                                     ''),
-                                Text("Article Type: " +
+                                Text("Item Type: " +
                                         document.data()['Article Type'] ??
                                     ''),
                                 Text("Date & Time: " +

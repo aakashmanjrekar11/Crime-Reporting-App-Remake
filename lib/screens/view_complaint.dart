@@ -26,7 +26,7 @@ class _ViewComplaintState extends State<ViewComplaint> {
           backgroundColor: Color(0xFF8185E2),
         ),
         body: Container(
-            color: Colors.grey,
+            color: Colors.grey[300],
             child: StreamBuilder<QuerySnapshot>(
                 stream: collectionReference
                     .where("UserName", isEqualTo: widget.username)
@@ -49,7 +49,9 @@ class _ViewComplaintState extends State<ViewComplaint> {
                             Image(
                               image: AssetImage('images/empty.png'),
                             ),
-                            Text('No Complaints found', style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))
+                            Text('No Complaints found',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold))
                           ],
                         )));
                   } else {
@@ -58,16 +60,31 @@ class _ViewComplaintState extends State<ViewComplaint> {
                         children:
                             snapshot.data.docs.map((DocumentSnapshot document) {
                           return Card(
-                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.00)),
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            elevation: 6,
                             child: ListTile(
-                              title: Text('Complaint: ' +
-                                      document.data()['Complaint'] ??
-                                  ''),
+                              contentPadding: EdgeInsets.all(20),
+                              title: Text(
+                                'Complaint: ' + document.data()['Complaint'] ??
+                                    '',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Status: " + document.data()['Status'] ??
-                                      ''),
+                                  Text(
+                                    "Status: " + document.data()['Status'] ??
+                                        '',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

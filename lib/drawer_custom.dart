@@ -42,8 +42,14 @@ class _DrawerCustomState extends State<DrawerCustom> {
                     borderWidth: 3,
                     borderColor: Colors.black,
                   ),
-                  SizedBox(height:3),
-                  Text(widget.username,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
+                  SizedBox(height: 3),
+                  Text(
+                    widget.username,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
             ),

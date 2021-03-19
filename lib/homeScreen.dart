@@ -7,6 +7,7 @@ import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'drawer_custom.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -156,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                //! Emergency Contacts
+                //! My Complaints
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
@@ -164,17 +165,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Emergency(
-                                      username: widget.username,
-                                    )));
+                                builder: (context) =>
+                                    ViewComplaint(username: widget.username)));
                       });
                     },
                     gradient1: Color(0xFFFBB034),
                     gradient2: Color(0xFFFFDD00),
                     cardChild: IconContent(
-                      iconName: FontAwesomeIcons.exclamationTriangle,
+                      iconName: FontAwesomeIcons.solidAddressBook,
                       iconColor: Colors.white,
-                      fieldName: 'Emergency\n  Contacts',
+                      fieldName: '           My\nComplaints',
                     ),
                   ),
                 ),
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     gradient1: Color(0xFF11998e), //380036
                     gradient2: Color(0xFF38de7d), //0CBABA
                     cardChild: IconContent(
-                      iconName: FontAwesomeIcons.phoneAlt,
+                      iconName: FlutterIcons.sheriff_badge_fou,
                       iconColor: Colors.white,
                       fieldName: '     Mumbai Police\nStations Contacts',
                     ),
@@ -210,8 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/safetyTips');
                       });
                     },
-                    gradient1: Color(0xFFF42B03),
-                    gradient2: Color(0xFFFFBE0B),
+                    gradient1: Color(0xffFF8008), //0xFFF42B03
+                    gradient2: Color(0xffFFC837), //0xFFFFBE0B
                     cardColour: Colors.white,
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.userShield,
@@ -234,8 +234,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/eComplaint');
                       });
                     },
-                    gradient1: Color(0xFFAD1DEB),
-                    gradient2: Color(0xFF6E72FC),
+                    gradient1: Color(0xFF134E5E),
+                    gradient2: Color(0xFF71B280),
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.bullhorn,
                       iconColor: Colors.white,
@@ -258,6 +258,52 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconName: FontAwesomeIcons.wallet,
                       iconColor: Colors.white,
                       fieldName: ' Lost & \n Found',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            //?
+            Row(
+              children: <Widget>[
+                //! My Emergency Contacts
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Emergency(
+                                      username: widget.username,
+                                    )));
+                      });
+                    },
+                    gradient1: Color(0xFFAD1DEB),
+                    gradient2: Color(0xFF6E72FC),
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.phoneAlt,
+                      iconColor: Colors.white,
+                      fieldName: 'My Emergency\n       Contacts',
+                    ),
+                  ),
+                ),
+
+                //! Emergency Helpline Numbers
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(() {
+                        Navigator.pushNamed(context, '/emergencyHelpline');
+                      });
+                    },
+                    gradient1: Color(0xFFbc4e9c),
+                    gradient2: Color(0xFFf80759),
+                    cardChild: IconContent(
+                      iconName: FontAwesomeIcons.ambulance,
+                      iconColor: Colors.white,
+                      fieldName: 'Emergency Helpline\n            Numbers',
                     ),
                   ),
                 ),
@@ -293,8 +339,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/ncwSite');
                       });
                     },
-                    gradient1: Color(0xFFbc4e9c),
-                    gradient2: Color(0xFFf80759),
+                    gradient1: Color(0xFF493240),
+                    gradient2: Color(0xFFFF0099),
                     cardChild: IconContent(
                       iconName: FlutterIcons.female_faw,
                       iconColor: Colors.white,
@@ -308,55 +354,20 @@ class _HomeScreenState extends State<HomeScreen> {
             //?
             Row(
               children: <Widget>[
-                //! My Complaints
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ViewComplaint(username: widget.username)));
-                      });
-                    },
-                    gradient1: Color(0xFFF5F7FA),
-                    gradient2: Color(0xFFB8C6DB),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.solidAddressBook,
-                      iconColor: Colors.white,
-                      fieldName: '           My\nComplaints',
-                    ),
-                  ),
-                ),
-
-                //! FEMALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/childlineindia');
-                      });
-                    },
-                    gradient1: Color(0xFFF5F7FA),
-                    gradient2: Color(0xFFB8C6DB),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.white,
-                      fieldName: '   Test\n Demo',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
                 //! MALE
                 Expanded(
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/childlineindia');
+                        Fluttertoast.showToast(
+                          msg: "⚠️Under Construction!⚠️",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.grey,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),
@@ -374,7 +385,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ReusableCard(
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/childlineindia');
+                        Fluttertoast.showToast(
+                          msg: "⚠️Under Construction!⚠️",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.grey,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
                       });
                     },
                     gradient1: Color(0xFFF5F7FA),

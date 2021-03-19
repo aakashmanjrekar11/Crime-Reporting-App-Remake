@@ -36,17 +36,16 @@ class _LoginScreenState extends State<LoginScreen> {
   String name = ".";
 
   Future<void> _handleGSignin() async {
-    
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
       });
     });
-    try{
+    try {
       await signInWithGoogle().then((data) {
         name = data.displayName.toString();
         photoURL = data.photoURL.toString();
-      });    
+      });
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -92,7 +91,9 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 16.0,
       );
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen(null, lat, long, address, "")));
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeScreen(null, lat, long, address, "")));
     } catch (e) {
       Fluttertoast.showToast(
         msg: "Password Invalid! Please try again",

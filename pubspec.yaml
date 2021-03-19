@@ -33,15 +33,15 @@ dependencies:
   intro_slider: ^2.3.3
   avatar_glow: ^1.2.0
   circular_profile_avatar: ^1.0.8
-  google_sign_in: ^4.5.6
-  firebase_auth: ^0.18.3+1
   firebase_core: ^0.5.1
+  firebase_auth: ^0.18.4
+  google_sign_in: ^4.5.9
   datetime_picker_formfield: ^1.0.0
   geolocator: ^6.2.1
   geocoder: ^0.2.1
   permission_handler: ^4.4.0+2
   webview_flutter: ^1.0.7
-  cloud_firestore: 0.14.3+1
+  cloud_firestore: ^0.14.4
   image_picker: ^0.6.7+11
   firebase_storage: ^4.0.1
   rflutter_alert: ^1.1.0

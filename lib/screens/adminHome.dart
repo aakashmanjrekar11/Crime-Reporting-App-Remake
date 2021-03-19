@@ -248,7 +248,34 @@ class AdminHomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                ), //row
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    await ImageDownloader.downloadImage(
+                                        document.data()['ImageURL'],
+                                        destination:
+                                            AndroidDestinationType.custom(
+                                                directory: 'Download',
+                                                subDirectory: 'evidence.jpeg')
+                                                );
+                                    Fluttertoast.showToast(msg: "Image Downloaded", toastLength: Toast.LENGTH_SHORT);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.redAccent, // background
+                                    onPrimary: Colors.white, // foreground
+                                  ),
+                                  child: Text(
+                                    'Download Image',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -317,9 +344,8 @@ class AdminHomeScreen extends StatelessWidget {
                                 Text("Description: " +
                                         document.data()['Description'] ??
                                     ''),
-                                Text("Status: " +
-                                        document.data()['Status'] ??
-                                    ''),    
+                                Text("Status: " + document.data()['Status'] ??
+                                    ''),
                                 Image.network(
                                     document.data()['ImageURL'] ?? ''),
                                 Row(
@@ -440,6 +466,31 @@ class AdminHomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ), //row
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    await ImageDownloader.downloadImage(
+                                        document.data()['ImageURL'],
+                                        destination:
+                                            AndroidDestinationType.custom(
+                                                directory: 'Download',
+                                                subDirectory: 'evidence.jpeg'));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.redAccent, // background
+                                    onPrimary: Colors.white, // foreground
+                                  ),
+                                  child: Text(
+                                    'Download Image',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),

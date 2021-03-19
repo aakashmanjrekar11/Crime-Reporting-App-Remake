@@ -350,62 +350,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-
-            //?
-            Row(
-              children: <Widget>[
-                //! MALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Fluttertoast.showToast(
-                          msg: "⚠️Under Construction!⚠️",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                      });
-                    },
-                    gradient1: Color(0xFFF5F7FA),
-                    gradient2: Color(0xFFB8C6DB),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.question,
-                      iconColor: Colors.white,
-                      fieldName: '   Test\n Demo',
-                    ),
-                  ),
-                ),
-
-                //! FEMALE
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Fluttertoast.showToast(
-                          msg: "⚠️Under Construction!⚠️",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                      });
-                    },
-                    gradient1: Color(0xFFF5F7FA),
-                    gradient2: Color(0xFFB8C6DB),
-                    cardChild: IconContent(
-                        iconName: FontAwesomeIcons.question,
-                        iconColor: Colors.white,
-                        fieldName: '   Test\n Demo'),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
 

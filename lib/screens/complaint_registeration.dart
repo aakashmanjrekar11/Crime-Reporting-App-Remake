@@ -24,6 +24,8 @@ class _ComplaintAppState extends State<ComplaintApp> {
   File _image;
   PickedFile image;
   String imgUrl;
+  String file_name = "Upload photo proof or evidence";
+  String description = 'Please provide high quality image of the lost/found item.';
 
   submitComplaint() {
     Map<String, dynamic> data = {
@@ -45,8 +47,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
     image = await _picker
         .getImage(
             source: ImageSource.gallery,
-            maxHeight: 300,
-            maxWidth: 300)
+            imageQuality: 80)
         .then((image) {
       setState(() {
         _image = File(image.path);
@@ -57,7 +58,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
   Future uploadFile() async {
     String fileName = basename(_image.path);
     StorageReference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child('uploads/$fileName');
+        FirebaseStorage.instance.ref().child('complaints_imgs/$fileName');
     StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     await taskSnapshot.ref.getDownloadURL().then(
@@ -164,17 +165,31 @@ class _ComplaintAppState extends State<ComplaintApp> {
             ),
           ),
           SizedBox(height: 20),
-          GestureDetector(
-            onTap: () {
-              chooseFile();
-            },
-            child: ListTile(
-              leading: const Icon(
-                Icons.image_search,
-                color: Colors.red,
-                size: 40,
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15)),
+            child: GestureDetector(
+              onTap: () {
+                chooseFile();
+              },
+              child: ListTile(
+                leading: const Icon(
+                  Icons.image_search,
+                  color: Colors.orange,
+                  size: 35,
+                ),
+                title: Text(
+                  file_name, 
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+                ),
+                subtitle: Text(
+                  description,
+                ),
               ),
-              title: Text("Upload Image"),
             ),
           ),
           SizedBox(height: 40),

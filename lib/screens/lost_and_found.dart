@@ -59,8 +59,7 @@ class _LostFoundState extends State<LostFound> {
     image = await _picker
         .getImage(
       source: ImageSource.gallery,
-      maxHeight: 300,
-      maxWidth: 300
+      imageQuality: 80
     );
     if(image == null){
       return;
@@ -76,7 +75,7 @@ class _LostFoundState extends State<LostFound> {
   Future uploadFile() async {
     String fileName = basename(_image.path);
     StorageReference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child('uploads/$fileName');
+        FirebaseStorage.instance.ref().child('lost&found_imgs/$fileName');
     StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     await taskSnapshot.ref.getDownloadURL().then(

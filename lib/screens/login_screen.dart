@@ -28,6 +28,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
   GoogleSignInAccount _currentUser;
   Position _position;
   StreamSubscription<Position> _subscription;
@@ -80,6 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleFSignin(String email, String pwd) async {
     await Firebase.initializeApp();
     try {
+      if(_formKey.currentState.validate()){
+          print("Form Validation Done!");
+      }
       await _auth.signInWithEmailAndPassword(email: email, password: pwd);
       Fluttertoast.showToast(
         msg: "Login Successful!",
@@ -94,18 +98,28 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(
               builder: (context) => HomeScreen(null, lat, long, address, "")));
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: "Password Invalid! Please try again",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-      throw FirebaseAuthException(message: e.message, code: e.code);
+    } catch (error) {
+    switch (error.code) {
+      case "ERROR_OPERATION_NOT_ALLOWED":
+        print("Anonymous accounts are not enabled");
+        break;
+      case "ERROR_WEAK_PASSWORD":
+        print("Your password is too weak");
+        break;
+      case "ERROR_INVALID_EMAIL":
+        print("Your email is invalid");
+        break;
+      case "ERROR_EMAIL_ALREADY_IN_USE":
+        print("Email is already in use on different account");
+        break;
+      case "ERROR_INVALID_CREDENTIAL":
+        print("Your email is invalid");
+        break;
+
+      default:
+        print("An undefined Error happened.");
     }
+  }
   }
 
   Widget _backButton() {
@@ -156,8 +170,11 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
             keyboardType: TextInputType.emailAddress,
+            validator: (value) => value.isEmpty || !value.contains("@")
+                    ? "Enter a valid email"
+                    : null,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
@@ -187,7 +204,10 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
+            validator: (value) => value.isEmpty
+                    ? "Please enter Password"
+                    : null,
             obscureText: true,
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -208,6 +228,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _loginButton() {
     return GestureDetector(
       onTap: () async {
+        if(_formKey.currentState.validate()){
+          print("Form Validation Done!");
+        }
         await _handleFSignin(_emailId, _pwd);
       },
       child: Container(
@@ -474,26 +497,29 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
-                    SizedBox(height: 100),
-                    _email(),
-                    SizedBox(height: 20),
-                    _password(),
-                    SizedBox(height: 20),
-                    _loginButton(),
-                    _divider_or(),
-                    _googleButton(),
-                    SizedBox(height: 5),
-                    _registerAccountLabel(),
-                    SizedBox(height: 20),
-                    _divider_adminLabel(),
-                    _adminAccountLabel(),
-                  ],
+                child: Form(
+                  key: _formKey,
+                                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: height * .2),
+                      _title(),
+                      SizedBox(height: 100),
+                      _email(),
+                      SizedBox(height: 20),
+                      _password(),
+                      SizedBox(height: 20),
+                      _loginButton(),
+                      _divider_or(),
+                      _googleButton(),
+                      SizedBox(height: 5),
+                      _registerAccountLabel(),
+                      SizedBox(height: 20),
+                      _divider_adminLabel(),
+                      _adminAccountLabel(),
+                    ],
+                  ),
                 ),
               ),
             ),

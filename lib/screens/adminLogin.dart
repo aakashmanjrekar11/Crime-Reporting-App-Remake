@@ -16,8 +16,9 @@ class AdminLoginScreen extends StatefulWidget {
 
 class _AdminLoginScreenState extends State<AdminLoginScreen> {
   final _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
   String _emailId, _pwd;
-  
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -66,7 +67,10 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
+            validator: (value) => value.isEmpty || !value.contains("@")
+                ? "Enter a valid email"
+                : null,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -97,8 +101,10 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
             obscureText: true,
+            validator: (value) =>
+                value.isEmpty ? "Please enter password" : null,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
@@ -117,7 +123,10 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () async{
+      onTap: () async {
+        if (_formKey.currentState.validate()) {
+          print("Form Validation Done!");
+        }
         await _auth.signInWithEmailAndPassword(email: _emailId, password: _pwd);
         Fluttertoast.showToast(
           msg: "Login Successful!",
@@ -156,7 +165,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
     );
   }
 
-  
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -174,25 +182,28 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    _email(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _password(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _submitButton(),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: height * .2),
+                      _title(),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      _email(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _password(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _submitButton(),
+                    ],
+                  ),
                 ),
               ),
             ),

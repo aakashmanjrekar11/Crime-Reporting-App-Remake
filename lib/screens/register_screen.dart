@@ -15,6 +15,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
   String _emailId, _pwd;
 
   Widget _backButton() {
@@ -65,8 +66,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
             keyboardType: TextInputType.emailAddress,
+            validator: (value) => value.isEmpty || !value.contains("@")
+                ? "Enter a valid email"
+                : null,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
@@ -96,8 +100,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
             obscureText: true,
+            validator: (value) {
+              bool valid = RegExp(
+                    "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&-+=()]).{8, 20}\$")
+                  .hasMatch(value);
+              if (value.isEmpty || valid) {
+                return "Enter a valid Password\nOne uppercase and lowercase letter\nOne digit 0-9\nOne special character (!@#\$&*~)\nPassword length should be 8 or more";
+              }
+            },
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
@@ -117,17 +129,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () {
-        _auth.createUserWithEmailAndPassword(email: _emailId, password: _pwd);
-        Fluttertoast.showToast(
-          msg: "Registration Successful!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        Navigator.pushNamed(context, '/login');
+        if (_formKey.currentState.validate()) {
+          print("Form Validation Done!");
+          try {
+            _auth.createUserWithEmailAndPassword(
+                email: _emailId, password: _pwd);
+            Fluttertoast.showToast(
+              msg: "Registration Successful!",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.grey,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+            Navigator.pushNamed(context, '/login');
+          } catch (e) {
+            Fluttertoast.showToast(
+              msg: "Registration Unsuccessful!",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.grey,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+          }
+        }
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -205,27 +233,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    _email(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _password(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _submitButton(),
-                    SizedBox(height: height * .14),
-                    _loginAccountLabel(),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: height * .2),
+                      _title(),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      _email(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _password(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _submitButton(),
+                      SizedBox(height: height * .14),
+                      _loginAccountLabel(),
+                    ],
+                  ),
                 ),
               ),
             ),

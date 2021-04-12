@@ -152,7 +152,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.solidPaperPlane,
                       iconColor: Colors.white,
-                      fieldName: '   Complaint\n Registration',
+                      fieldName: Text(
+                        'Complaint Registration',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -174,7 +182,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.solidAddressBook,
                       iconColor: Colors.white,
-                      fieldName: '           My\nComplaints',
+                      fieldName: Text('My\nComplaints',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -197,7 +210,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FlutterIcons.sheriff_badge_fou,
                       iconColor: Colors.white,
-                      fieldName: '     Mumbai Police\nStations Contacts',
+                      fieldName: Text('Mumbai Police\nStations Contacts',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -216,7 +234,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.userShield,
                       iconColor: Colors.white,
-                      fieldName: 'Safety\n  Tips',
+                      fieldName: Text('Safety\nTips',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -239,7 +262,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.bullhorn,
                       iconColor: Colors.white,
-                      fieldName: 'E-complaint Mumbai\n       Police Website',
+                      fieldName:
+                          Text('E-complaint Mumbai\nPolice Website',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -257,7 +286,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.wallet,
                       iconColor: Colors.white,
-                      fieldName: ' Lost & \n Found',
+                      fieldName: Text(' Lost \n & \n Found',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -285,7 +319,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.phoneAlt,
                       iconColor: Colors.white,
-                      fieldName: 'My Emergency\n       Contacts',
+                      fieldName: Text('My\nEmergency\nContacts',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -303,7 +342,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.ambulance,
                       iconColor: Colors.white,
-                      fieldName: 'Emergency Helpline\n            Numbers',
+                      fieldName:
+                          Text('Emergency Helpline\nNumbers',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -326,7 +371,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.baby,
                       iconColor: Colors.white,
-                      fieldName: 'Child Line India\n        Website',
+                      fieldName: Text('Child Line \n India \n Website',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),
@@ -344,7 +394,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     cardChild: IconContent(
                       iconName: FlutterIcons.female_faw,
                       iconColor: Colors.white,
-                      fieldName: 'National Commission\n  for Women website',
+                      fieldName:
+                          Text('National Commission for Women website',textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),),
                     ),
                   ),
                 ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class IconContent extends StatelessWidget {
   final IconData iconName;
-  final String fieldName;
+  final Widget fieldName;
   final Color iconColor;
 
   IconContent(
@@ -24,14 +24,7 @@ class IconContent extends StatelessWidget {
             color: iconColor,
           ),
           SizedBox(height: 10.0),
-          Text(
-            fieldName,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
+          fieldName,
         ],
       ),
     );

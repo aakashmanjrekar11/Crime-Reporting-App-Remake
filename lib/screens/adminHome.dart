@@ -52,10 +52,15 @@ class AdminHomeScreen extends StatelessWidget {
               indicatorColor: Colors.white,
               unselectedLabelColor: Colors.grey[300],
               tabs: [
-                Tab(
-                  child: Text(
-                    'Complaint Registration',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5.0),
+                  child: Tab(
+                    child: Text(
+                      'Complaint Registration',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Tab(
@@ -103,10 +108,10 @@ class AdminHomeScreen extends StatelessWidget {
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
                           elevation: 6,
                           child: ListTile(
-                            contentPadding: EdgeInsets.all(20),
+                            contentPadding: EdgeInsets.all(14),
                             title: Text(
                               'Name: ' + document.data()['Name'] ?? '',
                               style: TextStyle(
@@ -133,146 +138,163 @@ class AdminHomeScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    ElevatedButton(
-                                      style: ButtonStyle(),
-                                      onPressed: () {
-                                        Alert(
-                                          context: context,
-                                          type: AlertType.warning,
-                                          title: "Take Complaint?",
-                                          desc:
-                                              "Do you want to accept/reject this complaint?",
-                                          buttons: [
-                                            DialogButton(
-                                              child: Text(
-                                                "Accept",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 8, 0, 8),
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(),
+                                          onPressed: () {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.warning,
+                                              title: "Take Complaint?",
+                                              desc:
+                                                  "Do you want to accept/reject this complaint?",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Accept",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update(
+                                                        {"Status": "Accepted"});
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.blueAccent,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Accepted"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.blueAccent,
-                                            ),
-                                            DialogButton(
-                                              child: Text(
-                                                "Reject",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Reject",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update(
+                                                        {"Status": "Rejected"});
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.redAccent,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Rejected"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.redAccent,
+                                              ],
+                                            ).show();
+                                          },
+                                          child: Text(
+                                            'Take Complaint',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ).show();
-                                      },
-                                      child: Text(
-                                        'Take Complaint',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.green, // background
-                                        onPrimary: Colors.white, // foreground
-                                      ),
-                                      onPressed: () {
-                                        Alert(
-                                          context: context,
-                                          type: AlertType.info,
-                                          title: "Update Status?",
-                                          desc:
-                                              "Update the current Status of the complaint.",
-                                          buttons: [
-                                            DialogButton(
-                                              child: Text(
-                                                "Processing",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 8, 0, 8),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.green, // background
+                                            onPrimary:
+                                                Colors.white, // foreground
+                                          ),
+                                          onPressed: () {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.info,
+                                              title: "Update Status?",
+                                              desc:
+                                                  "Update the current Status of the complaint.",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Processing",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update({
+                                                      "Status": "Processing"
+                                                    });
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.orange,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Processing"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.orange,
-                                            ),
-                                            DialogButton(
-                                              child: Text(
-                                                "Completed",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Completed",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update({
+                                                      "Status": "Completed"
+                                                    });
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.green,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Completed"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.green,
+                                              ],
+                                            ).show();
+                                          },
+                                          child: Text(
+                                            'Update Status',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ).show();
-                                      },
-                                      child: Text(
-                                        'Update Status',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    await ImageDownloader.downloadImage(
-                                        document.data()['ImageURL'],
-                                        destination:
-                                            AndroidDestinationType.custom(
-                                                directory: 'Download',
-                                                subDirectory: 'evidence.jpeg')
-                                                );
-                                    Fluttertoast.showToast(msg: "Image Downloaded", toastLength: Toast.LENGTH_SHORT);
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.redAccent, // background
-                                    onPrimary: Colors.white, // foreground
-                                  ),
-                                  child: Text(
-                                    'Download Image',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      await ImageDownloader.downloadImage(
+                                          document.data()['ImageURL'],
+                                          destination:
+                                              AndroidDestinationType.custom(
+                                                  directory: 'Download',
+                                                  subDirectory:
+                                                      'evidence.jpeg'));
+                                      Fluttertoast.showToast(
+                                          msg: "Image Downloaded",
+                                          toastLength: Toast.LENGTH_SHORT);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.redAccent, // background
+                                      onPrimary: Colors.white, // foreground
+                                    ),
+                                    child: Text(
+                                      'Download Image',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 )
@@ -313,10 +335,10 @@ class AdminHomeScreen extends StatelessWidget {
                         return Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.00)),
-                          margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
                           elevation: 6,
                           child: ListTile(
-                            contentPadding: EdgeInsets.all(20),
+                            contentPadding: EdgeInsets.all(14),
                             title:
                                 Text("Name: " + document.data()['Name'] ?? ''),
                             subtitle: Column(
@@ -350,144 +372,161 @@ class AdminHomeScreen extends StatelessWidget {
                                     document.data()['ImageURL'] ?? ''),
                                 Row(
                                   children: [
-                                    ElevatedButton(
-                                      style: ButtonStyle(),
-                                      onPressed: () {
-                                        Alert(
-                                          context: context,
-                                          type: AlertType.warning,
-                                          title: "Take Complaint?",
-                                          desc:
-                                              "Do you want to accept/reject this complaint?",
-                                          buttons: [
-                                            DialogButton(
-                                              child: Text(
-                                                "Accept",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 8, 0, 8),
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(),
+                                          onPressed: () {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.warning,
+                                              title: "Take Complaint?",
+                                              desc:
+                                                  "Do you want to accept/reject this complaint?",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Accept",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update(
+                                                        {"Status": "Accepted"});
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.blueAccent,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Accepted"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.blueAccent,
-                                            ),
-                                            DialogButton(
-                                              child: Text(
-                                                "Reject",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Reject",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update(
+                                                        {"Status": "Rejected"});
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.redAccent,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Rejected"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.redAccent,
+                                              ],
+                                            ).show();
+                                          },
+                                          child: Text(
+                                            'Take Complaint',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ).show();
-                                      },
-                                      child: Text(
-                                        'Take Complaint',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.green, // background
-                                        onPrimary: Colors.white, // foreground
-                                      ),
-                                      onPressed: () {
-                                        Alert(
-                                          context: context,
-                                          type: AlertType.info,
-                                          title: "Update Status?",
-                                          desc:
-                                              "Update the current Status of the complaint.",
-                                          buttons: [
-                                            DialogButton(
-                                              child: Text(
-                                                "Processing",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 8, 0, 8),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.green, // background
+                                            onPrimary:
+                                                Colors.white, // foreground
+                                          ),
+                                          onPressed: () {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.info,
+                                              title: "Update Status?",
+                                              desc:
+                                                  "Update the current Status of the complaint.",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Processing",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update({
+                                                      "Status": "Processing"
+                                                    });
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.orange,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Processing"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.orange,
-                                            ),
-                                            DialogButton(
-                                              child: Text(
-                                                "Completed",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Completed",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () async {
+                                                    await docref.update({
+                                                      "Status": "Completed"
+                                                    });
+                                                    Navigator.pop(context);
+                                                  },
+                                                  color: Colors.green,
                                                 ),
-                                              ),
-                                              onPressed: () async {
-                                                await docref.update(
-                                                    {"Status": "Completed"});
-                                                Navigator.pop(context);
-                                              },
-                                              color: Colors.green,
+                                              ],
+                                            ).show();
+                                          },
+                                          child: Text(
+                                            'Update Status',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ).show();
-                                      },
-                                      child: Text(
-                                        'Update Status',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ],
                                 ), //row
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    await ImageDownloader.downloadImage(
-                                        document.data()['ImageURL'],
-                                        destination:
-                                            AndroidDestinationType.custom(
-                                                directory: 'Download',
-                                                subDirectory: 'evidence.jpeg'));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.redAccent, // background
-                                    onPrimary: Colors.white, // foreground
-                                  ),
-                                  child: Text(
-                                    'Download Image',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      await ImageDownloader.downloadImage(
+                                          document.data()['ImageURL'],
+                                          destination:
+                                              AndroidDestinationType.custom(
+                                                  directory: 'Download',
+                                                  subDirectory:
+                                                      'evidence.jpeg'));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.redAccent, // background
+                                      onPrimary: Colors.white, // foreground
+                                    ),
+                                    child: Text(
+                                      'Download Image',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 )

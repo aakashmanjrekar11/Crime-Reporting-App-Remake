@@ -17,6 +17,7 @@ import 'utils/reusable_card.dart';
 import 'utils/icon_content.dart';
 import 'package:telephony/telephony.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 // import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
@@ -73,35 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: GestureDetector(
-                onTap: () {
-                  Fluttertoast.showToast(
-                    msg: "⚠️Under Construction!⚠️",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    //timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.grey,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
-                },
-                child: GestureDetector(
-                  child: FaIcon(
-                    FontAwesomeIcons.signOutAlt,
-                    color: Colors.white,
-                  ),
-                  onTap: () async {
-                    await signOutGoogle();
-                    _auth.signOut();
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            ),
-          ],
           title: (widget.username != null)
               ? Text(
                   "Hi, " + widget.username,
@@ -119,238 +91,325 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         //? BODY
-        body: ListView(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            CarouselWithIndicatorDemo(),
-            SizedBox(
-              height: 5.0,
-              child: Divider(
-                indent: 180,
-                endIndent: 180,
-                color: Colors.grey[400],
-                thickness: 1.2,
-              ),
-            ),
-            //?
-            Row(
+        body: DoubleBackToCloseApp(
+          snackBar: const SnackBar(
+            content: Text('Tap back again to leave'),
+          ),
+          child: GestureDetector(
+            child: ListView(
               children: <Widget>[
-                //! Complaint Registration
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ComplaintApp(username: widget.username)));
-                      });
-                    },
-                    gradient1: Color(0xFF045DE9),
-                    gradient2: Color(0xFF0CBABA),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.solidPaperPlane,
-                      iconColor: Colors.white,
-                      fieldName: '   Complaint\n Registration',
-                    ),
+                SizedBox(height: 20.0),
+                CarouselWithIndicatorDemo(),
+                SizedBox(
+                  height: 5.0,
+                  child: Divider(
+                    indent: 180,
+                    endIndent: 180,
+                    color: Colors.grey[400],
+                    thickness: 1.2,
                   ),
                 ),
-
-                //! My Complaints
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ViewComplaint(username: widget.username)));
-                      });
-                    },
-                    gradient1: Color(0xFFFBB034),
-                    gradient2: Color(0xFFFFDD00),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.solidAddressBook,
-                      iconColor: Colors.white,
-                      fieldName: '           My\nComplaints',
+                //?
+                Row(
+                  children: <Widget>[
+                    //! Complaint Registration
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ComplaintApp(
+                                        username: widget.username)));
+                          });
+                        },
+                        gradient1: Color(0xFF045DE9),
+                        gradient2: Color(0xFF0CBABA),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.solidPaperPlane,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'Complaint \nRegistration',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+
+                    //! My Complaints
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewComplaint(
+                                        username: widget.username)));
+                          });
+                        },
+                        gradient1: Color(0xFFFBB034),
+                        gradient2: Color(0xFFFFDD00),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.solidAddressBook,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'My\nComplaints',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                //?
+                Row(
+                  children: <Widget>[
+                    //! Mumbai Police Stations
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/list');
+                          });
+                        },
+                        gradient1: Color(0xFF11998e), //380036
+                        gradient2: Color(0xFF38de7d), //0CBABA
+                        cardChild: IconContent(
+                          iconName: FlutterIcons.sheriff_badge_fou,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'Mumbai Police\nStations Contacts',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    //! Safety Tips Website
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/safetyTips');
+                          });
+                        },
+                        gradient1: Color(0xffFF8008), //0xFFF42B03
+                        gradient2: Color(0xffFFC837), //0xFFFFBE0B
+                        cardColour: Colors.white,
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.userShield,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'Safety\nTips',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                //?
+                Row(
+                  children: <Widget>[
+                    //! E-complaint Mumbai Police Website
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/eComplaint');
+                          });
+                        },
+                        gradient1: Color(0xFF134E5E),
+                        gradient2: Color(0xFF71B280),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.bullhorn,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'E-complaint Mumbai\nPolice Website',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    //! Lost and Found
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/lostfound');
+                          });
+                        },
+                        gradient1: Color(0xFFFF0000), //890000
+                        gradient2: Color(0xFFFF7878), //DF0020
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.wallet,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            ' Lost & \n Found',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                //?
+                Row(
+                  children: <Widget>[
+                    //! My Emergency Contacts
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Emergency(
+                                          username: widget.username,
+                                        )));
+                          });
+                        },
+                        gradient1: Color(0xFFAD1DEB),
+                        gradient2: Color(0xFF6E72FC),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.phoneAlt,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'My Emergency\nContacts',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    //! Emergency Helpline Numbers
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/emergencyHelpline');
+                          });
+                        },
+                        gradient1: Color(0xFFbc4e9c),
+                        gradient2: Color(0xFFf80759),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.ambulance,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'Emergency Helpline\nNumbers',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                //?
+                Row(
+                  children: <Widget>[
+                    //! Child Line India Website
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/childlineindia');
+                          });
+                        },
+                        gradient1: Color(0xFF182B3A),
+                        gradient2: Color(0xFF20A4F3),
+                        cardChild: IconContent(
+                          iconName: FontAwesomeIcons.baby,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'Child Line India \n Website',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    //! National Commisiion Women Website
+                    Expanded(
+                      child: ReusableCard(
+                        onPress: () {
+                          setState(() {
+                            Navigator.pushNamed(context, '/ncwSite');
+                          });
+                        },
+                        gradient1: Color(0xFF493240),
+                        gradient2: Color(0xFFFF0099),
+                        cardChild: IconContent(
+                          iconName: FlutterIcons.female_faw,
+                          iconColor: Colors.white,
+                          fieldName: Text(
+                            'National Commission for Women website',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-
-            //?
-            Row(
-              children: <Widget>[
-                //! Mumbai Police Stations
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/list');
-                      });
-                    },
-                    gradient1: Color(0xFF11998e), //380036
-                    gradient2: Color(0xFF38de7d), //0CBABA
-                    cardChild: IconContent(
-                      iconName: FlutterIcons.sheriff_badge_fou,
-                      iconColor: Colors.white,
-                      fieldName: '     Mumbai Police\nStations Contacts',
-                    ),
-                  ),
-                ),
-
-                //! Safety Tips Website
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/safetyTips');
-                      });
-                    },
-                    gradient1: Color(0xffFF8008), //0xFFF42B03
-                    gradient2: Color(0xffFFC837), //0xFFFFBE0B
-                    cardColour: Colors.white,
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.userShield,
-                      iconColor: Colors.white,
-                      fieldName: 'Safety\n  Tips',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            //?
-            Row(
-              children: <Widget>[
-                //! E-complaint Mumbai Police Website
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/eComplaint');
-                      });
-                    },
-                    gradient1: Color(0xFF134E5E),
-                    gradient2: Color(0xFF71B280),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.bullhorn,
-                      iconColor: Colors.white,
-                      fieldName: 'E-complaint Mumbai\n       Police Website',
-                    ),
-                  ),
-                ),
-
-                //! Lost and Found
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/lostfound');
-                      });
-                    },
-                    gradient1: Color(0xFFFF0000), //890000
-                    gradient2: Color(0xFFFF7878), //DF0020
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.wallet,
-                      iconColor: Colors.white,
-                      fieldName: ' Lost & \n Found',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            //?
-            Row(
-              children: <Widget>[
-                //! My Emergency Contacts
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Emergency(
-                                      username: widget.username,
-                                    )));
-                      });
-                    },
-                    gradient1: Color(0xFFAD1DEB),
-                    gradient2: Color(0xFF6E72FC),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.phoneAlt,
-                      iconColor: Colors.white,
-                      fieldName: 'My Emergency\n       Contacts',
-                    ),
-                  ),
-                ),
-
-                //! Emergency Helpline Numbers
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/emergencyHelpline');
-                      });
-                    },
-                    gradient1: Color(0xFFbc4e9c),
-                    gradient2: Color(0xFFf80759),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.ambulance,
-                      iconColor: Colors.white,
-                      fieldName: 'Emergency Helpline\n            Numbers',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            //?
-            Row(
-              children: <Widget>[
-                //! Child Line India Website
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/childlineindia');
-                      });
-                    },
-                    gradient1: Color(0xFF182B3A),
-                    gradient2: Color(0xFF20A4F3),
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.baby,
-                      iconColor: Colors.white,
-                      fieldName: 'Child Line India\n        Website',
-                    ),
-                  ),
-                ),
-
-                //! National Commisiion Women Website
-                Expanded(
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        Navigator.pushNamed(context, '/ncwSite');
-                      });
-                    },
-                    gradient1: Color(0xFF493240),
-                    gradient2: Color(0xFFFF0099),
-                    cardChild: IconContent(
-                      iconName: FlutterIcons.female_faw,
-                      iconColor: Colors.white,
-                      fieldName: 'National Commission\n  for Women website',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+          ),
         ),
 
         //! SoS Button

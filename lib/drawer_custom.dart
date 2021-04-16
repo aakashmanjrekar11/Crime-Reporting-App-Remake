@@ -1,6 +1,9 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'utils/authenticator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DrawerCustom extends StatefulWidget {
   final String photoURL, username;
@@ -10,6 +13,7 @@ class DrawerCustom extends StatefulWidget {
 }
 
 class _DrawerCustomState extends State<DrawerCustom> {
+  final _auth = FirebaseAuth.instance;
   String img = "";
 
   @override
@@ -57,7 +61,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
           ),
           SizedBox(height: 20),
           ListTile(
-            leading: Icon(FontAwesomeIcons.user, color: Colors.blue),
+            leading: Icon(FontAwesomeIcons.user, color: Color(0xFF8185E2)),
             title: Text(
               'My Profile',
               style: TextStyle(
@@ -74,7 +78,8 @@ class _DrawerCustomState extends State<DrawerCustom> {
           ),
           SizedBox(height: 10),
           ListTile(
-            leading: Icon(FontAwesomeIcons.cloudUploadAlt, color: Colors.blue),
+            leading:
+                Icon(FontAwesomeIcons.cloudUploadAlt, color: Color(0xFF8185E2)),
             title: Text(
               'Mumbai Police Website',
               style: TextStyle(
@@ -87,6 +92,32 @@ class _DrawerCustomState extends State<DrawerCustom> {
               // ...
               // Then close the drawer
               Navigator.pushNamed(context, '/mumbaiPoliceSite');
+            },
+          ),
+          SizedBox(height: 10),
+          ListTile(
+            leading:
+                Icon(FontAwesomeIcons.signOutAlt, color: Color(0xFF8185E2)),
+            title: Text(
+              'Log-out',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () async {
+              await signOutGoogle();
+              _auth.signOut();
+              Navigator.pushNamed(context, '/login');
+              Fluttertoast.showToast(
+                msg: "Logout Successful!",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.black,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
             },
           ),
         ],

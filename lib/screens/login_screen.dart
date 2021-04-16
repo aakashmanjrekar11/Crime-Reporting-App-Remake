@@ -81,8 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleFSignin(String email, String pwd) async {
     await Firebase.initializeApp();
     try {
-      if(_formKey.currentState.validate()){
-          print("Form Validation Done!");
+      if (_formKey.currentState.validate()) {
+        print("Form Validation Done!");
       }
       await _auth.signInWithEmailAndPassword(email: email, password: pwd);
       Fluttertoast.showToast(
@@ -99,27 +99,27 @@ class _LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(
               builder: (context) => HomeScreen(null, lat, long, address, "")));
     } catch (error) {
-    switch (error.code) {
-      case "ERROR_OPERATION_NOT_ALLOWED":
-        print("Anonymous accounts are not enabled");
-        break;
-      case "ERROR_WEAK_PASSWORD":
-        print("Your password is too weak");
-        break;
-      case "ERROR_INVALID_EMAIL":
-        print("Your email is invalid");
-        break;
-      case "ERROR_EMAIL_ALREADY_IN_USE":
-        print("Email is already in use on different account");
-        break;
-      case "ERROR_INVALID_CREDENTIAL":
-        print("Your email is invalid");
-        break;
+      switch (error.code) {
+        case "ERROR_OPERATION_NOT_ALLOWED":
+          print("Anonymous accounts are not enabled");
+          break;
+        case "ERROR_WEAK_PASSWORD":
+          print("Your password is too weak");
+          break;
+        case "ERROR_INVALID_EMAIL":
+          print("Your email is invalid");
+          break;
+        case "ERROR_EMAIL_ALREADY_IN_USE":
+          print("Email is already in use on different account");
+          break;
+        case "ERROR_INVALID_CREDENTIAL":
+          print("Your email is invalid");
+          break;
 
-      default:
-        print("An undefined Error happened.");
+        default:
+          print("An undefined Error happened.");
+      }
     }
-  }
   }
 
   Widget _backButton() {
@@ -173,8 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             validator: (value) => value.isEmpty || !value.contains("@")
-                    ? "Enter a valid email"
-                    : null,
+                ? "Enter a valid email"
+                : null,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Colors.white,
@@ -205,9 +205,8 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 10,
           ),
           TextFormField(
-            validator: (value) => value.isEmpty
-                    ? "Please enter Password"
-                    : null,
+            validator: (value) =>
+                value.isEmpty ? "Please enter Password" : null,
             obscureText: true,
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -228,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _loginButton() {
     return GestureDetector(
       onTap: () async {
-        if(_formKey.currentState.validate()){
+        if (_formKey.currentState.validate()) {
           print("Form Validation Done!");
         }
         await _handleFSignin(_emailId, _pwd);
@@ -328,7 +327,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.black,
                   textColor: Colors.white,
                   fontSize: 16.0,
                 );
@@ -344,9 +343,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   'Log in with Google',
                   style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600),
+                    color: Colors.blue,
+                    fontSize: 19,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -499,7 +499,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
-                                  child: Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

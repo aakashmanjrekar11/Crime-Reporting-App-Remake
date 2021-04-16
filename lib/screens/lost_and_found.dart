@@ -50,7 +50,7 @@ class _LostFoundState extends State<LostFound> {
       "Address of Lost/Found item": addressLost.text,
       "Description": desc.text,
       "ImageURL": imgUrl,
-      "Status": "-"
+      "Status": "-",
     };
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('lost_and_found');
@@ -58,8 +58,8 @@ class _LostFoundState extends State<LostFound> {
   }
 
   Future chooseFile() async {
-    image =
-        await _picker.getImage(source: ImageSource.gallery, imageQuality: 80);
+    image = await _picker.getImage(
+        source: ImageSource.gallery, maxHeight: 300, maxWidth: 300);
     if (image == null) {
       return;
     } else {
@@ -395,7 +395,7 @@ class _LostFoundState extends State<LostFound> {
                   size: 35,
                 ),
                 title: Text(
-                  "Item Description",
+                  file_name,
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 subtitle: TextFormField(
@@ -456,21 +456,21 @@ class _LostFoundState extends State<LostFound> {
                     if (_formKey.currentState.validate()) {
                       print("Form Validation Done!");
                       await uploadFile();
-                    submit();
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: Text("Submitted"),
-                            actions: [
-                              FlatButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text("OK"))
-                            ],
-                          );
-                        });
+                      submit();
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Text("Submitted"),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("OK"))
+                              ],
+                            );
+                          });
                     }
                   },
                   shape: RoundedRectangleBorder(

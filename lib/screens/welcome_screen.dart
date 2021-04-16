@@ -79,9 +79,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   child: Text(
                     "Welcome to",
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28.0,
-                        color: color),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      color: color,
+                    ),
                   ),
                   delay: delayedAmount + 1000,
                 ),

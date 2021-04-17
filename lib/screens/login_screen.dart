@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 import 'package:Crime_Reporting_AIO_app/utils/authenticator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,8 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future convertCoords(Coordinates co_ords) async {
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(co_ords);
+  Future convertCoords(Coordinates coords) async {
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coords);
     return addresses.first;
   }
 
@@ -68,12 +67,16 @@ class _LoginScreenState extends State<LoginScreen> {
         .checkPermissionStatus(PermissionGroup.location);
     var smsPermission =
         await _permissionHandler.checkPermissionStatus(PermissionGroup.sms);
+    var storagePermission =
+        await _permissionHandler.checkPermissionStatus(PermissionGroup.storage);
     if (locPermission == PermissionStatus.denied ||
-        smsPermission == PermissionStatus.denied) {
+        smsPermission == PermissionStatus.denied ||
+        storagePermission == PermissionStatus.denied) {
       await _permissionHandler.requestPermissions([
         PermissionGroup.location,
         PermissionGroup.locationWhenInUse,
-        PermissionGroup.sms
+        PermissionGroup.sms,
+        PermissionGroup.storage
       ]);
     }
   }
@@ -258,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _divider_or() {
+  Widget _dividerOr() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -388,7 +391,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _divider_adminLabel() {
+  Widget _dividerAdminLabel() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -457,7 +460,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _checkPermission();
     _subscription = Geolocator.getPositionStream(
@@ -476,7 +478,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _subscription.cancel();
   }
@@ -511,12 +512,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       _password(),
                       SizedBox(height: 20),
                       _loginButton(),
-                      _divider_or(),
+                      _dividerOr(),
                       _googleButton(),
                       SizedBox(height: 5),
                       _registerAccountLabel(),
                       SizedBox(height: 20),
-                      _divider_adminLabel(),
+                      _dividerAdminLabel(),
                       _adminAccountLabel(),
                     ],
                   ),

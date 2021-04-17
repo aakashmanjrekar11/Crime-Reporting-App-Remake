@@ -34,7 +34,7 @@ class _LostFoundState extends State<LostFound> {
   File _image;
   PickedFile image;
   String imgUrl;
-  String file_name = "Upload photo proof or evidence";
+  String fileName = "Upload photo proof or evidence";
   String description =
       'Please provide high quality image of the lost/found item.';
 
@@ -66,7 +66,7 @@ class _LostFoundState extends State<LostFound> {
       setState(() {
         _image = File(image.path);
       });
-      file_name = "Image Uploaded Successfully";
+      fileName = "Image Uploaded Successfully";
       description = "";
     }
   }
@@ -395,7 +395,7 @@ class _LostFoundState extends State<LostFound> {
                   size: 35,
                 ),
                 title: Text(
-                  file_name,
+                  fileName,
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 subtitle: TextFormField(
@@ -435,7 +435,7 @@ class _LostFoundState extends State<LostFound> {
                     size: 35,
                   ),
                   title: Text(
-                    file_name,
+                    fileName,
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                   ),
                   subtitle: Text(

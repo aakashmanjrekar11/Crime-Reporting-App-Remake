@@ -1,25 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_downloader/image_downloader.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AdminHomeScreen extends StatelessWidget {
-  Future<void> _checkPermission() async {
-    final PermissionHandler _permissionHandler = PermissionHandler();
-    var storagePermission =
-        await _permissionHandler.checkPermissionStatus(PermissionGroup.storage);
-    if (storagePermission == PermissionStatus.denied) {
-      await _permissionHandler.requestPermissions([
-        PermissionGroup.storage,
-      ]);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     CollectionReference complaints =

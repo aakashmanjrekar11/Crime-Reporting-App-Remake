@@ -1,0 +1,26 @@
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:29
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:35
+-keep class com.example.crm_flutter.MainActivity { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:129
+-keep class com.google.android.gms.auth.api.signin.RevocationBoundService { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:120
+-keep class com.google.android.gms.auth.api.signin.internal.SignInHubActivity { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:141
+-keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:163
+-keep class com.google.android.gms.measurement.AppMeasurementJobService { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:153
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:159
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:134
+-keep class com.google.firebase.auth.internal.FederatedSignInActivity { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:77
+-keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:146
+-keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:29
+-keep class io.flutter.app.FlutterApplication { <init>(); }
+# Referenced at C:\Users\HP\StudioProjects\Crime-Reporting-App-Remake\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:110
+-keep class io.flutter.plugins.imagepicker.ImagePickerFileProvider { <init>(); }

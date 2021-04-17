@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Crime_Reporting_AIO_app/utils/bezierContainer.dart';
-import 'login_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:Crime_Reporting_AIO_app/screens/adminHome.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   AdminLoginScreen({Key key, this.title}) : super(key: key);

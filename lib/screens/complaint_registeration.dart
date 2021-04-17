@@ -25,7 +25,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
   File _image;
   PickedFile image;
   String imgUrl;
-  String file_name = "Upload photo proof or evidence";
+  String fileName = "Upload photo proof or evidence";
   String description =
       'Please provide high quality image of the lost/found item.';
 
@@ -51,7 +51,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
         .then((image) {
       setState(() {
         _image = File(image.path);
-        file_name = "Image Uploaded Successfully";
+        fileName = "Image Uploaded Successfully";
         description = '';
       });
     });
@@ -214,7 +214,7 @@ class _ComplaintAppState extends State<ComplaintApp> {
                     size: 35,
                   ),
                   title: Text(
-                    file_name,
+                    fileName,
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                   ),
                   subtitle: Text(
